@@ -1,0 +1,44 @@
+server:
+  port: 8080
+spring:
+  profiles:
+    active: @env@
+  application:
+    name: App
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+  jackson:
+    serialization:
+      write-dates-as-timestamps: true
+  freemarker:
+    settings:
+      auto_import: common/all.ftl
+      template_update_delay: 0
+      number_format: 0.##
+      date_format: yyyy-MM-dd
+      datetime_format: yyyy-MM-dd HH:mm:ss
+      time_format: HH:mm:ss
+    request-context-attribute: rca
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  batch:
+    job:
+      enabled: false
+
+mybatis:
+  mapper-locations: classpath*:mapper/*Mapper.xml
+  type-aliases-package: com.kangyonggan.app.model
+  config-location: classpath:mybatis.xml
+
+mapper:
+  mappers: com.kangyonggan.common.mybatis.MyMapper
+  not-empty: false
+  identity: MYSQL
+
+logging:
+  config: classpath:env/@env@/log4j2.xml
+
+

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="300">
+    <properties>
+        <property name="LOG_HOME">d:\\data\\logs\\app</property>
+    </properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%logger{36}.%t:%L] - %msg%n"></PatternLayout>
+        </Console>
+        <RollingRandomAccessFile name="AllFile" fileName="${LOG_HOME}/all.log"
+                                 filePattern="${LOG_HOME}/all-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%logger{36}.%t:%L] - %msg%n"></PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"></TimeBasedTriggeringPolicy>
+                <SizeBasedTriggeringPolicy size="500 MB"></SizeBasedTriggeringPolicy>
+            </Policies>
+            <DefaultRolloverStrategy max="30"></DefaultRolloverStrategy>
+            <Filters>
+                <ThresholdFilter level="fatal" onMatch="DENY" onMismatch="NEUTRAL"></ThresholdFilter>
+                <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"></ThresholdFilter>
+            </Filters>
+        </RollingRandomAccessFile>
+        <RollingRandomAccessFile name="ErrorFile" fileName="${LOG_HOME}/error.log"
+                                 filePattern="${LOG_HOME}/error-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%logger{36}.%t:%L] - %msg%n"></PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"></TimeBasedTriggeringPolicy>
+                <SizeBasedTriggeringPolicy size="500 MB"></SizeBasedTriggeringPolicy>
+            </Policies>
+            <Filters>
+                <ThresholdFilter level="fatal" onMatch="DENY" onMismatch="NEUTRAL"></ThresholdFilter>
+                <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"></ThresholdFilter>
+            </Filters>
+        </RollingRandomAccessFile>
+        <Async name="AsyncAll">
+            <AppenderRef ref="AllFile"></AppenderRef>
+        </Async>
+        <Async name="AsyncError">
+            <AppenderRef ref="ErrorFile"></AppenderRef>
+        </Async>
+    </Appenders>
+    <Loggers>
+        <Logger name="com.kangyonggan.app.mapper" level="debug" additivity="false">
+            <AppenderRef ref="Console"></AppenderRef>
+            <AppenderRef ref="AsyncAll"></AppenderRef>
+            <AppenderRef ref="AsyncError"></AppenderRef>
+        </Logger>
+        <Logger name="sdk.biz.err" level="fatal" additivity="false">
+        </Logger>
+        <Root level="info" additivity="true">
+            <AppenderRef ref="Console"></AppenderRef>
+            <AppenderRef ref="AsyncAll"></AppenderRef>
+            <AppenderRef ref="AsyncError"></AppenderRef>
+        </Root>
+    </Loggers>
+</Configuration>

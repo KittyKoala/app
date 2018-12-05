@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kangyonggan.app.mapper.DictMapper">
+    <resultMap id="BaseResultMap" type="com.kangyonggan.app.model.Dict">
+        <!--
+          WARNING - @mbggenerated
+        -->
+        <id column="dict_id" property="dictId" jdbcType="BIGINT"/>
+        <result column="dict_type" property="dictType" jdbcType="VARCHAR"/>
+        <result column="dict_code" property="dictCode" jdbcType="VARCHAR"/>
+        <result column="value" property="value" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="sort" property="sort" jdbcType="INTEGER"/>
+        <result column="is_deleted" property="isDeleted" jdbcType="TINYINT"/>
+        <result column="created_time" property="createdTime" jdbcType="TIMESTAMP"/>
+        <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+</mapper>
