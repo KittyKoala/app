@@ -45,11 +45,6 @@ $.extend($.validator.addMethod("isIdNo", function (value, element) {
     return this.optional(element) || str.test(value);
 }, "请输入正确的18位身份证号码"));
 
-$.extend($.validator.addMethod("isMobileNo", function (value, element) {
-    var isMobileNo = /\\d/;
-    return this.optional(element) || isMobileNo.test(value);
-}, "请输入正确的手机号码"));
-
 $.extend($.validator.addMethod("isEmail", function (value, element) {
     var isEmail = /^[\\.a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
     return this.optional(element) || isEmail.test(value);
@@ -75,24 +70,3 @@ $.extend($.validator.addMethod("isNum", function (value) {
     return str.test(value);
 }, "请输数字"));
 
-$.extend($.validator.addMethod("isPoint", function (value) {
-    var str = /^[1-9]\d*0$/;
-    return str.test(value);
-}, "充值金额必须为10元的倍数"));
-
-$.extend($.validator.addMethod("isUSDPoint", function (value) {
-    value = value * 1 * 100 / 60;
-    var str = /^[1-9]\d*00$/;
-    return str.test(value);
-}, "Must be 60 integer times"));
-
-$.extend($.validator.addMethod("isVideoCode", function (value) {
-    var str = /^<iframe/;
-    var ok = str.test(value);
-
-    if (ok) {
-        return true;
-    }
-    str = /^<embed/;
-    return str.test(value);
-}, "视频代码格式错误，请查看教程"));

@@ -16,9 +16,4 @@ public interface RedisKey {
      */
     String KEY_FILE_NAME = "APP:FILENAME";
 
-    /**
-     * 密码错误次数
-     */
-    String KEY_ERR_PWD = "CK:ERR:PWD:";
-
 }
