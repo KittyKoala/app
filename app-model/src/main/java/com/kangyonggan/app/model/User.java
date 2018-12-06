@@ -1,5 +1,7 @@
 package com.kangyonggan.app.model;
 
+import com.kangyonggan.app.annotation.Valid;
+import com.kangyonggan.app.constants.Regex;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -25,11 +27,13 @@ public class User implements Serializable {
     /**
      * 电子邮件
      */
+    @Valid(regex = Regex.EMAIL, minLengthText = "请输入正确的电子邮箱")
     private String email;
 
     /**
      * 密码
      */
+    @Valid(required = true, requiredText = "请输入密码", regex = Regex.PASSWORD, regexText = "密码必须是8至20位的字母或数字")
     private String password;
 
     /**

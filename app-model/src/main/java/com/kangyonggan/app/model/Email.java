@@ -56,6 +56,11 @@ public class Email implements Serializable {
     private String code;
 
     /**
+     * 邮件内容
+     */
+    private String content;
+
+    /**
      * 逻辑删除
      */
     @Column(name = "is_deleted")

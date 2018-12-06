@@ -15,5 +15,6 @@
         <result column="is_deleted" property="isDeleted" jdbcType="TINYINT"/>
         <result column="created_time" property="createdTime" jdbcType="TIMESTAMP"/>
         <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP"/>
+        <result column="content" jdbcType="LONGVARCHAR" property="content"/>
     </resultMap>
 </mapper>

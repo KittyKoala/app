@@ -1,5 +1,7 @@
 package com.kangyonggan.app.model;
 
+import com.kangyonggan.app.annotation.Valid;
+import com.kangyonggan.app.constants.Regex;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -23,6 +25,7 @@ public class UserProfile implements Serializable {
     /**
      * 姓名
      */
+    @Valid(maxLength = 20, maxLengthText = "姓名最多20位")
     private String name;
 
     /**
@@ -35,6 +38,7 @@ public class UserProfile implements Serializable {
      * 证件号码
      */
     @Column(name = "id_no")
+    @Valid(regex = Regex.ID_NO, minLengthText = "请输入正确的18位身份证号码")
     private String idNo;
 
     /**

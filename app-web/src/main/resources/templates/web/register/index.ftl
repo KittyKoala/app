@@ -1,7 +1,9 @@
+<#assign title="注册"/>
+
 <@override name="main">
 <div style="height: 2000px;">
-main
+register
 </div>
 </@override>
 
-<@extends name="layout.ftl"/>
+<@extends name="../layout.ftl"/>

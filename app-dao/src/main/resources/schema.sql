@@ -45,7 +45,7 @@ CREATE TABLE tb_user_profile
   COMMENT '用户ID',
   name                VARCHAR(32)  NOT NULL                    DEFAULT ''
   COMMENT '姓名',
-  id_type             VARCHAR(1)   NOT NULL                    DEFAULT ''
+  id_type             VARCHAR(1)   NOT NULL                    DEFAULT '0'
   COMMENT '证件类型',
   id_no               VARCHAR(128) NOT NULL                    DEFAULT ''
   COMMENT '证件号码',
@@ -211,6 +211,8 @@ CREATE TABLE tb_email
   COMMENT 'IP地址',
   code         VARCHAR(16)                           NOT NULL                    DEFAULT ''
   COMMENT '验证码',
+  content      LONGTEXT
+  COMMENT '邮件内容',
   is_deleted   TINYINT                               NOT NULL                    DEFAULT 0
   COMMENT '逻辑删除',
   created_time TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP
