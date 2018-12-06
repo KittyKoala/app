@@ -1,5 +1,6 @@
 package com.kangyonggan.app.controller;
 
+import com.kangyonggan.app.constants.AppConstants;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

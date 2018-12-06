@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN" monitorInterval="300">
     <properties>
-        <property name="LOG_HOME">d:\\data\\logs\\app</property>
+        <property name="LOG_HOME">/Users/kyg/data/logs/app</property>
     </properties>
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">

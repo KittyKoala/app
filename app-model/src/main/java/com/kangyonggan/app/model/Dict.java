@@ -51,7 +51,7 @@ public class Dict {
     private Integer sort;
 
     /**
-     * 逻辑删除:{0:未删除, 1:已删除}
+     * 逻辑删除
      */
     @Column(name = "is_deleted")
     private Byte isDeleted;

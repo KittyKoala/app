@@ -19,13 +19,6 @@
             <groupId>com.kangyonggan</groupId>
             <artifactId>common</artifactId>
         </dependency>
-
-        <!--jca-->
-        <dependency>
-            <groupId>com.github.ofofs</groupId>
-            <artifactId>jca-core</artifactId>
-            <version>${jca.version}</version>
-        </dependency>
     </dependencies>
 
 </project>

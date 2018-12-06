@@ -21,6 +21,12 @@
             <artifactId>app-dao</artifactId>
         </dependency>
 
+        <!--jca-->
+        <dependency>
+            <groupId>com.github.ofofs</groupId>
+            <artifactId>jca-core</artifactId>
+        </dependency>
+
         <!--log4j2-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

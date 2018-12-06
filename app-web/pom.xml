@@ -42,10 +42,6 @@
             <groupId>${parent.groupId}</groupId>
             <artifactId>app-biz</artifactId>
         </dependency>
-        <dependency>
-            <groupId>${parent.groupId}</groupId>
-            <artifactId>app-batch</artifactId>
-        </dependency>
 
         <!--spring-->
         <dependency>

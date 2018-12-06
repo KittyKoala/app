@@ -2,6 +2,7 @@ package com.kangyonggan.app.service.impl;
 
 import com.github.ofofs.jca.annotation.Cache;
 import com.github.ofofs.jca.annotation.Log;
+import com.kangyonggan.app.constants.YesNo;
 import com.kangyonggan.app.model.Dict;
 import com.kangyonggan.app.service.DictService;
 import com.kangyonggan.common.BaseService;
@@ -21,7 +22,7 @@ public class DictServiceImpl extends BaseService<Dict> implements DictService {
     @Cache("dict:type:${dictType}")
     public List<Dict> findDictsByDictType(String dictType) {
         Example example = new Example(Dict.class);
-//        example.createCriteria().andEqualTo("isDeleted", YesNo.NO.getCode()).andEqualTo("dictType", dictType);
+        example.createCriteria().andEqualTo("isDeleted", YesNo.NO.getCode()).andEqualTo("dictType", dictType);
 
         example.selectProperties("dictCode", "value");
 
@@ -36,7 +37,7 @@ public class DictServiceImpl extends BaseService<Dict> implements DictService {
         Dict dict = new Dict();
         dict.setDictType(dictType);
         dict.setDictCode(dictCode);
-//        dict.setIsDeleted(YesNo.NO.getCode());
+        dict.setIsDeleted(YesNo.NO.getCode());
 
         return myMapper.selectOne(dict);
     }
