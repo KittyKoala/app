@@ -60,8 +60,7 @@ public class EmailServiceImpl extends BaseService<Email> implements EmailService
     public Email findEmailByTypeAndToEmail(String type, String toEmail) {
         Example example = new Example(Email.class);
         example.createCriteria().andEqualTo("toEmail", toEmail)
-                .andEqualTo("type", type)
-                .andEqualTo("isDeleted", YesNo.NO.getCode());
+                .andEqualTo("type", type);
 
         example.setOrderByClause("email_id desc");
 

@@ -57,7 +57,7 @@ public class RegisterController extends BaseController {
         Response response = Response.getSuccessResponse();
 
         Email email = emailService.findEmailByTypeAndToEmail(EmailType.REGISTER.getType(), userDto.getEmail());
-        if (email == null || new Date().after(DateUtil.plusMinutes(email.getCreatedTime(), Long.parseLong(expireTime)))) {
+        if (email == null || email.getIsDeleted() == 1 || new Date().after(DateUtil.plusMinutes(email.getCreatedTime(), Long.parseLong(expireTime)))) {
             return response.failure("验证码已失效，请重新获取");
         }
 

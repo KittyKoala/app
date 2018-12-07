@@ -8,28 +8,35 @@
 
     .register-panel {
         background: url('/app/images/bg.jpg') no-repeat;
-        min-height: 640px;
     }
 
     #register-form {
         clear: both;
-        margin-top: 110px;
         float: right;
-        color: #ccc;
+        color: #d5d5d5;
+        margin-top: 30px;
     }
 
     #sendBtn {
         position: absolute;
-        right: -55px;
-        top: 4px;
+        left: 623px;
+        top: 2px;
+        height: 30px;
+        line-height: 20px;
+        width: 60px;
+        padding: 0;
+    }
+
+    .form .sending {
+        width: 100px !important;
     }
 
     .btn {
-        height: 28px;
-        line-height: 24px;
-        padding: 3px 12px;
+        height: 34px;
+        line-height: 22px;
+        padding: 5px 15px;
         background: none;
-        border-radius: 13px;
+        border-radius: 17px;
         border: 1px solid #ddd;
         color: #ccc;
         font-size: 13px;
@@ -41,7 +48,7 @@
 
     .form .form-group {
         position: relative;
-        margin-top: 38px;
+        margin-top: 30px;
     }
 
     .form .app-label {
@@ -81,12 +88,19 @@
     }
 
     .form .form-actions {
-        margin-top: 65px;
+        margin-top: 50px;
         margin-left: 206px;
     }
 
     .form .form-actions button {
         margin-right: 15px;
+    }
+
+    .form div.error {
+        text-indent: 205px;
+        color: #ff5151;
+        font-size: 13px;
+        margin-top: 3px;
     }
 </style>
 </@override>
@@ -99,7 +113,7 @@
                 <div class="app-label">
                     <label class="required">电子邮箱</label>
                 </div>
-                <input class="input" id="email" name="email" placeholder="可用于找回密码和接收通知">
+                <input class="input" id="email" name="email" placeholder="可用于登录找回密码和接收通知">
             </div>
             <div class="form-group">
                 <div class="app-label">
@@ -135,8 +149,136 @@
         </form>
     </div>
 
+    <div class="space-20"></div>
+
     <div class="clear"></div>
 </div>
+</@override>
+
+<@override name="script">
+<script>
+    $(function () {
+        // 动态高度设定
+        $(".register-panel").css({"minHeight": $(window).height() - 330});
+
+        // 表单校验
+        var $form = $('#register-form');
+        var $btn = $("#submitBtn");
+
+        var $validate = $form.validate({
+            rules: {
+                email: {
+                    required: true,
+                    isEmail: true,
+                    remote: {
+                        url: "${ctx}/api/validate/email",
+                        type: 'post',
+                        data: {
+                            'email': function () {
+                                return $('#email').val()
+                            }
+                        }
+                    }
+                },
+                password: {
+                    required: true,
+                    isPassword: true
+                },
+                rePassword: {
+                    required: true,
+                    equalTo: "#password"
+                },
+                code: {
+                    required: true,
+                    isCode: true
+                }
+            },
+            submitHandler: function (form, event) {
+                event.preventDefault();
+                $btn.button('loading');
+                $(form).ajaxSubmit({
+                    dataType: 'json',
+                    success: function (response) {
+                        if (response.respCo === '0000') {
+                            window.location.href = ctx + "/register/success";
+                        } else {
+                            $.growl.error({
+                                title: '错误',
+                                message: response.respMsg
+                            });
+                        }
+                        $btn.button('reset');
+                    },
+                    error: function () {
+                        $btn.button('reset');
+                        $.growl.error({
+                            title: '错误',
+                            message: '网络错误，请稍后再试'
+                        });
+                    }
+                });
+            },
+            errorPlacement: function (error, element) {
+                error.appendTo(element.parent());
+            },
+            errorElement: "div",
+            errorClass: "error"
+        });
+
+
+        /**
+         * 重置
+         */
+        $("#reset").click(function () {
+            $validate.resetForm();
+        });
+
+        var time = 60;
+
+        // 发送验证码
+        var $sendSmsBtn = $("#sendBtn");
+        $sendSmsBtn.click(function () {
+            $form.validate().element($("#email"));
+
+            var isValid = $form.validate().valid();
+            if (!isValid) {
+                return false;
+            }
+
+            var email = $('#email').val();
+            $sendSmsBtn.button('loading');
+            $sendSmsBtn.addClass('sending');
+            $.post("${ctx}/api/email/register", {email: email}, function (response) {
+                if ("0000" === response.respCo) {
+                    $.growl.notice({
+                        title: '消息',
+                        message: '获取成功'
+                    });
+                    var t = setInterval(function () {
+                        time--;
+                        $sendSmsBtn.html(time + "秒");
+                        $sendSmsBtn.removeClass('sending');
+                        if (time === 0) {
+                            clearInterval(t);
+                            $sendSmsBtn.html("获取");
+                            $sendSmsBtn.button('reset');
+                            time = 60;
+                        }
+                    }, 1000)
+                } else {
+                    $sendSmsBtn.button('reset');
+                    $sendSmsBtn.removeClass('sending');
+                    $.growl.error({
+                        title: '错误',
+                        message: response.respMsg
+                    });
+                }
+            });
+
+            return false;
+        });
+    })
+</script>
 </@override>
 
 <@extends name="../layout.ftl"/>

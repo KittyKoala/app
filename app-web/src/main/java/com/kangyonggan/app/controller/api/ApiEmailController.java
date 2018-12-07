@@ -67,7 +67,7 @@ public class ApiEmailController extends BaseController {
 
         // 如果上次发送的验证码还在, 继续使用上次的验证码
         Email dbEmail = emailService.findEmailByTypeAndToEmail(type, email);
-        if (dbEmail != null) {
+        if (dbEmail != null && dbEmail.getIsDeleted() != 1) {
             code = dbEmail.getCode();
             log.info("使用上次的邮箱验证码:{}", code);
         }
