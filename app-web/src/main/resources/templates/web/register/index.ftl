@@ -4,7 +4,7 @@
     <@panel bg_img="/app/images/bg.jpg">
         <@web_form action="${ctx}/register" class="register-form">
             <@web_input label="电子邮箱" id="email" name="email" placeholder="可用于登录找回密码和接收通知"/>
-            <@web_input label="短信验证码" name="code">
+            <@web_input label="邮箱验证码" name="code">
             <button id="sendBtn" class="btn" data-loading-text="正在发送...">
                 获取
             </button>
