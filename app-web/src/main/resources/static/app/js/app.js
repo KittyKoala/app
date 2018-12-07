@@ -50,3 +50,41 @@ var Message = {
         })
     }
 };
+
+/**
+ * 提交表单
+ *
+ * @param $form 表单
+ * @param $btn 提交按钮
+ * @param success 成功回调
+ * @param failure 失败回调
+ */
+function formSubmit($form, $btn, success, failure) {
+    $form.ajaxSubmit({
+        dataType: 'json',
+        success: function (response) {
+            if (response.respCo == '0000') {
+                if (success) {
+                    success(response);
+                }
+            } else {
+                Message.error(response.respMsg);
+                if (failure) {
+                    failure(response);
+                }
+            }
+            if ($btn) {
+                $btn.button('reset');
+            }
+        },
+        error: function () {
+            Message.error("服务器内部错误，请稍后再试。");
+            if ($btn) {
+                $btn.button('reset');
+            }
+            if (failure) {
+                failure();
+            }
+        }
+    });
+}

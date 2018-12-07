@@ -1,6 +1,7 @@
 package com.kangyonggan.app.controller;
 
 import com.kangyonggan.app.constants.AppConstants;
+import com.kangyonggan.app.util.RedisSession;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -95,7 +96,7 @@ public class CaptchaController {
         }
 
         // 把验证码保存到redis中
-//        RedisSession.put(AppConstants.KEY_CAPTCHA, captcha.toString());
+        RedisSession.put(AppConstants.KEY_CAPTCHA, captcha.toString());
         log.info("验证码captcha为: {}", captcha);
 
         // 禁止缓存

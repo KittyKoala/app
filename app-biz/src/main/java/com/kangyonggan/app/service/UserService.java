@@ -10,12 +10,12 @@ import com.kangyonggan.app.model.User;
 public interface UserService {
 
     /**
-     * 登录
+     * 查找用户
      *
-     * @param user
+     * @param email
      * @return
      */
-    User login(User user);
+    User findUserByEmail(String email);
 
     /**
      * 判断电子邮箱是否存在

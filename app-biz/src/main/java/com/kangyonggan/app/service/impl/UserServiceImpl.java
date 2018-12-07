@@ -32,8 +32,10 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
 
     @Override
     @Log
-    public User login(User user) {
-        return null;
+    public User findUserByEmail(String email) {
+        User user = new User();
+        user.setEmail(email);
+        return myMapper.selectOne(user);
     }
 
     @Override

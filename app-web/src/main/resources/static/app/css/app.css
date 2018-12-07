@@ -53,3 +53,30 @@ body {
 .pull-left {
     float: left !important;
 }
+
+.login-form {
+    float: right;
+    color: #f5f5f5;
+    margin-top: 40px;
+}
+
+.register-form {
+    clear: both;
+    float: right;
+    color: #d5d5d5;
+    margin-top: 30px;
+}
+
+#sendBtn {
+    position: absolute;
+    left: 623px;
+    top: 2px;
+    height: 30px;
+    line-height: 20px;
+    width: 60px;
+    padding: 0;
+}
+
+.register-form .sending {
+    width: 100px !important;
+}

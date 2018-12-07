@@ -13,7 +13,6 @@ spring:
       write-dates-as-timestamps: true
   freemarker:
     settings:
-      auto_import: common/all.ftl as c
       template_update_delay: 0
       number_format: 0.##
       date_format: yyyy-MM-dd

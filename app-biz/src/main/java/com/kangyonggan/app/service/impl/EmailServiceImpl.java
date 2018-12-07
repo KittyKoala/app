@@ -12,10 +12,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
-import javax.mail.Authenticator;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
+import javax.mail.*;
 import javax.mail.internet.MimeMessage;
 import java.security.Security;
 import java.util.List;
@@ -93,6 +90,8 @@ public class EmailServiceImpl extends BaseService<Email> implements EmailService
             sendSSL(email);
 
             myMapper.insertSelective(email);
+        } catch (SendFailedException e) {
+            throw new BizException("电子邮箱不存在", e);
         } catch (Exception e) {
             throw new BizException("邮件发送失败", e);
         }
@@ -121,9 +120,9 @@ public class EmailServiceImpl extends BaseService<Email> implements EmailService
      * 加密发送
      *
      * @param email
-     * @throws Exception
+     * @throws MessagingException
      */
-    private void sendSSL(Email email) throws Exception {
+    private void sendSSL(Email email) throws MessagingException {
         initProperties();
         MimeMessage msg = new MimeMessage(getSession());
         MimeMessageHelper helper = new MimeMessageHelper(msg, true, "UTF-8");

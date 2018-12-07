@@ -33,6 +33,7 @@ public class BaseController {
     public Response handleException(Exception e) {
         if (e != null) {
             log.warn("捕获到异常", e);
+            return Response.getFailureResponse(e.getMessage());
         }
 
         return Response.getFailureResponse();

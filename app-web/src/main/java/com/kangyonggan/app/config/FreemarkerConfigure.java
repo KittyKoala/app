@@ -1,5 +1,6 @@
 package com.kangyonggan.app.config;
 
+import com.kangyonggan.app.freemarker.AppTag;
 import com.kangyonggan.freemarker.BlockDirective;
 import com.kangyonggan.freemarker.ExtendsDirective;
 import com.kangyonggan.freemarker.OverrideDirective;
@@ -32,6 +33,7 @@ public class FreemarkerConfigure {
         configuration.setSharedVariable("super", new SuperDirective());
 
         configuration.setSharedVariable("appName", appName);
+        configuration.setSharedVariable("app", new AppTag());
     }
 
 }
