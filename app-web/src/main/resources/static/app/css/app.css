@@ -1,3 +1,4 @@
+/*布局*/
 html {
     height: 100%;
 }
@@ -9,7 +10,6 @@ body {
     padding: 0;
     font-size: 16px;
 }
-
 .container {
     min-height: 100%;
     margin-bottom: -260px;
@@ -18,7 +18,9 @@ body {
 .empty, .footer {
     height: 260px;
 }
+/*布局*/
 
+/*通用*/
 .inner {
     width: 1024px;
     margin: 0 auto;
@@ -53,13 +55,102 @@ body {
 .pull-left {
     float: left !important;
 }
+/*通用*/
 
+/*表单*/
+.btn {
+    height: 34px;
+    line-height: 22px;
+    padding: 5px 15px;
+    background: none;
+    border-radius: 17px;
+    border: 1px solid #ddd;
+    color: #ccc;
+    font-size: 13px;
+    cursor: pointer;
+    box-shadow: none !important;
+    outline: none;
+    letter-spacing: 2px;
+}
+
+.form .form-group {
+    position: relative;
+    margin-top: 30px;
+}
+
+.form .captcha {
+    position: absolute;
+    right: 10px;
+    top: 2px;
+    height: 30px;
+    line-height: 20px;
+    width: 80px;
+    padding: 0;
+    cursor: pointer;
+}
+
+.form .label {
+    display: inline-block;
+    _zoom: 1;
+    *display: inline;
+}
+
+.form label {
+    display: inline-block;
+    width: 180px;
+    text-align: right;
+}
+
+.form .label:after {
+    content: '：';
+}
+
+.form .required:after {
+    content: '*';
+    color: red;
+}
+
+.form input {
+    display: inline-block;
+    width: 400px;
+    height: 34px;
+    line-height: 34px;
+    box-sizing: border-box;
+    outline: none;
+    font-size: 14px;
+    padding: 4px 10px;
+    margin-right: 10px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid #aaa;
+    color: #fff;
+}
+
+.form .form-actions {
+    margin-top: 50px;
+    margin-left: 206px;
+}
+
+.form .form-actions button {
+    margin-right: 15px;
+}
+
+.form div.error {
+    text-indent: 205px;
+    color: #ff5151;
+    font-size: 13px;
+    margin-top: 3px;
+}
+/*表单*/
+
+/*登录界面*/
 .login-form {
     float: right;
     color: #f5f5f5;
     margin-top: 40px;
 }
+/*登录界面*/
 
+/*注册界面*/
 .register-form {
     clear: both;
     float: right;
@@ -80,3 +171,4 @@ body {
 .register-form .sending {
     width: 100px !important;
 }
+/*注册界面*/
