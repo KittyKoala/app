@@ -1,7 +1,6 @@
 package com.kangyonggan.app.service.impl;
 
 import com.github.ofofs.jca.annotation.Cache;
-import com.github.ofofs.jca.annotation.Log;
 import com.kangyonggan.app.constants.YesNo;
 import com.kangyonggan.app.model.Dict;
 import com.kangyonggan.app.service.DictService;
@@ -31,7 +30,6 @@ public class DictServiceImpl extends BaseService<Dict> implements DictService {
     }
 
     @Override
-    @Log
     @Cache("dict:type:${dictType}:code:${dictCode}")
     public Dict findDictByDictTypeAndDictCode(String dictType, String dictCode) {
         Dict dict = new Dict();

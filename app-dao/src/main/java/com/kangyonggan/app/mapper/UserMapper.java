@@ -1,5 +1,6 @@
 package com.kangyonggan.app.mapper;
 
+import com.kangyonggan.app.dto.UserDto;
 import com.kangyonggan.app.model.User;
 import com.kangyonggan.common.mybatis.MyMapper;
 import org.apache.ibatis.annotations.InsertProvider;
@@ -25,4 +26,11 @@ public interface UserMapper extends MyMapper<User> {
     @Override
     int insertSelective(User user);
 
+    /**
+     * 查找用户信息
+     *
+     * @param userId
+     * @return
+     */
+    UserDto selectUserDtoByUserId(Long userId);
 }

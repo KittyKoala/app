@@ -53,7 +53,6 @@ public class EmailServiceImpl extends BaseService<Email> implements EmailService
     private String expireTime;
 
     @Override
-    @Log
     public Email findEmailByTypeAndToEmail(String type, String toEmail) {
         Example example = new Example(Email.class);
         example.createCriteria().andEqualTo("toEmail", toEmail)

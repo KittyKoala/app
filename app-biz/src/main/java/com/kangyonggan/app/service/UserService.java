@@ -32,4 +32,11 @@ public interface UserService {
      */
     void saveUser(UserDto userDto);
 
+    /**
+     * 查找用户信息
+     *
+     * @param userId
+     * @return
+     */
+    UserDto findUserDtoByUserId(Long userId);
 }

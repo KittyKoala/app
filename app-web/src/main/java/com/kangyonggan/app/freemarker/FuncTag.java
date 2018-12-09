@@ -7,7 +7,7 @@ import java.util.UUID;
  * @author kangyonggan
  * @since 5/4/18
  */
-public class AppTag extends AbstractFunctionTag {
+public class FuncTag extends AbstractFunctionTag {
 
     /**
      * 获取UUID

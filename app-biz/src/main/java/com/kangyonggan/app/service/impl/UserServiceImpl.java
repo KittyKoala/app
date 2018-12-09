@@ -1,6 +1,5 @@
 package com.kangyonggan.app.service.impl;
 
-import com.github.ofofs.jca.annotation.Log;
 import com.kangyonggan.app.constants.AppConstants;
 import com.kangyonggan.app.dto.UserDto;
 import com.kangyonggan.app.mapper.UserMapper;
@@ -31,7 +30,6 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
     private UserProfileMapper userProfileMapper;
 
     @Override
-    @Log
     public User findUserByEmail(String email) {
         User user = new User();
         user.setEmail(email);
@@ -39,7 +37,6 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
     }
 
     @Override
-    @Log
     public boolean existsEmail(String email) {
         User user = new User();
         user.setEmail(email);
@@ -47,7 +44,6 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
     }
 
     @Override
-    @Log
     @Transactional(rollbackFor = Exception.class)
     public void saveUser(UserDto userDto) {
         User user = new User();
@@ -65,6 +61,11 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
         // 保存用户信息
         userProfile.setUserId(user.getUserId());
         userProfileMapper.insertSelective(userProfile);
+    }
+
+    @Override
+    public UserDto findUserDtoByUserId(Long userId) {
+        return userMapper.selectUserDtoByUserId(userId);
     }
 
     /**

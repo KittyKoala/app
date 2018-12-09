@@ -1,5 +1,7 @@
 package com.kangyonggan.app.freemarker;
 
+import com.kangyonggan.app.model.User;
+import com.kangyonggan.app.util.RedisSession;
 import freemarker.core.Environment;
 import freemarker.template.*;
 
@@ -14,6 +16,15 @@ import java.util.Map;
  * @since 16/4/29
  */
 public abstract class AbstractSuperTag implements TemplateDirectiveModel {
+
+    /**
+     * 获取当前登录的用户
+     *
+     * @return
+     */
+    protected User getUser() {
+        return RedisSession.currentUser();
+    }
 
     @Override
     public void execute(Environment env, Map params, TemplateModel[] loopVars, TemplateDirectiveBody body) throws TemplateException, IOException {

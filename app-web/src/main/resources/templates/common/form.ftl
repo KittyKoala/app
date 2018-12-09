@@ -1,7 +1,7 @@
 <#--web表单-->
 <#macro web_form action="" id="" action="" method="post" class="">
     <#if id==''>
-        <#local id=app('uuid')/>
+        <#local id=func('uuid')/>
     </#if>
 <form <#if action!=''>action="${action}"</#if>
       id="${id}"

@@ -16,4 +16,18 @@
         <result column="created_time" property="createdTime" jdbcType="TIMESTAMP"/>
         <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP"/>
     </resultMap>
+
+    <select id="selectExistsUserMenuCode" resultType="Boolean">
+      SELECT exists(
+        SELECT
+          m.menu_code
+        FROM
+          tb_user_role ur, tb_role_menu rm, tb_menu m
+        WHERE
+          ur.user_id = #{userId}
+          AND ur.role_id = rm.role_id
+          AND rm.menu_id = m.menu_id
+          AND m.menu_code = #{menuCode}
+      )
+    </select>
 </mapper>
