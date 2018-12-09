@@ -1,72 +1,80 @@
-<#--web表单-->
-<#macro web_form action="" id="" action="" method="post" class="">
+<#--搜索表单-->
+<#macro search_form id="">
     <#if id==''>
         <#local id=func('uuid')/>
     </#if>
-<form <#if action!=''>action="${action}"</#if>
-      id="${id}"
-      method="${method}"
-      class="form ${class}">
+<form class="form-horizontal col-xs-12 fa-border radius-base" id="${id}">
+    <div class="space-10"></div>
     <#nested />
 </form>
-
-<script>
-    $(function () {
-        /**
-         * 重置
-         */
-        $("#${id}").find("button[type='reset']").click(function () {
-            $("#${id}").validate().resetForm();
-        });
-    })
-</script>
 </#macro>
 
-<#--web输入框-->
-<#macro web_input label name="" id="" type="text" required=true placeholder="">
-<div class="form-group">
-    <div class="label">
-        <label <#if required>class="required"</#if>>${label}</label>
+<#--输入框-->
+<#macro input name label id="" value="" placeholder="">
+    <#if id==''>
+        <#local id=func('uuid')/>
+    </#if>
+<div class="form-group col-lg-4 col-md-6 col-xs-12">
+    <div class="app-label nowrap col-md-5 col-xs-12">
+        <label>${label}</label>
     </div>
-    <input type="${type}"
-           <#if id!=''>id="${id}"</#if>
-           <#if name!=''>name="${name}"</#if>
-        <#if placeholder!=''>
-           placeholder="${placeholder}"
-        <#else>
-           placeholder="请输入${label}"
-        </#if>
-    >
-    <#nested />
+    <div class="col-md-7 controls col-xs-12">
+        <input id="${id}" name="${name}" value="${value}" class="form-control"
+               placeholder="${(placeholder=='')?string('请输入${label}', placeholder)}"/>
+    </div>
+    <div>
+        <#nested />
+    </div>
 </div>
 </#macro>
 
-<#macro web_captcha label name="" id="">
-    <@web_input label="${label}" name="${name}" id="${id}">
-    <img class="captcha" onclick="this.src='${ctx}/captcha?r=' + Math.random();" src="${ctx}/captcha"/>
-    </@web_input>
-</#macro>
+<#--日期选择框-->
+<#macro date name label id="" value="" placeholder="" date_format="yyyy-mm-dd">
+    <#if id==''>
+        <#local id=func('uuid')/>
+    </#if>
+<div class="form-group col-lg-4 col-md-6 col-xs-12">
+    <div class="app-label nowrap col-md-5 col-xs-12">
+        <label>${label}</label>
+    </div>
+    <div class="col-md-7 controls col-xs-12">
+        <input id="${id}" name="${name}" value="${value}" class="form-control date-picker readonly" readonly
+               placeholder="${(placeholder=='')?string('请选择${label}', placeholder)}"/>
+    </div>
+    <div>
+        <#nested />
+    </div>
 
-<#--web按钮组-->
-<#macro web_actions>
-<div class="form-actions">
-    <#nested />
+    <script>
+        $(function () {
+            $('#${id}').datepicker({
+                format: '${date_format}'
+            });
+        })
+    </script>
 </div>
 </#macro>
 
-<#--web按钮-->
-<#macro web_button name id="" loading_text="" type="button" icon="">
-<button <#if id!=''>id="${id}"</#if>
-        class="btn" type="${type}"
-    <#if loading_text!=''>
-        data-loading-text="${loading_text}"
-    <#else>
-        data-loading-text="正在${name}..."
-    </#if>
->
-    <#if icon!=''>
-        <i class="fa ${icon}"></i>
-    </#if>
-${name}
-</button>
+<#--表单按钮组-->
+<#macro form_actions>
+    <div class="col-xs-12 align-center">
+    <#nested />
+        <div class="space-6"></div>
+    </div>
+</#macro>
+
+<#--查询按钮-->
+<#macro query>
+    <a href="javascript:" class="btn btn-sm btn-purple">
+        <i class="ace-icon fa fa-search"></i>
+        查询
+    </a>
+</#macro>
+
+<#--重置按钮-->
+<#macro reset>
+    <a href="javascript:" class="btn btn-sm btn-danger">
+        <i class="ace-icon fa fa-undo"></i>
+        清除
+    </a>
 </#macro>

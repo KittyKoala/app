@@ -30,4 +30,17 @@
           AND m.menu_code = #{menuCode}
       )
     </select>
+
+    <select id="selectMenusByUserId" resultMap="BaseResultMap">
+      SELECT
+        DISTINCT m.*
+      FROM
+        tb_menu m, tb_role_menu rm, tb_user_role ur
+      WHERE
+        m.menu_id = rm.menu_id
+      AND rm.role_id = ur.role_id
+      AND ur.user_id = #{userId}
+      ORDER BY m.sort ASC
+    </select>
+
 </mapper>

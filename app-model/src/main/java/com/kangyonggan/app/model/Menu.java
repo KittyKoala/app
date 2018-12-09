@@ -2,7 +2,9 @@ package com.kangyonggan.app.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.*;
+
 import lombok.Data;
 
 /**
@@ -69,6 +71,12 @@ public class Menu implements Serializable {
      */
     @Column(name = "updated_time")
     private Date updatedTime;
+
+    /**
+     * 子节点
+     */
+    @Transient
+    List<Menu> leaf;
 
     private static final long serialVersionUID = 1L;
 }

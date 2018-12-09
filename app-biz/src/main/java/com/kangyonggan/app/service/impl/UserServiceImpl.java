@@ -1,20 +1,28 @@
 package com.kangyonggan.app.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.kangyonggan.app.constants.AppConstants;
 import com.kangyonggan.app.dto.UserDto;
+import com.kangyonggan.app.exception.BizException;
 import com.kangyonggan.app.mapper.UserMapper;
-import com.kangyonggan.app.mapper.UserProfileMapper;
 import com.kangyonggan.app.model.User;
 import com.kangyonggan.app.model.UserProfile;
+import com.kangyonggan.app.service.RoleService;
+import com.kangyonggan.app.service.UserProfileService;
 import com.kangyonggan.app.service.UserService;
 import com.kangyonggan.app.util.Digests;
 import com.kangyonggan.app.util.Encodes;
 import com.kangyonggan.app.util.ValidUtil;
 import com.kangyonggan.common.BaseService;
+import com.kangyonggan.common.Params;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author kangyonggan
@@ -27,7 +35,10 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
     private UserMapper userMapper;
 
     @Autowired
-    private UserProfileMapper userProfileMapper;
+    private UserProfileService userProfileService;
+
+    @Autowired
+    private RoleService roleService;
 
     @Override
     public User findUserByEmail(String email) {
@@ -60,12 +71,87 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
 
         // 保存用户信息
         userProfile.setUserId(user.getUserId());
-        userProfileMapper.insertSelective(userProfile);
+        userProfileService.saveUserProfile(userProfile);
     }
 
     @Override
     public UserDto findUserDtoByUserId(Long userId) {
         return userMapper.selectUserDtoByUserId(userId);
+    }
+
+    @Override
+    public List<UserDto> searchUsers(Params params) {
+        PageHelper.startPage(params.getPageNum(), params.getPageSize());
+        return userMapper.searchUsers(params.getQuery());
+    }
+
+    @Override
+    public User findUserByUserId(Long userId) {
+        return myMapper.selectByPrimaryKey(userId);
+    }
+
+    @Override
+    public void updateUser(User user) {
+        myMapper.updateByPrimaryKeySelective(user);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void updateUser(UserDto userDto) {
+        User user = new User();
+        UserProfile userProfile = new UserProfile();
+        BeanUtils.copyProperties(userDto, user);
+        user.setPassword(null);
+        user.setSalt(null);
+
+        BeanUtils.copyProperties(userDto, userProfile);
+
+        User dbUser = findUserByUserId(user.getUserId());
+
+        // 校验电子邮箱是否已存在
+        if (StringUtils.isNotEmpty(user.getEmail())) {
+            if (!dbUser.getEmail().equals(user.getEmail()) && existsEmail(user.getEmail())) {
+                throw new BizException("电子邮箱已被其他玩家注册");
+            }
+        }
+
+        // 更新用户
+        myMapper.updateByPrimaryKeySelective(user);
+
+        // 更新用户信息
+        userProfileService.updateUserProfile(userProfile);
+    }
+
+    @Override
+    public void deleteUser(Long userId) {
+        myMapper.deleteByPrimaryKey(userId);
+    }
+
+    @Override
+    public void updateUserPassword(User user) {
+        entryptPassword(user);
+        user.setEmail(null);
+
+        myMapper.updateByPrimaryKeySelective(user);
+    }
+
+    @Override
+    public void updateUserRoles(Long userId, String roleIds) {
+        roleService.deleteAllRolesByUserId(userId);
+
+        if (StringUtils.isNotEmpty(roleIds)) {
+            saveUserRoles(userId, roleIds);
+        }
+    }
+
+    /**
+     * 批量保存用户角色
+     *
+     * @param userId
+     * @param roleIds
+     */
+    private void saveUserRoles(Long userId, String roleIds) {
+        userMapper.insertUserRoles(userId, Arrays.asList(roleIds.split(",")));
     }
 
     /**

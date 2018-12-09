@@ -5,6 +5,8 @@ import com.kangyonggan.common.mybatis.MyMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * @author kangyonggan
  * @since 8/8/18
@@ -20,4 +22,13 @@ public interface MenuMapper extends MyMapper<Menu> {
      * @return
      */
     boolean selectExistsUserMenuCode(@Param("userId") Long userId, @Param("menuCode") String menuCode);
+
+    /**
+     * 查找用户菜单
+     *
+     * @param userId
+     * @return
+     */
+    List<Menu> selectMenusByUserId(Long userId);
+
 }

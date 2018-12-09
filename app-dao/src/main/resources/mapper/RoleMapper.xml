@@ -25,4 +25,13 @@
           AND r.role_code = #{roleCode}
       )
     </select>
+
+    <delete id="deleteAllRolesByUserId">
+        DELETE FROM tb_user_role WHERE user_id = #{userId}
+    </delete>
+
+    <select id="selectRolesByUserId" resultMap="BaseResultMap">
+      SELECT r.* FROM tb_role r, tb_user_role ur WHERE
+      r.role_id = ur.role_id AND ur.user_id = #{userId}
+    </select>
 </mapper>

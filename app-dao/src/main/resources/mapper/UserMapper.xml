@@ -28,4 +28,43 @@
           u.user_id = up.user_id
           AND u.user_id = #{userId}
     </select>
+
+    <select id="searchUsers" parameterType="Map" resultMap="UserDtoResultMap">
+        SELECT
+        u.user_id, up.skin, u.email, up.name, up.enable_email_notice, up.id_type, up.id_no, up.ip_address, u.created_time, u.is_deleted
+        FROM
+        tb_user u, tb_user_profile up
+        WHERE
+        u.user_id = up.user_id
+        <if test="email != null and email != ''">
+            AND u.email = #{email}
+        </if>
+        <if test="name != null and name != ''">
+            AND up.name = #{name}
+        </if>
+        <if test="idNo != null and idNo != ''">
+            AND up.id_no = #{idNo}
+        </if>
+        <if test="beginDate != null and beginDate != ''">
+            AND u.created_time &gt;= #{beginDate}
+        </if>
+        <if test="endDate != null and endDate != ''">
+            AND u.created_time &lt;= #{endDate}
+        </if>
+        ORDER BY
+        <if test="order != null and order != ''">
+            <if test="sort != null and sort != ''">
+                ${sort} ${order},
+            </if>
+        </if>
+        u.user_id DESC
+    </select>
+
+    <insert id="insertUserRoles">
+        INSERT INTO tb_user_role (user_id, role_id)
+        VALUES
+        <foreach collection="roleIds" item="roleId" separator=",">
+            (#{userId}, #{roleId})
+        </foreach>
+    </insert>
 </mapper>

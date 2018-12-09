@@ -2,6 +2,7 @@ package com.kangyonggan.app.config;
 
 import com.kangyonggan.app.freemarker.AppTags;
 import com.kangyonggan.app.freemarker.FuncTag;
+import com.kangyonggan.app.freemarker.MenusDirective;
 import com.kangyonggan.freemarker.BlockDirective;
 import com.kangyonggan.freemarker.ExtendsDirective;
 import com.kangyonggan.freemarker.OverrideDirective;
@@ -23,6 +24,9 @@ public class FreemarkerConfigure {
     @Autowired
     freemarker.template.Configuration configuration;
 
+    @Autowired
+    private MenusDirective menusDirective;
+
     @Value("${app.name}")
     private String appName;
 
@@ -36,6 +40,7 @@ public class FreemarkerConfigure {
         configuration.setSharedVariable("appName", appName);
         configuration.setSharedVariable("func", new FuncTag());
         configuration.setSharedVariable("app", new AppTags());
+        configuration.setSharedVariable("menus", menusDirective);
     }
 
 }

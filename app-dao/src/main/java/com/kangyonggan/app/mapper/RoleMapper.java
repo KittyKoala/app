@@ -5,6 +5,8 @@ import com.kangyonggan.common.mybatis.MyMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * @author kangyonggan
  * @since 8/8/18
@@ -20,4 +22,19 @@ public interface RoleMapper extends MyMapper<Role> {
      * @return
      */
     boolean selectExistsUserRoleCode(@Param("userId") Long userId, @Param("roleCode") String roleCode);
+
+    /**
+     * 删除用户角色
+     *
+     * @param userId
+     */
+    void deleteAllRolesByUserId(Long userId);
+
+    /**
+     * 查找用户角色
+     *
+     * @param userId
+     * @return
+     */
+    List<Role> selectRolesByUserId(Long userId);
 }
