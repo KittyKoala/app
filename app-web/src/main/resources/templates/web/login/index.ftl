@@ -5,7 +5,7 @@
         <@web_form action="${ctx}/login" class="login-form">
             <@web_input label="电子邮箱" name="email"/>
             <@web_input label="密码" name="password" type="password"/>
-            <@web_captcha label="验证码" name="captcha"/>
+            <@web_captcha label="验证码" id="captcha" name="captcha"/>
 
             <@web_actions>
                 <@web_button name="登录" type="submit" icon="fa-check"/>
@@ -47,6 +47,7 @@
                     window.location.href = "${ctx}/";
                 }, function () {
                     $(".captcha").attr('src', '${ctx}/captcha?r=' + Math.random());
+                    $("#captcha").val("");
                 })
             },
             errorElement: "div"
