@@ -1,5 +1,6 @@
 package com.kangyonggan.app.config;
 
+import com.kangyonggan.app.interceptor.AuthInterceptor;
 import com.kangyonggan.common.web.ParamsInterceptor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
@@ -24,6 +25,8 @@ public class MvcConfigure implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         // 处理请求
         registry.addInterceptor(new ParamsInterceptor()).addPathPatterns("/**");
+        // 登录认证
+        registry.addInterceptor(new AuthInterceptor()).addPathPatterns("/**");
     }
 
     /**

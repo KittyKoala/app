@@ -14,10 +14,10 @@ public interface MenuService {
      * 判断用户是否拥有某菜单
      *
      * @param userId
-     * @param menuCode
+     * @param menuCodes
      * @return
      */
-    boolean hasMenu(Long userId, String menuCode);
+    boolean hasMenu(Long userId, String... menuCodes);
 
     /**
      * 查找用户菜单
@@ -26,4 +26,12 @@ public interface MenuService {
      * @return
      */
     List<Menu> findMenusByUserId(Long userId);
+
+    /**
+     * 查找父菜单
+     *
+     * @param menuCode
+     * @return
+     */
+    List<Menu> findParentMenusByCode(String menuCode);
 }

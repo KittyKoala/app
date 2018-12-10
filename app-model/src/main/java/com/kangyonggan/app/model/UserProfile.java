@@ -53,7 +53,7 @@ public class UserProfile implements Serializable {
     private String skin;
 
     /**
-     * 是否启用邮件通知
+     * 启用邮件通知
      */
     @Column(name = "enable_email_notice")
     private Byte enableEmailNotice;

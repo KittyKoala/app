@@ -16,7 +16,7 @@ public class FuncTag extends AbstractFunctionTag {
      * @return 返回UUID
      */
     public String uuid(List arguments) {
-        return UUID.randomUUID().toString().replaceAll("-", "");
+        return "uuid" + UUID.randomUUID().toString().replaceAll("-", "");
     }
 
 }

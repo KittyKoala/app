@@ -67,12 +67,12 @@
                         <a href="${ctx}/dashboard">工作台</a>
                     </li>
                 <#--<#if subtitle??>-->
-                    <#--<li>-->
-                        <#--<a href="javascript:">${subtitle}</a>-->
-                    <#--</li>-->
+                <#--<li>-->
+                <#--<a href="javascript:">${subtitle}</a>-->
+                <#--</li>-->
                 <#--</#if>-->
                 <#--<@block name="breadcrumbs"/>-->
-                    <#--<li class="active">${title}</li>-->
+                <#--<li class="active">${title}</li>-->
                 </ul>
             </div>
 
@@ -125,6 +125,21 @@
 <script src="${ctx}/libs/jquery/jquery.validate.min.js"></script>
 <script src="${ctx}/libs/jquery/jquery.validate.extends.js"></script>
 <script src="${ctx}/app/js/dashboard.js"></script>
+<script>
+    $(function () {
+    <#if _openMenus??>
+        <#list _openMenus as openMenu>
+            <#if openMenu_has_next>
+                $('#${openMenu.menuCode}').addClass('open active');
+            <#else>
+                $('#${openMenu.menuCode}').addClass('active');
+            </#if>
+        </#list>
+    <#else>
+        $('#DASHBOARD').addClass('active');
+    </#if>
+    });
+</script>
 <@block name="script"/>
 </body>
 </html>

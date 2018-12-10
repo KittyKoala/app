@@ -17,7 +17,7 @@
         <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP"/>
     </resultMap>
 
-    <select id="selectExistsUserMenuCode" resultType="Boolean">
+    <select id="selectExistsUserMenuCodes" resultType="Boolean">
       SELECT exists(
         SELECT
           m.menu_code
@@ -27,7 +27,10 @@
           ur.user_id = #{userId}
           AND ur.role_id = rm.role_id
           AND rm.menu_id = m.menu_id
-          AND m.menu_code = #{menuCode}
+          AND m.menu_code IN 
+          <foreach collection="menuCodes" item="menuCode" open="(" close=")" separator=",">
+            #{menuCode}
+          </foreach>
       )
     </select>
 

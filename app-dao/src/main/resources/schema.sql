@@ -54,7 +54,7 @@ CREATE TABLE tb_user_profile
   skin                VARCHAR(20)  NOT NULL                    DEFAULT ''
   COMMENT '皮肤',
   enable_email_notice TINYINT      NOT NULL                    DEFAULT 1
-  COMMENT '是否启用邮件通知',
+  COMMENT '启用邮件通知',
   is_deleted          TINYINT      NOT NULL                    DEFAULT 0
   COMMENT '逻辑删除',
   created_time        TIMESTAMP    NOT NULL                    DEFAULT CURRENT_TIMESTAMP

@@ -18,10 +18,10 @@ public interface MenuMapper extends MyMapper<Menu> {
      * 判断用户是否拥有某菜单
      *
      * @param userId
-     * @param menuCode
+     * @param menuCodes
      * @return
      */
-    boolean selectExistsUserMenuCode(@Param("userId") Long userId, @Param("menuCode") String menuCode);
+    boolean selectExistsUserMenuCodes(@Param("userId") Long userId, @Param("menuCodes") String[] menuCodes);
 
     /**
      * 查找用户菜单

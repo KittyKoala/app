@@ -47,8 +47,6 @@
 
 <@override name="script">
 <script>
-    $('#DASHBOARD').addClass('active');
-
     $("#skins a").click(function () {
         var skin = $(this).data("skin");
         $.post(ctx + "/dashboard/changeSkin", {skin: skin}, function (response) {

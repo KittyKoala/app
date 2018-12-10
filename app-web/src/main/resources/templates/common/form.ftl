@@ -64,7 +64,7 @@
 </#macro>
 
 <#--查询按钮-->
-<#macro query>
+<#macro query table_id>
     <a href="javascript:" class="btn btn-sm btn-purple">
         <i class="ace-icon fa fa-search"></i>
         查询
