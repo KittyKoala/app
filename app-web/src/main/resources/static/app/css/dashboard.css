@@ -97,6 +97,10 @@ input[readonly], input[readonly].readonly {
     background: #FAFAFA !important;
     cursor: pointer !important;
 }
+
+tr.no-records-found td {
+    padding: 40px 0px !important;
+}
 /*自定义*/
 
 

@@ -65,7 +65,7 @@
 
 <#--查询按钮-->
 <#macro query table_id>
-    <a href="javascript:" class="btn btn-sm btn-purple">
+    <a href="javascript:" class="btn btn-sm btn-purple" data-table-id="${table_id}" data-type="submit">
         <i class="ace-icon fa fa-search"></i>
         查询
     </a>
@@ -73,7 +73,7 @@
 
 <#--重置按钮-->
 <#macro reset>
-    <a href="javascript:" class="btn btn-sm btn-danger">
+    <a href="javascript:" class="btn btn-sm btn-danger" data-type="reset">
         <i class="ace-icon fa fa-undo"></i>
         清除
     </a>

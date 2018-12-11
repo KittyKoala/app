@@ -15,30 +15,7 @@
 
 <#--确认按钮-->
 <#macro confirm name href title>
-    <#local id=func('uuid')/>
-<a id="${id}" href="javascript:" title="${title}">
+<a href="${href}" title="${title}" data-type="confirm">
 ${name}
 </a>
-<script>
-    $("#${id}").click(function (e) {
-        e.preventDefault();
-        var $table = $(this).parents("table");
-
-        $.messager.confirm("提示", "确定${title}吗?", function () {
-            $.get("${href}").success(function (res) {
-                if (res.respCo === '0000') {
-                    Message.success(res.respMsg);
-                    if ($table) {
-                        $table.bootstrapTable("refresh");
-                    }
-                } else {
-                    Message.error(res.respMsg);
-                }
-            }).error(function () {
-                Message.error("网络错误，请稍后重试");
-            })
-        });
-        return false;
-    });
-</script>
 </#macro>

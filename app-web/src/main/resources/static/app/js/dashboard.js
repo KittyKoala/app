@@ -95,4 +95,99 @@ $(function () {
         }
         return num.toFixed(n);
     });
+
+    // 查询。<@c.link type="submit" table_id="xxx" .../>
+    $(document).on("click", "[data-type='submit']", function (e) {
+        e.preventDefault();
+        var $this = $(this);
+        var tableId = $this.data("table-id");
+        var $form = $(this).parents("form");
+
+        if (tableId) {
+            var $table = $("#" + tableId);
+
+            var options = $table.bootstrapTable('getOptions');
+            if (!options.originUrl) {
+                options.originUrl = options.url;
+            }
+            options.url = options.originUrl + "?" + $this.parents("form").serialize();
+            options.pageNumber = 1;
+            $table.bootstrapTable('refreshOptions', options);
+            $table.bootstrapTable("refresh");
+            return false;
+        } else {
+            $form.submit();
+        }
+    });
+
+    // 清除。<@c.link type="reset" .../>
+    $(document).on("click", "[data-type='reset']", function (e) {
+        e.preventDefault();
+        var $this = $(this);
+        var $form = $this.parents("form");
+
+        $form.find("input").val("");
+        $form.find("select").val("");
+        $form.find(".chosen-select").trigger("chosen:updated");
+        return false;
+    });
+
+    // 提示框
+    $.messager.model = {
+        cancel: {text: "<i class='ace-icon fa fa-times'></i>取消", classed: "btn-default"},
+        ok: {text: "<i class='ace-icon fa fa-check'></i>确定"}
+    };
+
+    // 弹确认框。<@c.link type="confirm" title="" .../>
+    $(document).on("click", "[data-type='confirm']", function (e) {
+        e.preventDefault();
+        var $this = $(this);
+        var $table = $(this).parents("table");
+
+        $.messager.confirm("提示", "确定" + $this.attr("title") + "吗?", function () {
+            $.get($this.attr('href')).success(function (res) {
+                if (res.respCo==='0000') {
+                    Message.success(res.respMsg);
+                    $table.bootstrapTable("refresh");
+                } else {
+                    Message.error(res.respMsg);
+                }
+            }).error(function () {
+                Message.error("网络错误，请稍后重试");
+            })
+        });
+        return false;
+    });
 });
+
+// 提示信息
+var last_gritter;
+var showMessage = function (type, message) {
+    if (last_gritter) {
+        $.gritter.remove(last_gritter);
+    }
+    last_gritter = $.gritter.add({
+        title: '消息',
+        text: message,
+        time: 1500,
+        class_name: type
+    });
+};
+
+var Message = {
+    success: function (message) {
+        showMessage('gritter-success', message);
+    },
+
+    warning: function (message) {
+        showMessage('gritter-warning', message);
+    },
+
+    error: function (message) {
+        showMessage('gritter-error', message);
+    },
+
+    info: function (message) {
+        showMessage('gritter-info', message);
+    }
+};

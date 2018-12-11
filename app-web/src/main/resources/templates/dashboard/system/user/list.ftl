@@ -17,6 +17,7 @@
     <@table id="table" url="${_baseUrl}/list" form_id="form">
         <@th field="email" title="电子邮箱"/>
         <@thYesNo field="enableEmailNotice" title="启用邮件通知"/>
+        <@th field="name" title="姓名"/>
         <@th field="idNo" title="证件号码"/>
         <@th field="ipAddress" title="注册IP"/>
         <@th field="isDeleted" title="逻辑删除" render=true>
