@@ -21,11 +21,11 @@
         <@th field="idNo" title="证件号码"/>
         <@th field="ipAddress" title="注册IP"/>
         <@th field="isDeleted" title="逻辑删除" render=true>
-            <#include "delete.ftl"/>
+            <#--<#include "delete.ftl"/>-->
         </@th>
         <@thDatetime field="createdTime" title="注册时间"/>
         <@th title="操作" render=true>
-            <#--<#include "operation.ftl"/>-->
+            <#include "operation.ftl"/>
         </@th>
     </@table>
 </@override>

@@ -13,9 +13,3 @@
 </script>
 </#macro>
 
-<#--确认按钮-->
-<#macro confirm name href title>
-<a href="${href}" title="${title}" data-type="confirm">
-${name}
-</a>
-</#macro>
