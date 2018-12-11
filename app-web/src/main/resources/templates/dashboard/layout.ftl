@@ -6,7 +6,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta charset="utf-8"/>
-    <title>${title!'未知'} · ${appName}</title>
+    <title>${appName}</title>
     <meta name="description" content=""/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
 
@@ -66,13 +66,6 @@
                         <i class="menu-icon fa fa-dashboard"></i>
                         <a href="${ctx}/dashboard">工作台</a>
                     </li>
-                <#--<#if subtitle??>-->
-                <#--<li>-->
-                <#--<a href="javascript:">${subtitle}</a>-->
-                <#--</li>-->
-                <#--</#if>-->
-                <#--<@block name="breadcrumbs"/>-->
-                <#--<li class="active">${title}</li>-->
                 </ul>
             </div>
 
@@ -131,8 +124,13 @@
         <#list _openMenus as openMenu>
             <#if openMenu_has_next>
                 $('#${openMenu.menuCode}').addClass('open active');
+                $(".breadcrumb").append("<li>${openMenu.menuName}</li>");
             <#else>
                 $('#${openMenu.menuCode}').addClass('active');
+                <#if openMenu_index!=0>
+                    $(".breadcrumb").append("<li class='active'>${openMenu.menuName}</li>");
+                </#if>
+                document.title = '${openMenu.menuName} - ${appName}';
             </#if>
         </#list>
     <#else>

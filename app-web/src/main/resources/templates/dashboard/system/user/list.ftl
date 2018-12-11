@@ -1,5 +1,3 @@
-<#assign ctx="${(rcontextPath)!''}">
-
 <@override name="main">
     <@search_form id="form">
         <@input name="email" label="电子邮箱"/>
