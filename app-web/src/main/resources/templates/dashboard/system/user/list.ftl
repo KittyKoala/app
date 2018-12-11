@@ -18,13 +18,13 @@
         <@th field="name" title="姓名"/>
         <@th field="idNo" title="证件号码"/>
         <@th field="ipAddress" title="注册IP"/>
-        <@th field="isDeleted" title="逻辑删除" render=true>
-            <#--<#include "delete.ftl"/>-->
-        </@th>
+        <@thYesNo field="isDeleted" title="逻辑删除"/>
         <@thDatetime field="createdTime" title="注册时间"/>
-        <@th title="操作" render=true>
-            <#include "operation.ftl"/>
-        </@th>
+        <@thOperations name="编辑" href="${_baseUrl}/{{row.userId}}/edit" icon="fa-pencil">
+            <@operation name="设置角色" href="${_baseUrl}/{{row.userId}}/edit"/>
+            <@operation name="修改密码" href="${_baseUrl}/{{row.userId}}/password"/>
+            <@operation name="物理删除" href="${_baseUrl}/{{row.userId}}/remove"/>
+        </@thOperations>
     </@table>
 </@override>
 

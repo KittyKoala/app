@@ -99,7 +99,7 @@ input[readonly], input[readonly].readonly {
 }
 
 tr.no-records-found td {
-    padding: 40px 0px !important;
+    padding: 40px 0 !important;
 }
 /*自定义*/
 
