@@ -1,5 +1,5 @@
 <#--表格-->
-<#macro table url id="" pagination=true undefined_text="" form_id="">
+<#macro table url id="" pagination=true undefined_text="" form_id="" radio=false checkbox=false>
 <div class="clearfix"></div>
 <div class="space-10"></div>
     <#if id==''>
@@ -10,6 +10,12 @@
        <#if form_id!=''>data-form-id="${form_id}"</#if> data-click-to-select="true">
     <thead>
     <tr>
+        <#if radio>
+            <th data-radio="true"></th>
+        </#if>
+        <#if checkbox>
+            <th data-checkbox="true"></th>
+        </#if>
         <#nested/>
     </tr>
     </thead>
@@ -22,13 +28,10 @@
 </#macro>
 
 <#--表格的行-->
-<#macro th title="" field="" sortable=true render=false checkbox=false type="">
+<#macro th title="" field="" sortable=true render=false type="">
 <th data-field="${field}"
     <#if field!='' && sortable>
     data-sortable="${sortable?c}"
-    </#if>
-    <#if checkbox>
-    data-checkbox="true"
     </#if>
     <#if render>
         <#local uuid=func('uuid')/>
@@ -78,37 +81,4 @@ ${title}
 <#--datetime格式化-->
 <#macro thDatetime title="" field="" sortable=true>
     <@th title=title field=field render=true type="datetime"/>
-</#macro>
-
-<#--操作组-->
-<#macro thOperations name href icon="" render=true>
-    <@th title="操作" render=true>
-    <div class="btn-group">
-        <a href="${href}" class="btn btn-xs btn-inverse">
-            <#if icon!=''>
-                <i class="fa ace-icon ${icon}"></i>
-            </#if>
-        ${name}
-        </a>
-        <#if render>
-            <button data-toggle="dropdown" class="btn btn-xs btn-inverse dropdown-toggle" aria-haspopup="true"
-                    aria-expanded="false">
-                <span class="ace-icon fa fa-caret-down icon-only"></span>
-            </button>
-
-            <ul class="dropdown-menu dropdown-menu-right dropdown-inverse">
-                <#nested/>
-            </ul>
-        </#if>
-    </div>
-    </@th>
-</#macro>
-
-<#--操作-->
-<#macro operation name href>
-    <li>
-        <a href="${href}">
-        ${name}
-        </a>
-    </li>
 </#macro>

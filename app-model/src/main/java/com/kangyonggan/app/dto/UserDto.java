@@ -13,11 +13,6 @@ import java.io.Serializable;
 public class UserDto extends UserProfile implements Serializable {
 
     /**
-     * 电子邮件
-     */
-    private String email;
-
-    /**
      * 密码
      */
     private String password;

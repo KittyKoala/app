@@ -20,7 +20,7 @@
             <ul class="nav ace-nav">
                 <li class="light-blue">
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle" id="user-info-toggle">
-                        欢迎，<@app.user property="name" default="客官"/>
+                        欢迎，<@app.user property="name" default="大佬"/>
 
                         <i class="ace-icon fa fa-caret-down"></i>
                     </a>

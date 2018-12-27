@@ -83,7 +83,7 @@ $(function () {
         if (isNaN(num)) {
             num = 0;
         }
-        return (Math.round(num * 10000)/100).toFixed(2) + '%';
+        return (Math.round(num * 10000) / 100).toFixed(2) + '%';
     });
 
     /**
@@ -96,7 +96,7 @@ $(function () {
         return num.toFixed(n);
     });
 
-    // 查询。<@c.link type="submit" table_id="xxx" .../>
+    // 查询
     $(document).on("click", "[data-type='submit']", function (e) {
         e.preventDefault();
         var $this = $(this);
@@ -120,7 +120,7 @@ $(function () {
         }
     });
 
-    // 清除。<@c.link type="reset" .../>
+    // 清除
     $(document).on("click", "[data-type='reset']", function (e) {
         e.preventDefault();
         var $this = $(this);
@@ -146,7 +146,7 @@ $(function () {
 
         $.messager.confirm("提示", "确定" + $this.attr("title") + "吗?", function () {
             $.get($this.attr('href')).success(function (res) {
-                if (res.respCo==='0000') {
+                if (res.respCo === '0000') {
                     Message.success(res.respMsg);
                     $table.bootstrapTable("refresh");
                 } else {

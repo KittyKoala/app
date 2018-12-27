@@ -55,7 +55,7 @@
             </li>
         </ul>
 
-<@app.guest>
+    <@app.guest>
         <ul class="navbar-menus pull-right">
             <li data-pathname="login">
                 <a href="${ctx}/login">登录</a>
@@ -64,14 +64,19 @@
                 <a href="${ctx}/register">注册</a>
             </li>
         </ul>
-</@app.guest>
-<@app.user>
+    </@app.guest>
+    <@app.user>
         <ul class="navbar-menus pull-right">
             <li data-pathname="user">
                 <a href="javascript:">
-                    <@app.user property='name' default='客官'/><i class="fa fa-small fa-chevron-down"></i>
+                    <@app.user property='name' default='大佬'/><i class="fa fa-small fa-chevron-down"></i>
                 </a>
                 <ul class="sec-menus hidden">
+                    <@app.hasRole code="ROLE_DASHBOARD">
+                        <li>
+                            <a href="${ctx}/dashboard">工作台</a>
+                        </li>
+                    </@app.hasRole>
                     <li>
                         <a href="${ctx}/profile">个人中心</a>
                     </li>
@@ -81,7 +86,7 @@
                 </ul>
             </li>
         </ul>
-</@app.user>
+    </@app.user>
     </div>
 </div>
 <div style="height: 70px;"></div>

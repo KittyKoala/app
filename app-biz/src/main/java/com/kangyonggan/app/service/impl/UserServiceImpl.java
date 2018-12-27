@@ -64,6 +64,7 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
 
         // 基础校验
         ValidUtil.valid(user);
+        ValidUtil.valid(userProfile);
 
         // 保存用户
         entryptPassword(user);
@@ -111,7 +112,7 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
         // 校验电子邮箱是否已存在
         if (StringUtils.isNotEmpty(user.getEmail())) {
             if (!dbUser.getEmail().equals(user.getEmail()) && existsEmail(user.getEmail())) {
-                throw new BizException("电子邮箱已被其他玩家注册");
+                throw new BizException("电子邮箱已被其他用户注册");
             }
         }
 

@@ -57,24 +57,32 @@
 
 <#--表单按钮组-->
 <#macro form_actions>
-    <div class="col-xs-12 align-center">
+<div class="col-xs-12 align-center">
     <#nested />
-        <div class="space-6"></div>
-    </div>
+    <div class="space-6"></div>
+</div>
 </#macro>
 
 <#--查询按钮-->
 <#macro query table_id>
-    <a href="javascript:" class="btn btn-sm btn-purple" data-table-id="${table_id}" data-type="submit">
-        <i class="ace-icon fa fa-search"></i>
-        查询
-    </a>
+<a href="javascript:" class="btn btn-sm btn-purple" data-table-id="${table_id}" data-type="submit">
+    <i class="ace-icon fa fa-search"></i>
+    查询
+</a>
 </#macro>
 
 <#--重置按钮-->
 <#macro reset>
-    <a href="javascript:" class="btn btn-sm btn-danger" data-type="reset">
-        <i class="ace-icon fa fa-undo"></i>
-        清除
-    </a>
+<a href="javascript:" class="btn btn-sm btn-danger" data-type="reset">
+    <i class="ace-icon fa fa-undo"></i>
+    清除
+</a>
+</#macro>
+
+<#--编辑按钮-->
+<#macro edit table_id>
+<a href="javascript:" class="btn btn-sm btn-info" data-table-id="${table_id}" data-type="edit">
+    <i class="ace-icon fa fa-pencil-square-o"></i>
+    编辑
+</a>
 </#macro>

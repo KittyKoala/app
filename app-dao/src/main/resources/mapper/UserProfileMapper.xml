@@ -6,12 +6,12 @@
           WARNING - @mbggenerated
         -->
         <result column="user_id" property="userId" jdbcType="BIGINT"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
         <result column="id_type" property="idType" jdbcType="VARCHAR"/>
         <result column="id_no" property="idNo" jdbcType="VARCHAR"/>
         <result column="ip_address" property="ipAddress" jdbcType="VARCHAR"/>
         <result column="skin" property="skin" jdbcType="VARCHAR"/>
-        <result column="enable_email_notice" property="enableEmailNotice" jdbcType="TINYINT"/>
         <result column="is_deleted" property="isDeleted" jdbcType="TINYINT"/>
         <result column="created_time" property="createdTime" jdbcType="TIMESTAMP"/>
         <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP"/>

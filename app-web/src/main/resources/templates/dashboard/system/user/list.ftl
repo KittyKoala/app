@@ -9,22 +9,17 @@
         <@form_actions>
             <@query table_id="table"/>
             <@reset/>
+            <@edit table_id="table"/>
         </@form_actions>
     </@search_form>
 
-    <@table id="table" url="${_baseUrl}/list" form_id="form">
+    <@table id="table" url="${_baseUrl}/list" form_id="form" checkbox=true>
         <@th field="email" title="电子邮箱"/>
-        <@thYesNo field="enableEmailNotice" title="启用邮件通知"/>
         <@th field="name" title="姓名"/>
         <@th field="idNo" title="证件号码"/>
         <@th field="ipAddress" title="注册IP"/>
         <@thYesNo field="isDeleted" title="逻辑删除"/>
         <@thDatetime field="createdTime" title="注册时间"/>
-        <@thOperations name="编辑" href="${_baseUrl}/{{row.userId}}/edit" icon="fa-pencil">
-            <@operation name="设置角色" href="${_baseUrl}/{{row.userId}}/edit"/>
-            <@operation name="修改密码" href="${_baseUrl}/{{row.userId}}/password"/>
-            <@operation name="物理删除" href="${_baseUrl}/{{row.userId}}/remove"/>
-        </@thOperations>
     </@table>
 </@override>
 

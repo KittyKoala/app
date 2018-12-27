@@ -16,12 +16,11 @@
 
     <resultMap id="UserDtoResultMap" type="com.kangyonggan.app.dto.UserDto"
                extends="com.kangyonggan.app.mapper.UserProfileMapper.BaseResultMap">
-        <result column="email" property="email" jdbcType="VARCHAR"/>
     </resultMap>
 
     <select id="selectUserDtoByUserId" parameterType="Long" resultMap="UserDtoResultMap">
         SELECT
-          u.user_id, up.skin, u.email, up.name, up.enable_email_notice, up.id_type, up.id_no, up.ip_address, u.created_time, u.is_deleted
+          u.user_id, up.skin, u.email, up.name, up.id_type, up.id_no, up.ip_address, u.created_time, u.is_deleted
         FROM
           tb_user u, tb_user_profile up
         WHERE
@@ -31,7 +30,7 @@
 
     <select id="searchUsers" parameterType="Map" resultMap="UserDtoResultMap">
         SELECT
-        u.user_id, up.skin, u.email, up.name, up.enable_email_notice, up.id_type, up.id_no, up.ip_address, u.created_time, u.is_deleted
+        u.user_id, up.skin, u.email, up.name, up.id_type, up.id_no, up.ip_address, u.created_time, u.is_deleted
         FROM
         tb_user u, tb_user_profile up
         WHERE
