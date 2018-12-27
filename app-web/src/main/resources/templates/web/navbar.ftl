@@ -222,6 +222,7 @@
         $navbar.stop();
         if (type === 'show') {
             $navbar.find(".inner").show();
+            $navbar.css("overflow", "visible");
             $navbar.animate({height: 70});
         } else if (type === 'hide') {
             $navbar.find(".inner").hide();
