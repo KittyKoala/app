@@ -96,12 +96,22 @@ $(function () {
         return num.toFixed(n);
     });
 
+    // 关闭时清除模态框的数据
+    $(document).on('hidden.bs.modal', '.modal', function () {
+        $(this).removeData('bs.modal');
+    });
+
+    // modal form 提交
+    $('.modal').on('click', '[data-type=submit]', function (e) {
+        e.preventDefault();
+        $($(this).parents('.modal').find("form")).submit();
+    });
+
     // 提交
     $(document).on("click", "[data-type='submit']", function (e) {
         e.preventDefault();
         var $this = $(this);
         var tableId = $this.data("table-id");
-        var $form = $(this).parents("form");
 
         if (tableId) {
             var $table = $("#" + tableId);
@@ -116,7 +126,10 @@ $(function () {
             $table.bootstrapTable("refresh");
             return false;
         } else {
-            $form.submit();
+            var $form = $(this).parents("form");
+            if ($form) {
+                $form.submit();
+            }
         }
     });
 
@@ -223,3 +236,42 @@ var Message = {
         showMessage('gritter-info', message);
     }
 };
+
+
+/**
+ * 提交表单
+ *
+ * @param $form 表单
+ * @param $btn 提交按钮
+ * @param success 成功回调
+ * @param failure 失败回调
+ */
+function formSubmit($form, $btn, success, failure) {
+    $form.ajaxSubmit({
+        dataType: 'json',
+        success: function (response) {
+            if (response.respCo === '0000') {
+                if (success) {
+                    success(response);
+                }
+            } else {
+                Message.error(response.respMsg);
+                if (failure) {
+                    failure(response);
+                }
+            }
+            if ($btn) {
+                $btn.button('reset');
+            }
+        },
+        error: function () {
+            Message.error("服务器内部错误，请稍后再试。");
+            if ($btn) {
+                $btn.button('reset');
+            }
+            if (failure) {
+                failure();
+            }
+        }
+    });
+}

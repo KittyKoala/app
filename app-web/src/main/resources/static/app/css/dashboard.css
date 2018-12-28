@@ -93,6 +93,11 @@
     content: "*";
 }
 
+label.error {
+    color: red;
+    font-size: 13px;
+}
+
 @media (min-width: 992px) {
     .app-label {
         text-align: right !important;

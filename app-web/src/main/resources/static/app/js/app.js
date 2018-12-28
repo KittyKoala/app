@@ -63,7 +63,7 @@ function formSubmit($form, $btn, success, failure) {
     $form.ajaxSubmit({
         dataType: 'json',
         success: function (response) {
-            if (response.respCo == '0000') {
+            if (response.respCo === '0000') {
                 if (success) {
                     success(response);
                 }

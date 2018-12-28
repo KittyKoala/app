@@ -11,10 +11,34 @@
 </#macro>
 
 <#--普通表单-->
-<#macro form  action method="post">
-<form class="form-horizontal" method="${method}" action="${action}">
+<#macro form action id="" method="post" table_id="">
+    <#if id==''>
+        <#local id=func('uuid')/>
+    </#if>
+<form id="${id}" class="form-horizontal" method="${method}" action="${action}">
     <#nested />
 </form>
+
+<script>
+    $(function () {
+        var $modal = $('.modal');
+        var $form = $modal.find("form");
+        var $btn = $modal.find("button[data-type=submit]");
+
+        $form.validate({
+            submitHandler: function (form, event) {
+                event.preventDefault();
+                $btn.button('loading');
+                formSubmit($(form), $btn, function () {
+                    $modal.modal('hide');
+                    <#if table_id!=''>
+                        $('#${table_id}').bootstrapTable("refresh");
+                    </#if>
+                });
+            }
+        });
+    })
+</script>
 </#macro>
 
 <#--输入框-->
