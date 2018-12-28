@@ -42,7 +42,7 @@
 </#macro>
 
 <#--输入框-->
-<#macro input label name="" id="" value="" placeholder="" readonly=false required=false>
+<#macro input label type="text" name="" id="" value="" placeholder="" readonly=false required=false>
     <#if id==''>
         <#local id=func('uuid')/>
     </#if>
@@ -51,7 +51,7 @@
         <label class="<#if required>required</#if>">${label}</label>
     </div>
     <div class="col-md-7 controls <#if _isSearchForm??>col-xs-12</#if>">
-        <input id="${id}" <#if name!=''>name="${name}"</#if> value="${value}" class="form-control"
+        <input type="${type}" id="${id}" <#if name!=''>name="${name}"</#if> value="${value}" class="form-control"
                <#if readonly>readonly</#if>
                placeholder="${(placeholder=='')?string('请输入${label}', placeholder)}" <#if required>required</#if>/>
     </div>
@@ -118,6 +118,14 @@
 <a href="javascript:" class="btn btn-sm btn-info" data-table-id="${table_id}" data-url="${url}" data-type="edit">
     <i class="ace-icon fa fa-pencil-square-o"></i>
     编辑
+</a>
+</#macro>
+
+<#--新增按钮-->
+<#macro create url>
+<a href="javascript:" class="btn btn-sm btn-skin" data-url="${url}" data-type="create">
+    <i class="ace-icon fa fa-pencil-square-o"></i>
+    新增
 </a>
 </#macro>
 

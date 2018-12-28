@@ -177,6 +177,21 @@ $(function () {
         return false;
     });
 
+    // 新增
+    $(document).on("click", "[data-type='create']", function (e) {
+        e.preventDefault();
+        var $this = $(this);
+        var url = $this.data("url");
+
+        $('#myModal').modal({
+            backdrop: 'static',
+            keyboard: false,
+            show: true,
+            remote: url
+        })
+        return false;
+    });
+
     // 提示框
     $.messager.model = {
         cancel: {text: "<i class='ace-icon fa fa-times'></i>取消", classed: "btn-default"},

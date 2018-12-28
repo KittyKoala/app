@@ -10,6 +10,7 @@
             <@query table_id="table"/>
             <@reset/>
             <@edit table_id="table" url="${ctx}/dashboard/system/user/{{userId}}/edit"/>
+            <@create url="${ctx}/dashboard/system/user/create"/>
         </@form_actions>
     </@search_form>
 
