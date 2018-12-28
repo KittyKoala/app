@@ -96,7 +96,7 @@ $(function () {
         return num.toFixed(n);
     });
 
-    // 查询
+    // 提交
     $(document).on("click", "[data-type='submit']", function (e) {
         e.preventDefault();
         var $this = $(this);
@@ -129,6 +129,38 @@ $(function () {
         $form.find("input").val("");
         $form.find("select").val("");
         $form.find(".chosen-select").trigger("chosen:updated");
+        return false;
+    });
+
+    // 编辑
+    $(document).on("click", "[data-type='edit']", function (e) {
+        e.preventDefault();
+        var $this = $(this);
+        var tableId = $this.data("table-id");
+        var url = $this.data("url");
+        var $table = $("#" + tableId);
+
+        var selections = $table.bootstrapTable('getSelections');
+        if (selections.length === 1) {
+            var row = selections[0];
+
+            var reg = /{{[0-9a-zA-Z_$]+}}/g;
+            var res;
+            var newUrl = url;
+            while (res = reg.exec(url)) {
+                var variable = res[0].substring(2, res[0].indexOf("}}"));
+                newUrl = newUrl.replace(res[0], row[variable]);
+            }
+
+            $('#myModal').modal({
+                backdrop: 'static',
+                keyboard: false,
+                show: true,
+                remote: newUrl
+            })
+        } else {
+            Message.warning("请选择一条记录");
+        }
         return false;
     });
 

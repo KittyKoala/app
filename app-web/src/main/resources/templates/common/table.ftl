@@ -28,7 +28,7 @@
 </#macro>
 
 <#--表格的行-->
-<#macro th title="" field="" sortable=true render=false type="">
+<#macro th title="" field="" sortable=true render=false type="" auto_hide=false>
 <th data-field="${field}"
     <#if field!='' && sortable>
     data-sortable="${sortable?c}"
@@ -38,6 +38,7 @@
         <#local formatter=uuid + "Format"/>
     data-formatter="${formatter}"
     </#if>
+    class="<#if auto_hide>hidden-sm hidden-xs</#if>"
 >
 ${title}
     <#if render>
@@ -64,21 +65,21 @@ ${title}
 </#macro>
 
 <#--yesNo格式化-->
-<#macro thYesNo title="" field="" sortable=true>
-    <@th title=title field=field render=true type="yesNo"/>
+<#macro thYesNo title="" field="" sortable=true auto_hide=false>
+    <@th title=title field=field render=true type="yesNo" auto_hide=auto_hide/>
 </#macro>
 
 <#--date格式化-->
-<#macro thDate title="" field="" sortable=true>
-    <@th title=title field=field render=true type="date"/>
+<#macro thDate title="" field="" sortable=true auto_hide=false>
+    <@th title=title field=field render=true type="date" auto_hide=auto_hide/>
 </#macro>
 
 <#--time格式化-->
-<#macro thTime title="" field="" sortable=true>
-    <@th title=title field=field render=true type="time"/>
+<#macro thTime title="" field="" sortable=true auto_hide=false>
+    <@th title=title field=field render=true type="time" auto_hide=auto_hide/>
 </#macro>
 
 <#--datetime格式化-->
-<#macro thDatetime title="" field="" sortable=true>
-    <@th title=title field=field render=true type="datetime"/>
+<#macro thDatetime title="" field="" sortable=true auto_hide=false>
+    <@th title=title field=field render=true type="datetime" auto_hide=auto_hide/>
 </#macro>

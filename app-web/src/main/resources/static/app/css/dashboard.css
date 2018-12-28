@@ -81,10 +81,16 @@
 .app-label:after {
     content: ':';
 }
+
 .nowrap {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.required:after {
+    color: red;
+    content: "*";
 }
 
 @media (min-width: 992px) {

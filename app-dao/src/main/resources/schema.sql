@@ -43,8 +43,6 @@ CREATE TABLE tb_user_profile
 (
   user_id      BIGINT(20)   NOT NULL
   COMMENT '用户ID',
-  email        VARCHAR(64)  NOT NULL
-  COMMENT '电子邮件',
   name         VARCHAR(32)  NOT NULL                    DEFAULT ''
   COMMENT '姓名',
   id_type      VARCHAR(1)   NOT NULL                    DEFAULT '0'
@@ -65,8 +63,6 @@ CREATE TABLE tb_user_profile
   COMMENT '用户信息表';
 CREATE UNIQUE INDEX user_id_UNIQUE
   ON tb_user_profile (user_id);
-CREATE UNIQUE INDEX email_UNIQUE
-  ON tb_user_profile (email);
 
 -- ----------------------------
 --  Table structure for tb_role
@@ -305,10 +301,10 @@ VALUES
   (2, 'java@kangyonggan.com', '8d0d54520fe0466ac80827d9f2f038b22e3c7c2d', 'd820c214488d7c6f');
 
 INSERT INTO tb_user_profile
-(user_id, email, name, id_type, id_no, ip_address)
+(user_id, name, id_type, id_no, ip_address)
 VALUES
-  (1, 'admin@kangyonggan.com', '管理员', '0', '', '127.0.0.1'),
-  (2, 'java@kangyonggan.com', '康永敢', '0', '', '127.0.0.1');
+  (1, '管理员', '0', '', '127.0.0.1'),
+  (2, '康永敢', '0', '', '127.0.0.1');
 
 -- ----------------------------
 --  data for tb_role

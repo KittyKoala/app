@@ -23,12 +23,6 @@ public class UserProfile implements Serializable {
     private Long userId;
 
     /**
-     * 电子邮件
-     */
-    @Valid(regex = Regex.EMAIL, minLengthText = "请输入正确的电子邮箱")
-    private String email;
-
-    /**
      * 姓名
      */
     @Valid(maxLength = 20, maxLengthText = "姓名最多20位")
