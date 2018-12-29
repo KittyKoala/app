@@ -11,11 +11,14 @@
 </#macro>
 
 <#--普通表单-->
-<#macro form action id="" method="post" table_id="">
+<#macro form action id="" method="post" table_id="" token=false>
     <#if id==''>
         <#local id=func('uuid')/>
     </#if>
 <form id="${id}" class="form-horizontal" method="${method}" action="${action}">
+    <#if token>
+        <input type="hidden" name="_token" value="${_token!''}"/>
+    </#if>
     <#nested />
 </form>
 
@@ -145,7 +148,7 @@ required=false min_length=-1 max_length=-1 validator="" remote="" equal_to="">
     <#if icon!=''>
         <i class="ace-icon fa ${icon}"></i>
     </#if>
-    ${name}
+${name}
 </a>
 </#macro>
 
