@@ -7,7 +7,7 @@
             <@input name="roleId" label="角色ID" value="${role.roleId}" readonly=true/>
             <@input name="roleCode" label="角色代码" value="${role.roleCode!''}" readonly=true/>
         <#else>
-            <@input name="roleCode" label="角色代码" required=true remote="${ctx}/api/validate/roleCode" validator="isRoleCode"/>
+            <@input name="roleCode" label="角色代码" placeholder="格式参考:ROLE_ADMIN" required=true remote="${ctx}/api/validate/roleCode" validator="isRoleCode"/>
         </#if>
         <@input name="roleName" label="角色名称" value="${role.roleName!''}" required=true range_length=[2, 10]/>
     </@form>

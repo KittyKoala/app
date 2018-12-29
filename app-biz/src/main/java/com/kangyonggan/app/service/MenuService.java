@@ -50,4 +50,48 @@ public interface MenuService {
      */
     List<Menu> findAllMenus();
 
+    /**
+     * 查找菜单
+     *
+     * @param code
+     * @return
+     */
+    Menu findMenuByCode(String code);
+
+    /**
+     * 保存菜单
+     *
+     * @param menu
+     */
+    void saveMenu(Menu menu);
+
+    /**
+     * 删除菜单
+     *
+     * @param menu
+     */
+    void deleteMenu(Menu menu);
+
+    /**
+     * 更新菜单
+     *
+     * @param menu
+     */
+    void updateMenu(Menu menu);
+
+    /**
+     * 查找菜单
+     *
+     * @param menuId
+     * @return
+     */
+    Menu findMenuByMenuId(Long menuId);
+
+    /**
+     * 校验菜单代码是否存在
+     *
+     * @param menuCode
+     * @return
+     */
+    boolean existsMenuCode(String menuCode);
 }

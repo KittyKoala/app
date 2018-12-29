@@ -72,6 +72,49 @@ public class MenuServiceImpl extends BaseService<Menu> implements MenuService {
         return recursionTreeList(menus, wrapList, StringUtils.EMPTY, 0L);
     }
 
+    @Override
+    public Menu findMenuByCode(String code) {
+        Menu menu = new Menu();
+        menu.setMenuCode(code);
+
+        return myMapper.selectOne(menu);
+    }
+
+    @Override
+    public void saveMenu(Menu menu) {
+        myMapper.insertSelective(menu);
+    }
+
+    @Override
+    public void deleteMenu(Menu menu) {
+        if (menu.getMenuId() == null) {
+            return;
+        }
+        myMapper.deleteByPrimaryKey(menu.getMenuId());
+    }
+
+    @Override
+    public void updateMenu(Menu menu) {
+        if (menu.getMenuId() == null) {
+            return;
+        }
+
+        myMapper.updateByPrimaryKeySelective(menu);
+    }
+
+    @Override
+    public Menu findMenuByMenuId(Long menuId) {
+        return myMapper.selectByPrimaryKey(menuId);
+    }
+
+    @Override
+    public boolean existsMenuCode(String menuCode) {
+        Menu menu = new Menu();
+        menu.setMenuCode(menuCode);
+
+        return super.exists(menu);
+    }
+
     /**
      * 递归构造叶子节点
      *

@@ -41,6 +41,8 @@
                     $modal.modal('hide');
                     <#if table_id!=''>
                         $('#${table_id}').bootstrapTable("refresh");
+                    <#else>
+                        window.location.reload();
                     </#if>
                 });
             }
@@ -50,12 +52,12 @@
 </#macro>
 
 <#--输入框-->
-<#macro input label type="text" name="" id="" value="" placeholder="" readonly=false
+<#macro input label type="text" name="" id="" value="" placeholder="" readonly=false number=false
 required=false min_length=-1 max_length=-1 validator="" remote="" equal_to="" range_length=[]>
     <#if id==''>
         <#local id=func('uuid')/>
     </#if>
-<div class="form-group <#if _isSearchForm??>col-lg-4 col-md-6 col-xs-12</#if>">
+<div class="form-group <#if _isSearchForm??>col-lg-4 col-md-6 col-xs-12</#if> <#if type='hidden'>hidden</#if> ">
     <div class="app-label nowrap <#if _isSearchForm??>col-md-5 col-xs-12<#else>col-md-3</#if>">
         <label class="<#if required>required</#if>">${label}</label>
     </div>
@@ -80,6 +82,9 @@ required=false min_length=-1 max_length=-1 validator="" remote="" equal_to="" ra
         </#if>
         <#if range_length?size gt 1>
             rangelength="[${range_length[0]}, ${range_length[1]}]"
+        </#if>
+        <#if number>
+            number="true"
         </#if>
         />
     </div>

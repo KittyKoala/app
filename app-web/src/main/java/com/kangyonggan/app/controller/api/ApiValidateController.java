@@ -1,5 +1,6 @@
 package com.kangyonggan.app.controller.api;
 
+import com.kangyonggan.app.service.MenuService;
 import com.kangyonggan.app.service.RoleService;
 import com.kangyonggan.app.service.UserService;
 import com.kangyonggan.app.util.IdNoUtil;
@@ -23,6 +24,9 @@ public class ApiValidateController {
 
     @Autowired
     private RoleService roleService;
+
+    @Autowired
+    private MenuService menuService;
 
     /**
      * 校验电子邮箱是否可用
@@ -58,6 +62,18 @@ public class ApiValidateController {
     @ResponseBody
     public boolean roleCode(@RequestParam("roleCode") String roleCode) {
         return !roleService.existsRoleCode(roleCode);
+    }
+
+    /**
+     * 校验菜单代码是否可用
+     *
+     * @param menuCode
+     * @return
+     */
+    @GetMapping("menuCode")
+    @ResponseBody
+    public boolean menuCode(@RequestParam("menuCode") String menuCode) {
+        return !menuService.existsMenuCode(menuCode);
     }
 
 }
