@@ -11,7 +11,7 @@
 </#macro>
 
 <#--普通表单-->
-<#macro form action id="" method="post" table_id="" token=false>
+<#macro form action id="" method="post" table_id="" token=false beforeSubmit="">
     <#if id==''>
         <#local id=func('uuid')/>
     </#if>
@@ -31,6 +31,11 @@
         $form.validate({
             submitHandler: function (form, event) {
                 event.preventDefault();
+
+                <#if beforeSubmit!=''>
+                    eval('${beforeSubmit}()');
+                </#if>
+
                 $btn.button('loading');
                 formSubmit($(form), $btn, function () {
                     $modal.modal('hide');

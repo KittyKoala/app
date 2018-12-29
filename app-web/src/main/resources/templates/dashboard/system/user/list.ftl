@@ -13,7 +13,7 @@
             <@delete table_id="table" url="${_baseUrl}/delete?userIds={{userId}}"/>
             <@restore table_id="table" url="${_baseUrl}/restore?userIds={{userId}}"/>
             <@modal name="修改密码" table_id="table" url="${_baseUrl}/{{userId}}/editPassword"/>
-            <@modal name="设置角色" table_id="table" url="${_baseUrl}/{{userId}}/editRole"/>
+            <@modal name="用户授权" table_id="table" url="${_baseUrl}/{{userId}}/editRole"/>
         </@form_actions>
     </@search_form>
 

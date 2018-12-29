@@ -31,4 +31,11 @@ public interface MenuMapper extends MyMapper<Menu> {
      */
     List<Menu> selectMenusByUserId(Long userId);
 
+    /**
+     * 查找角色权限
+     *
+     * @param roleId
+     * @return
+     */
+    List<Menu> selectMenusByRoleId(Long roleId);
 }

@@ -175,7 +175,7 @@ public class DashboardSystemUserController extends BaseController {
     }
 
     /**
-     * 设置角色
+     * 用户授权
      *
      * @param userId
      * @param model
@@ -196,7 +196,7 @@ public class DashboardSystemUserController extends BaseController {
     }
 
     /**
-     * 保存角色
+     * 保存授权角色
      *
      * @param userId
      * @param roleIds

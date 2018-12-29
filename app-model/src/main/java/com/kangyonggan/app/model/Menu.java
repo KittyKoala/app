@@ -78,5 +78,11 @@ public class Menu implements Serializable {
     @Transient
     List<Menu> leaf;
 
+    /**
+     * 父菜单ID
+     */
+    @Transient
+    private Long pid;
+
     private static final long serialVersionUID = 1L;
 }

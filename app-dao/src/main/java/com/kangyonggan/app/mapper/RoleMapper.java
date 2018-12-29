@@ -37,4 +37,19 @@ public interface RoleMapper extends MyMapper<Role> {
      * @return
      */
     List<Role> selectRolesByUserId(Long userId);
+
+    /**
+     * 删除角色权限
+     *
+     * @param roleId
+     */
+    void deleteRoleMenus(@Param("roleId") Long roleId);
+
+    /**
+     * 批量插入角色权限
+     *
+     * @param roleId
+     * @param menuIds
+     */
+    void insertRoleMenus(@Param("roleId") Long roleId, @Param("menuIds") List<String> menuIds);
 }

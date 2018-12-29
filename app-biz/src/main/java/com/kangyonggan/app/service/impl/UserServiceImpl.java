@@ -176,8 +176,13 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
         }
     }
 
+    @Override
+    public List<User> findUsersByRoleId(Long roleId) {
+        return userMapper.selectUsersByRoleId(roleId);
+    }
+
     /**
-     * 批量保存用户角色
+     * 批量保存授权角色
      *
      * @param userId
      * @param roleIds

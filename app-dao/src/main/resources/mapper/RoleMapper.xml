@@ -34,4 +34,17 @@
       SELECT r.* FROM tb_role r, tb_user_role ur WHERE
       r.role_id = ur.role_id AND ur.user_id = #{userId}
     </select>
+
+    <delete id="deleteRoleMenus">
+        DELETE FROM tb_role_menu WHERE role_id = #{roleId}
+    </delete>
+
+    <insert id="insertRoleMenus">
+        INSERT INTO tb_role_menu (role_id, menu_id) VALUES
+        <foreach collection="menuIds" item="menuId" separator=",">
+            (
+            #{roleId}, #{menuId}
+            )
+        </foreach>
+    </insert>
 </mapper>

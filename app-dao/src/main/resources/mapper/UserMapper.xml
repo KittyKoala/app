@@ -66,4 +66,15 @@
             (#{userId}, #{roleId})
         </foreach>
     </insert>
+
+
+    <select id="selectUsersByRoleId" resultMap="BaseResultMap">
+        SELECT
+          a.*
+        FROM
+          tb_user a, tb_user_role b
+        WHERE
+          a.user_id = b.user_id
+        AND b.role_id = #{role_id}
+    </select>
 </mapper>

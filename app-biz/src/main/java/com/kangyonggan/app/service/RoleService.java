@@ -94,4 +94,11 @@ public interface RoleService {
      */
     boolean existsRoleCode(String roleCode);
 
+    /**
+     * 更新角色权限
+     *
+     * @param roleId
+     * @param menuIds
+     */
+    void updateRoleMenus(Long roleId, String menuIds);
 }

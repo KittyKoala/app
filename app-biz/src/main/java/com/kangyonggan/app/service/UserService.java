@@ -88,10 +88,18 @@ public interface UserService {
     void updateUserPassword(User user);
 
     /**
-     * 更新用户角色
+     * 更新授权角色
      *
      * @param userId
      * @param roleIds
      */
     void updateUserRoles(Long userId, String roleIds);
+
+    /**
+     * 查看授权用户
+     *
+     * @param roleId
+     * @return
+     */
+    List<User> findUsersByRoleId(Long roleId);
 }

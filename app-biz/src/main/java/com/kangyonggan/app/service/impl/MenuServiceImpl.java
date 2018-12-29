@@ -8,6 +8,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -55,6 +56,22 @@ public class MenuServiceImpl extends BaseService<Menu> implements MenuService {
         return menus;
     }
 
+    @Override
+    public List<Menu> findRoleMenus(Long roleId) {
+        return menuMapper.selectMenusByRoleId(roleId);
+    }
+
+    @Override
+    public List<Menu> findAllMenus() {
+        Example example = new Example(Menu.class);
+        example.setOrderByClause("sort asc");
+
+        List<Menu> menus = myMapper.selectByExample(example);
+        List<Menu> wrapList = new ArrayList<>();
+
+        return recursionTreeList(menus, wrapList, StringUtils.EMPTY, 0L);
+    }
+
     /**
      * 递归构造叶子节点
      *
@@ -75,6 +92,31 @@ public class MenuServiceImpl extends BaseService<Menu> implements MenuService {
                 menu.setLeaf(leaf);
                 toList.add(menu);
                 recursionLeafList(from, leaf, menu.getMenuCode());
+            }
+        }
+        return toList;
+    }
+
+    /**
+     * 递归找出 parentCode 下边的所有子节点
+     *
+     * @param from
+     * @param toList
+     * @param parentCode
+     * @param pid
+     * @return
+     */
+    private List<Menu> recursionTreeList(List<Menu> from, List<Menu> toList, String parentCode, Long pid) {
+        if (CollectionUtils.isEmpty(from)) {
+            return null;
+        }
+
+        for (int i = 0; i < from.size(); i++) {
+            Menu menu = from.get(i);
+            if (parentCode.equals(menu.getParentCode())) {
+                menu.setPid(pid);
+                toList.add(menu);
+                recursionTreeList(from, toList, menu.getMenuCode(), menu.getMenuId());
             }
         }
         return toList;

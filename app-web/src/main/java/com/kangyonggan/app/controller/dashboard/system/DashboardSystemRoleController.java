@@ -3,16 +3,21 @@ package com.kangyonggan.app.controller.dashboard.system;
 import com.kangyonggan.app.annotation.PermissionMenu;
 import com.kangyonggan.app.annotation.Token;
 import com.kangyonggan.app.controller.BaseController;
+import com.kangyonggan.app.model.Menu;
 import com.kangyonggan.app.model.Role;
+import com.kangyonggan.app.model.User;
 import com.kangyonggan.app.service.MenuService;
 import com.kangyonggan.app.service.RoleService;
 import com.kangyonggan.app.service.UserService;
+import com.kangyonggan.app.util.Collections3;
 import com.kangyonggan.common.Page;
 import com.kangyonggan.common.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author kangyonggan
@@ -141,6 +146,62 @@ public class DashboardSystemRoleController extends BaseController {
     @ResponseBody
     public Response restore(@RequestParam("roleIds") String roleIds) {
         roleService.restoreRoles(roleIds);
+        return Response.getSuccessResponse();
+    }
+
+    /**
+     * 查看授权用户
+     *
+     * @param roleId
+     * @param model
+     * @return
+     */
+    @GetMapping("{roleId:[\\d]+}/users")
+    @PermissionMenu("SYSTEM_ROLE")
+    public String users(@PathVariable("roleId") Long roleId, Model model) {
+        List<User> users = userService.findUsersByRoleId(roleId);
+
+        model.addAttribute("users", users);
+        return PATH_ROOT + "/users-modal";
+    }
+
+    /**
+     * 设置权限
+     *
+     * @param roleId
+     * @param model
+     * @return
+     */
+    @GetMapping("{roleId:[\\d]+}/menus")
+    @PermissionMenu("SYSTEM_ROLE")
+    @Token(key = "setMenus")
+    public String menus(@PathVariable("roleId") Long roleId, Model model) {
+        List<Menu> roleMenus = menuService.findRoleMenus(roleId);
+        if (roleMenus != null) {
+            roleMenus = Collections3.extractToList(roleMenus, "menuId");
+        }
+
+        List<Menu> allMenus = menuService.findAllMenus();
+
+        model.addAttribute("roleId", roleId);
+        model.addAttribute("roleMenus", roleMenus);
+        model.addAttribute("allMenus", allMenus);
+        return PATH_ROOT + "/menus-modal";
+    }
+
+    /**
+     * 更新角色权限
+     *
+     * @param roleId
+     * @param menuIds
+     * @return
+     */
+    @PostMapping("{roleId:[\\d]+}/menus")
+    @PermissionMenu("SYSTEM_ROLE")
+    @ResponseBody
+    @Token(key = "setMenus", type = Token.Type.CHECK)
+    public Response menus(@PathVariable("roleId") Long roleId, @RequestParam(value = "menuIds") String menuIds) {
+        roleService.updateRoleMenus(roleId, menuIds);
         return Response.getSuccessResponse();
     }
 }

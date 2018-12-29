@@ -12,6 +12,7 @@ import com.kangyonggan.common.Query;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.Arrays;
@@ -131,6 +132,26 @@ public class RoleServiceImpl extends BaseService<Role> implements RoleService {
         role.setRoleCode(roleCode);
 
         return super.exists(role);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void updateRoleMenus(Long roleId, String menuIds) {
+        deleteRoleMenus(roleId);
+
+        if (StringUtils.isNotEmpty(menuIds)) {
+            roleMapper.insertRoleMenus(roleId, Arrays.asList(menuIds.split(",")));
+        }
+    }
+
+
+    /**
+     * 删除角色菜单
+     *
+     * @param roleId
+     */
+    private void deleteRoleMenus(Long roleId) {
+        roleMapper.deleteRoleMenus(roleId);
     }
 
 }

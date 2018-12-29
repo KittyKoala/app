@@ -34,4 +34,20 @@ public interface MenuService {
      * @return
      */
     List<Menu> findParentMenusByCode(String menuCode);
+
+    /**
+     * 查找角色权限
+     *
+     * @param roleId
+     * @return
+     */
+    List<Menu> findRoleMenus(Long roleId);
+
+    /**
+     * 查询所有菜单
+     *
+     * @return
+     */
+    List<Menu> findAllMenus();
+
 }

@@ -48,10 +48,18 @@ public interface UserMapper extends MyMapper<User> {
     List<UserDto> searchUsers(Map<String, Object> query);
 
     /**
-     * 批量插入用户角色
+     * 批量插入授权角色
      *
      * @param userId
      * @param roleIds
      */
     void insertUserRoles(@Param("userId") Long userId, @Param("roleIds") List<String> roleIds);
+
+    /**
+     * 查看授权用户
+     *
+     * @param roleId
+     * @return
+     */
+    List<User> selectUsersByRoleId(Long roleId);
 }

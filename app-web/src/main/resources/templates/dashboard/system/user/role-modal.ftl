@@ -1,4 +1,4 @@
-<#assign modal_title="设置角色" />
+<#assign modal_title="用户授权" />
 
 <@override name="modal-body">
     <@form action="${_baseUrl}/editRole" table_id="table" token=true>

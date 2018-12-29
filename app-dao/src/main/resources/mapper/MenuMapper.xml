@@ -46,4 +46,10 @@
       ORDER BY m.sort ASC
     </select>
 
+    <select id="selectMenusByRoleId" resultMap="BaseResultMap">
+        SELECT m.* FROM tb_menu m, tb_role_menu rm
+        WHERE m.menu_id = rm.menu_id
+        AND rm.role_id = #{roleId}
+    </select>
+
 </mapper>
