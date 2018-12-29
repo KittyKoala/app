@@ -7,7 +7,7 @@
             <@input name="userId" label="用户ID" value="${userDto.userId}" readonly=true/>
             <@input type="email" name="email" label="电子邮箱" value="${userDto.email!''}" readonly=true/>
         <#else>
-            <@input type="email" name="email" label="电子邮箱" value="${userDto.email!''}" required=true remote="${ctx}/api/validate/email"/>
+            <@input type="email" name="email" label="电子邮箱" required=true remote="${ctx}/api/validate/email"/>
             <@input type="password" name="password" label="密码" required=true validator="isPassword"/>
         </#if>
         <@input name="name" label="姓名" value="${userDto.name!''}" max_length=20/>

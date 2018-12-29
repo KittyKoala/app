@@ -8,12 +8,12 @@
 
         <@form_actions>
             <@query table_id="table"/>
-            <@edit table_id="table" url="${ctx}/dashboard/system/user/{{userId}}/edit"/>
-            <@create url="${ctx}/dashboard/system/user/create"/>
-            <@delete table_id="table" url="${ctx}/dashboard/system/user/delete?userIds={{userId}}"/>
-            <@restore table_id="table" url="${ctx}/dashboard/system/user/restore?userIds={{userId}}"/>
-            <@modal name="修改密码" table_id="table" url="${ctx}/dashboard/system/user/{{userId}}/editPassword"/>
-            <@modal name="设置角色" table_id="table" url="${ctx}/dashboard/system/user/{{userId}}/editRole"/>
+            <@edit table_id="table" url="${_baseUrl}/{{userId}}/edit"/>
+            <@create url="${_baseUrl}/create"/>
+            <@delete table_id="table" url="${_baseUrl}/delete?userIds={{userId}}"/>
+            <@restore table_id="table" url="${_baseUrl}/restore?userIds={{userId}}"/>
+            <@modal name="修改密码" table_id="table" url="${_baseUrl}/{{userId}}/editPassword"/>
+            <@modal name="设置角色" table_id="table" url="${_baseUrl}/{{userId}}/editRole"/>
         </@form_actions>
     </@search_form>
 

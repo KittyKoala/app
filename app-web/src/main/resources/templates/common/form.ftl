@@ -46,7 +46,7 @@
 
 <#--输入框-->
 <#macro input label type="text" name="" id="" value="" placeholder="" readonly=false
-required=false min_length=-1 max_length=-1 validator="" remote="" equal_to="">
+required=false min_length=-1 max_length=-1 validator="" remote="" equal_to="" range_length=[]>
     <#if id==''>
         <#local id=func('uuid')/>
     </#if>
@@ -72,6 +72,9 @@ required=false min_length=-1 max_length=-1 validator="" remote="" equal_to="">
         </#if>
         <#if equal_to!=''>
             equalTo="${equal_to}"
+        </#if>
+        <#if range_length?size gt 1>
+            rangelength="[${range_length[0]}, ${range_length[1]}]"
         </#if>
         />
     </div>

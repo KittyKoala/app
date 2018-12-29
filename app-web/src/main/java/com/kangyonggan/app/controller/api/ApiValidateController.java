@@ -1,5 +1,6 @@
 package com.kangyonggan.app.controller.api;
 
+import com.kangyonggan.app.service.RoleService;
 import com.kangyonggan.app.service.UserService;
 import com.kangyonggan.app.util.IdNoUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class ApiValidateController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private RoleService roleService;
 
     /**
      * 校验电子邮箱是否可用
@@ -42,6 +46,18 @@ public class ApiValidateController {
     @ResponseBody
     public boolean idNo(@RequestParam("idNo") String idNo) {
         return IdNoUtil.isIdNo18(idNo);
+    }
+
+    /**
+     * 校验角色代码是否可用
+     *
+     * @param roleCode
+     * @return
+     */
+    @GetMapping("roleCode")
+    @ResponseBody
+    public boolean roleCode(@RequestParam("roleCode") String roleCode) {
+        return !roleService.existsRoleCode(roleCode);
     }
 
 }

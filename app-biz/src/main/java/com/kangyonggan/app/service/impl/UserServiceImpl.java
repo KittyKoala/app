@@ -5,10 +5,10 @@ import com.kangyonggan.app.constants.AppConstants;
 import com.kangyonggan.app.constants.YesNo;
 import com.kangyonggan.app.dto.UserDto;
 import com.kangyonggan.app.exception.BizException;
-import com.kangyonggan.app.mapper.RoleMapper;
 import com.kangyonggan.app.mapper.UserMapper;
 import com.kangyonggan.app.model.User;
 import com.kangyonggan.app.model.UserProfile;
+import com.kangyonggan.app.service.RoleService;
 import com.kangyonggan.app.service.UserProfileService;
 import com.kangyonggan.app.service.UserService;
 import com.kangyonggan.app.util.Digests;
@@ -40,7 +40,7 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
     private UserProfileService userProfileService;
 
     @Autowired
-    private RoleMapper roleMapper;
+    private RoleService roleService;
 
     @Override
     public User findUserByEmail(String email) {
@@ -96,6 +96,9 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void updateUser(UserDto userDto) {
+        if (userDto.getUserId() == null) {
+            return;
+        }
         User user = new User();
         UserProfile userProfile = new UserProfile();
         BeanUtils.copyProperties(userDto, user);
@@ -166,7 +169,7 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void updateUserRoles(Long userId, String roleIds) {
-        roleMapper.deleteAllRolesByUserId(userId);
+        roleService.deleteAllRolesByUserId(userId);
 
         if (StringUtils.isNotEmpty(roleIds)) {
             saveUserRoles(userId, roleIds);
