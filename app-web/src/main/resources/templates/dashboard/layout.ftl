@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="${ctx}/ace/dist/css/datepicker.min.css"/>
     <link rel="stylesheet" href="${ctx}/ace/dist/css/chosen.min.css"/>
     <link rel="stylesheet" href="${ctx}/ace/dist/css/jquery-ui.min.css"/>
-
+    <link rel="stylesheet" href="${ctx}/ace/dist/css/bootstrap-duallistbox.min.css"/>
     <!-- page specific plugin styles -->
 
     <!-- text fonts -->
@@ -108,6 +108,7 @@
 <script src="${ctx}/libs/bootstrap-table/dist/bootstrap-table.min.js"></script>
 <script src="${ctx}/libs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
 <script src="${ctx}/ace/dist/js/date-time/bootstrap-datepicker.min.js"></script>
+<script src="${ctx}/ace/dist/js/jquery.bootstrap-duallistbox.min.js"></script>
 <script src="${ctx}/ace/dist/js/jquery.gritter.min.js"></script>
 <script src="${ctx}/ace/dist/js/chosen.jquery.min.js"></script>
 <script src="${ctx}/ace/dist/js/ace-extra.min.js"></script>

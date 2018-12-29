@@ -1,10 +1,5 @@
 <#assign modal_title="设置角色" />
 
-<@override name="modal-header">
-<link rel="stylesheet" href="${ctx}/ace/dist/css/bootstrap-duallistbox.min.css"/>
-<script src="${ctx}/ace/dist/js/jquery.bootstrap-duallistbox.min.js"></script>
-</@override>
-
 <@override name="modal-body">
     <@form action="${ctx}/dashboard/system/user/editRole" table_id="table" token=true>
         <@input name="userId" label="用户ID" value="${userDto.userId}" readonly=true/>
