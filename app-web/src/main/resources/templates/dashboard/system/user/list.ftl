@@ -11,8 +11,8 @@
             <@reset/>
             <@edit table_id="table" url="${ctx}/dashboard/system/user/{{userId}}/edit"/>
             <@create url="${ctx}/dashboard/system/user/create"/>
-            <@delete table_id="table" url="${ctx}/dashboard/system/user/delete?userIds=" field="userId"/>
-            <@restore table_id="table" url="${ctx}/dashboard/system/user/restore?userIds=" field="userId"/>
+            <@delete table_id="table" url="${ctx}/dashboard/system/user/delete?userIds={{userId}}"/>
+            <@restore table_id="table" url="${ctx}/dashboard/system/user/restore?userIds={{userId}}"/>
         </@form_actions>
     </@search_form>
 

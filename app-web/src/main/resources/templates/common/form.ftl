@@ -160,16 +160,16 @@ required=false min_length=-1 max_length=-1 validator="" remote="">
 </#macro>
 
 <#--删除按钮-->
-<#macro delete table_id url field>
-<a href="javascript:" class="btn btn-sm btn-danger" data-table-id="${table_id}" data-url="${url}" data-field="${field}" data-type="delete">
+<#macro delete table_id url>
+<a href="javascript:" class="btn btn-sm btn-danger" data-table-id="${table_id}" data-url="${url}" data-type="delete">
     <i class="ace-icon fa fa-trash"></i>
     删除
 </a>
 </#macro>
 
 <#--恢复按钮-->
-<#macro restore table_id url field>
-<a href="javascript:" class="btn btn-sm btn-info2" data-table-id="${table_id}" data-url="${url}" data-field="${field}" data-type="delete">
+<#macro restore table_id url>
+<a href="javascript:" class="btn btn-sm btn-info2" data-table-id="${table_id}" data-url="${url}" data-type="delete">
     <i class="ace-icon fa fa-recycle"></i>
     恢复
 </a>
