@@ -42,7 +42,8 @@
 </#macro>
 
 <#--输入框-->
-<#macro input label type="text" name="" id="" value="" placeholder="" readonly=false required=false>
+<#macro input label type="text" name="" id="" value="" placeholder="" readonly=false
+required=false min_length=-1 max_length=-1 validator="" remote="">
     <#if id==''>
         <#local id=func('uuid')/>
     </#if>
@@ -53,7 +54,20 @@
     <div class="col-md-7 controls <#if _isSearchForm??>col-xs-12</#if>">
         <input type="${type}" id="${id}" <#if name!=''>name="${name}"</#if> value="${value}" class="form-control"
                <#if readonly>readonly</#if>
-               placeholder="${(placeholder=='')?string('请输入${label}', placeholder)}" <#if required>required</#if>/>
+               placeholder="${(placeholder=='')?string('请输入${label}', placeholder)}" <#if required>required</#if>
+            <#if min_length!=-1>
+               minlength="${min_length}"
+            </#if>
+            <#if max_length!=-1>
+               maxlength="${max_length}"
+            </#if>
+            <#if validator!=''>
+               ${validator}="true"
+            </#if>
+            <#if remote!=''>
+            remote="${remote}"
+            </#if>
+        />
     </div>
     <div>
         <#nested />

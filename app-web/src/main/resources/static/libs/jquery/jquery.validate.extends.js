@@ -11,7 +11,7 @@
      */
     $.extend($.validator.messages, {
         required: "这是必填字段",
-        remote: "已被占用",
+        remote: "已被占用或不合法",
         email: "请输入有效的电子邮件地址",
         url: "请输入有效的网址",
         date: "请输入有效的日期",
@@ -35,21 +35,6 @@ $.extend($.validator.addMethod("isPassword", function (value) {
     return str.test(value);
 }, "密码必须是8至20位的字母或数字"));
 
-$.extend($.validator.addMethod("isCode", function (value) {
-    var str = /^[0-9]{6}$/;
-    return str.test(value);
-}, "验证码必须是6位数字"));
-
-$.extend($.validator.addMethod("isIdNo", function (value, element) {
-    var str = /^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/;
-    return this.optional(element) || str.test(value);
-}, "请输入正确的18位身份证号码"));
-
-$.extend($.validator.addMethod("isEmail", function (value, element) {
-    var isEmail = /^[\\.a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
-    return this.optional(element) || isEmail.test(value);
-}, "请输入正确的电子邮箱"));
-
 $.extend($.validator.addMethod("isRoleCode", function (value) {
     var str = /^ROLE[A-Z_]{0,28}$/;
     return str.test(value);
@@ -59,14 +44,4 @@ $.extend($.validator.addMethod("isMenuCode", function (value) {
     var str = /^[A-Z_]{1,32}$/;
     return str.test(value);
 }, "纯大写,可带下划线,不超过32位"));
-
-$.extend($.validator.addMethod("isInt", function (value) {
-    var str = /^[0-9]+$/;
-    return str.test(value);
-}, "请输入自然数"));
-
-$.extend($.validator.addMethod("isNum", function (value) {
-    var str = /^[0-9\\.]+$/;
-    return str.test(value);
-}, "请输数字"));
 

@@ -51,8 +51,7 @@
                     equalTo: "#password"
                 },
                 code: {
-                    required: true,
-                    isCode: true
+                    required: true
                 }
             },
             submitHandler: function (form, event) {

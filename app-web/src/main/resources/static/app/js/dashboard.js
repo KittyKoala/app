@@ -266,6 +266,7 @@ function formSubmit($form, $btn, success, failure) {
         dataType: 'json',
         success: function (response) {
             if (response.respCo === '0000') {
+                Message.success(response.respMsg);
                 if (success) {
                     success(response);
                 }

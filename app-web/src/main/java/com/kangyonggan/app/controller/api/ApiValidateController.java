@@ -4,7 +4,7 @@ import com.kangyonggan.app.service.UserService;
 import com.kangyonggan.app.util.IdNoUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,16 +24,11 @@ public class ApiValidateController {
      * 校验电子邮箱是否可用
      *
      * @param email
-     * @param oldEmail
      * @return
      */
-    @PostMapping("email")
+    @GetMapping("email")
     @ResponseBody
-    public boolean email(@RequestParam("email") String email, @RequestParam(value = "oldEmail", required = false, defaultValue = "") String oldEmail) {
-        if (oldEmail.equals(email)) {
-            return true;
-        }
-
+    public boolean email(@RequestParam("email") String email) {
         return !userService.existsEmail(email);
     }
 
@@ -43,7 +38,7 @@ public class ApiValidateController {
      * @param idNo
      * @return
      */
-    @PostMapping("idNo")
+    @GetMapping("idNo")
     @ResponseBody
     public boolean idNo(@RequestParam("idNo") String idNo) {
         return IdNoUtil.isIdNo18(idNo);
