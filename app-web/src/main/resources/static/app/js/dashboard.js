@@ -268,6 +268,12 @@ $(function () {
         });
         return false;
     });
+
+    // 提示框
+    $.messager.model = {
+        cancel: {text: "<i class='ace-icon fa fa-times'></i>取消", classed: "btn-default"},
+        ok: {text: "<i class='ace-icon fa fa-check'></i>确定"}
+    };
 });
 
 // 提示信息

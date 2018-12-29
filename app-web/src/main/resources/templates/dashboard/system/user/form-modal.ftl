@@ -16,7 +16,6 @@
 </@override>
 
 <@override name="modal-footer">
-    <@cancel/>
     <@submit/>
 </@override>
 

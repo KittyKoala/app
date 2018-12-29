@@ -1,7 +1,7 @@
 <#assign modal_title="用户授权" />
 
 <@override name="modal-body">
-    <@form action="${_baseUrl}/editRole" table_id="table" token=true>
+    <@form action="${ctx}/dashboard/system/user/editRole" table_id="table" token=true>
         <@input name="userId" label="用户ID" value="${userDto.userId}" readonly=true/>
         <@input type="email" name="email" label="电子邮箱" value="${userDto.email!''}" readonly=true/>
         <@dual name="roleIds" label="用户角色">
@@ -13,7 +13,6 @@
 </@override>
 
 <@override name="modal-footer">
-    <@cancel/>
     <@submit/>
 </@override>
 

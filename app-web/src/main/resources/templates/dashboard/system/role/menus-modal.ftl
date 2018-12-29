@@ -14,7 +14,6 @@
 </@override>
 
 <@override name="modal-footer">
-    <@cancel/>
     <@submit/>
 <script src="${ctx}/libs/ztree/js/jquery.ztree.core-3.5.min.js"></script>
 <script src="${ctx}/libs/ztree/js/jquery.ztree.excheck-3.5.min.js"></script>

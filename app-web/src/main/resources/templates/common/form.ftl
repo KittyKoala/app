@@ -196,7 +196,7 @@ ${name}
 
 <#--取消按钮-->
 <#macro cancel>
-<button class="btn btn-warning" data-dismiss="modal">
+<button class="btn btn-default" data-dismiss="modal">
     <i class="ace-icon fa fa-times"></i>
     取消
 </button>
@@ -208,6 +208,7 @@ ${name}
     <i class="ace-icon fa fa-check"></i>
     提交
 </button>
+<@cancel/>
 </#macro>
 
 <#--删除按钮-->
