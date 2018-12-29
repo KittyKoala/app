@@ -93,6 +93,10 @@
     content: "*";
 }
 
+.app-form-actions a {
+    margin-top: 8px;
+}
+
 label.error {
     color: red;
     font-size: 13px;

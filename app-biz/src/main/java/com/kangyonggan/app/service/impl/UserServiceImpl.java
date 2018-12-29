@@ -2,12 +2,12 @@ package com.kangyonggan.app.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.kangyonggan.app.constants.AppConstants;
+import com.kangyonggan.app.constants.YesNo;
 import com.kangyonggan.app.dto.UserDto;
 import com.kangyonggan.app.exception.BizException;
 import com.kangyonggan.app.mapper.UserMapper;
 import com.kangyonggan.app.model.User;
 import com.kangyonggan.app.model.UserProfile;
-import com.kangyonggan.app.service.RoleService;
 import com.kangyonggan.app.service.UserProfileService;
 import com.kangyonggan.app.service.UserService;
 import com.kangyonggan.app.util.Digests;
@@ -20,6 +20,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.Arrays;
 import java.util.List;
@@ -36,9 +37,6 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
 
     @Autowired
     private UserProfileService userProfileService;
-
-    @Autowired
-    private RoleService roleService;
 
     @Override
     public User findUserByEmail(String email) {
@@ -92,11 +90,6 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
     }
 
     @Override
-    public void updateUser(User user) {
-        myMapper.updateByPrimaryKeySelective(user);
-    }
-
-    @Override
     @Transactional(rollbackFor = Exception.class)
     public void updateUser(UserDto userDto) {
         User user = new User();
@@ -124,35 +117,33 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
     }
 
     @Override
-    public void deleteUser(Long userId) {
-        myMapper.deleteByPrimaryKey(userId);
-    }
-
-    @Override
-    public void updateUserPassword(User user) {
-        entryptPassword(user);
-        user.setEmail(null);
-
-        myMapper.updateByPrimaryKeySelective(user);
-    }
-
-    @Override
-    public void updateUserRoles(Long userId, String roleIds) {
-        roleService.deleteAllRolesByUserId(userId);
-
-        if (StringUtils.isNotEmpty(roleIds)) {
-            saveUserRoles(userId, roleIds);
+    public void deleteUsers(String userIds) {
+        if (StringUtils.isEmpty(userIds)) {
+            return;
         }
+        String[] ids = userIds.split(",");
+        Example example = new Example(User.class);
+        example.createCriteria().andIn("userId", Arrays.asList(ids));
+
+        User user = new User();
+        user.setIsDeleted(YesNo.YES.getCode());
+
+        myMapper.updateByExampleSelective(user, example);
     }
 
-    /**
-     * 批量保存用户角色
-     *
-     * @param userId
-     * @param roleIds
-     */
-    private void saveUserRoles(Long userId, String roleIds) {
-        userMapper.insertUserRoles(userId, Arrays.asList(roleIds.split(",")));
+    @Override
+    public void restoreUsers(String userIds) {
+        if (StringUtils.isEmpty(userIds)) {
+            return;
+        }
+        String[] ids = userIds.split(",");
+        Example example = new Example(User.class);
+        example.createCriteria().andIn("userId", Arrays.asList(ids));
+
+        User user = new User();
+        user.setIsDeleted(YesNo.NO.getCode());
+
+        myMapper.updateByExampleSelective(user, example);
     }
 
     /**

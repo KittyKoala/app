@@ -39,7 +39,7 @@ $(function () {
      * art布尔格式化
      */
     template.helper('yesNoFormat', function (val) {
-        return val === 1 ? "是" : "否";
+        return val * 1 === 1 ? "是" : "否";
     });
 
     /**
@@ -173,6 +173,47 @@ $(function () {
             })
         } else {
             Message.warning("请选择一条记录");
+        }
+        return false;
+    });
+
+    // 删除/恢复
+    $(document).on("click", "[data-type='delete']", function (e) {
+        e.preventDefault();
+        var $this = $(this);
+        var tableId = $this.data("table-id");
+        var field = $this.data("field");
+        var url = $this.data("url");
+        var $table = $("#" + tableId);
+
+        var selections = $table.bootstrapTable('getSelections');
+        if (selections.length > 0) {
+            var ids = [];
+            for (var index in selections) {
+                ids.push(selections[index][field]);
+            }
+
+            var tips = "恢复";
+            if ($(this).hasClass("btn-danger")) {
+                tips = "删除";
+            }
+
+            $.messager.confirm("提示", "确定" + tips + "所选择的" + ids.length + "条记录吗?", function () {
+                url += ids.join(",");
+                $.get(url).success(function (res) {
+                    if (res.respCo === '0000') {
+                        Message.success(res.respMsg);
+                        $table.bootstrapTable("refresh");
+                    } else {
+                        Message.error(res.respMsg);
+                    }
+                }).error(function () {
+                    Message.error("网络错误，请稍后重试");
+                })
+            });
+
+        } else {
+            Message.warning("至少选择一条记录");
         }
         return false;
     });

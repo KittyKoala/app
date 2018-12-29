@@ -60,13 +60,6 @@ public interface UserService {
     User findUserByUserId(Long userId);
 
     /**
-     * 更新用户
-     *
-     * @param user
-     */
-    void updateUser(User user);
-
-    /**
      * 更新用户信息
      *
      * @param userDto
@@ -74,24 +67,16 @@ public interface UserService {
     void updateUser(UserDto userDto);
 
     /**
-     * 删除用户
+     * 批量删除用户
      *
-     * @param userId
+     * @param userIds
      */
-    void deleteUser(Long userId);
+    void deleteUsers(String userIds);
 
     /**
-     * 修改用户密码
+     * 批量恢复用户
      *
-     * @param user
+     * @param userIds
      */
-    void updateUserPassword(User user);
-
-    /**
-     * 更新用户角色
-     *
-     * @param userId
-     * @param roleIds
-     */
-    void updateUserRoles(Long userId, String roleIds);
+    void restoreUsers(String userIds);
 }

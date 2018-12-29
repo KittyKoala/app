@@ -105,7 +105,7 @@ required=false min_length=-1 max_length=-1 validator="" remote="">
 
 <#--表单按钮组-->
 <#macro form_actions>
-<div class="col-xs-12 align-center">
+<div class="col-xs-12 align-center app-form-actions">
     <#nested />
     <div class="space-6"></div>
 </div>
@@ -121,7 +121,7 @@ required=false min_length=-1 max_length=-1 validator="" remote="">
 
 <#--重置按钮-->
 <#macro reset>
-<a href="javascript:" class="btn btn-sm btn-danger" data-type="reset">
+<a href="javascript:" class="btn btn-sm btn-warning" data-type="reset">
     <i class="ace-icon fa fa-undo"></i>
     清除
 </a>
@@ -157,4 +157,20 @@ required=false min_length=-1 max_length=-1 validator="" remote="">
     <i class="ace-icon fa fa-check"></i>
     提交
 </button>
+</#macro>
+
+<#--删除按钮-->
+<#macro delete table_id url field>
+<a href="javascript:" class="btn btn-sm btn-danger" data-table-id="${table_id}" data-url="${url}" data-field="${field}" data-type="delete">
+    <i class="ace-icon fa fa-trash"></i>
+    删除
+</a>
+</#macro>
+
+<#--恢复按钮-->
+<#macro restore table_id url field>
+<a href="javascript:" class="btn btn-sm btn-info2" data-table-id="${table_id}" data-url="${url}" data-field="${field}" data-type="delete">
+    <i class="ace-icon fa fa-recycle"></i>
+    恢复
+</a>
 </#macro>
