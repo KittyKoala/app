@@ -52,21 +52,21 @@ required=false min_length=-1 max_length=-1 validator="" remote="">
         <label class="<#if required>required</#if>">${label}</label>
     </div>
     <div class="col-md-7 controls <#if _isSearchForm??>col-xs-12</#if>">
-        <input type="${type}" id="${id}" <#if name!=''>name="${name}"</#if> value="${value}" class="form-control"
-               <#if readonly>readonly</#if>
-               placeholder="${(placeholder=='')?string('请输入${label}', placeholder)}" <#if required>required</#if>
-            <#if min_length!=-1>
-               minlength="${min_length}"
-            </#if>
-            <#if max_length!=-1>
-               maxlength="${max_length}"
-            </#if>
-            <#if validator!=''>
-               ${validator}="true"
-            </#if>
-            <#if remote!=''>
+    <input type="${type}" id="${id}" <#if name!=''>name="${name}"</#if> value="${value}" class="form-control"
+           <#if readonly>readonly</#if>
+           placeholder="${(placeholder=='')?string('请输入${label}', placeholder)}" <#if required>required</#if>
+        <#if min_length!=-1>
+           minlength="${min_length}"
+        </#if>
+        <#if max_length!=-1>
+           maxlength="${max_length}"
+        </#if>
+        <#if validator!=''>
+        ${validator}="true"
+        </#if>
+        <#if remote!=''>
             remote="${remote}"
-            </#if>
+        </#if>
         />
     </div>
     <div>
@@ -117,6 +117,7 @@ required=false min_length=-1 max_length=-1 validator="" remote="">
     <i class="ace-icon fa fa-search"></i>
     查询
 </a>
+    <@reset/>
 </#macro>
 
 <#--重置按钮-->
