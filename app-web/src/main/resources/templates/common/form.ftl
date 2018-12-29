@@ -75,9 +75,30 @@ required=false min_length=-1 max_length=-1 validator="" remote="" equal_to="">
         </#if>
         />
     </div>
-    <div>
-        <#nested />
+</div>
+</#macro>
+
+<#--双向选择框-->
+<#macro dual label name id="" value="" placeholder="">
+    <#if id==''>
+        <#local id=func('uuid')/>
+    </#if>
+<div class="form-group">
+    <div class="app-label nowrap col-md-3">
+        <label>${label}</label>
     </div>
+    <div class="col-md-7 controls">
+        <select id="${id}" size="10" name="${name}" multiple="multiple">
+            <#nested />
+        </select>
+    </div>
+    <script>
+        $(function () {
+            var dual_${id} = $('#${id}').bootstrapDualListbox({infoTextFiltered: '<span class="label label-purple label-lg">过滤</span>'});
+            var container_${id} = dual_${id}.bootstrapDualListbox('getContainer');
+            container_${id}.find('.btn').addClass('btn-white btn-info btn-bold');
+        })
+    </script>
 </div>
 </#macro>
 

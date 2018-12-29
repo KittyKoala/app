@@ -86,4 +86,12 @@ public interface UserService {
      * @param user
      */
     void updateUserPassword(User user);
+
+    /**
+     * 更新用户角色
+     *
+     * @param userId
+     * @param roleIds
+     */
+    void updateUserRoles(Long userId, String roleIds);
 }

@@ -5,13 +5,18 @@ import com.kangyonggan.app.annotation.Token;
 import com.kangyonggan.app.controller.BaseController;
 import com.kangyonggan.app.dto.Page;
 import com.kangyonggan.app.dto.UserDto;
+import com.kangyonggan.app.model.Role;
 import com.kangyonggan.app.model.User;
+import com.kangyonggan.app.service.RoleService;
 import com.kangyonggan.app.service.UserService;
+import com.kangyonggan.app.util.Collections3;
 import com.kangyonggan.common.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author kangyonggan
@@ -25,6 +30,9 @@ public class DashboardSystemUserController extends BaseController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private RoleService roleService;
 
     /**
      * 用户列表界面
@@ -163,6 +171,44 @@ public class DashboardSystemUserController extends BaseController {
     @Token(key = "editPassword", type = Token.Type.CHECK)
     public Response editPassword(User user) {
         userService.updateUserPassword(user);
+        return Response.getSuccessResponse();
+    }
+
+    /**
+     * 设置角色
+     *
+     * @param userId
+     * @param model
+     * @return
+     */
+    @GetMapping("{userId:[\\d]+}/editRole")
+    @PermissionMenu("SYSTEM_USER")
+    @Token(key = "editRole")
+    public String editRole(@PathVariable("userId") Long userId, Model model) {
+        UserDto userDto = userService.findUserDtoByUserId(userId);
+        List<Role> allRoles = roleService.findAllRoles();
+        List<Role> userRoles = roleService.findRolesByUserId(userId);
+
+        model.addAttribute("userDto", userDto);
+        model.addAttribute("allRoles", allRoles);
+        model.addAttribute("userRoles", Collections3.extractToList(userRoles, "roleId"));
+        return PATH_ROOT + "/role-modal";
+    }
+
+    /**
+     * 保存角色
+     *
+     * @param userId
+     * @param roleIds
+     * @return
+     */
+    @PostMapping("editRole")
+    @PermissionMenu("SYSTEM_USER")
+    @ResponseBody
+    @Token(key = "editRole", type = Token.Type.CHECK)
+    public Response updateUserRoles(@RequestParam(value = "userId") Long userId, @RequestParam(value = "roleIds", defaultValue = "") String roleIds) {
+        userService.updateUserRoles(userId, roleIds);
+
         return Response.getSuccessResponse();
     }
 }

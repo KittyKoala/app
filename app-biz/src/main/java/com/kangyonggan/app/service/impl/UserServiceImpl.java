@@ -5,6 +5,7 @@ import com.kangyonggan.app.constants.AppConstants;
 import com.kangyonggan.app.constants.YesNo;
 import com.kangyonggan.app.dto.UserDto;
 import com.kangyonggan.app.exception.BizException;
+import com.kangyonggan.app.mapper.RoleMapper;
 import com.kangyonggan.app.mapper.UserMapper;
 import com.kangyonggan.app.model.User;
 import com.kangyonggan.app.model.UserProfile;
@@ -37,6 +38,9 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
 
     @Autowired
     private UserProfileService userProfileService;
+
+    @Autowired
+    private RoleMapper roleMapper;
 
     @Override
     public User findUserByEmail(String email) {
@@ -157,6 +161,26 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
         entryptPassword(u);
 
         myMapper.updateByPrimaryKeySelective(u);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void updateUserRoles(Long userId, String roleIds) {
+        roleMapper.deleteAllRolesByUserId(userId);
+
+        if (StringUtils.isNotEmpty(roleIds)) {
+            saveUserRoles(userId, roleIds);
+        }
+    }
+
+    /**
+     * 批量保存用户角色
+     *
+     * @param userId
+     * @param roleIds
+     */
+    private void saveUserRoles(Long userId, String roleIds) {
+        userMapper.insertUserRoles(userId, Arrays.asList(roleIds.split(",")));
     }
 
     /**
