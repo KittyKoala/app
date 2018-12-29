@@ -12,6 +12,7 @@
             <@create url="${ctx}/dashboard/system/user/create"/>
             <@delete table_id="table" url="${ctx}/dashboard/system/user/delete?userIds={{userId}}"/>
             <@restore table_id="table" url="${ctx}/dashboard/system/user/restore?userIds={{userId}}"/>
+            <@modal name="修改密码" table_id="table" url="${ctx}/dashboard/system/user/{{userId}}/editPassword"/>
         </@form_actions>
     </@search_form>
 

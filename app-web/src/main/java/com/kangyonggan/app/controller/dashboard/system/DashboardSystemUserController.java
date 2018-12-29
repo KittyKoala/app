@@ -5,6 +5,7 @@ import com.kangyonggan.app.annotation.Token;
 import com.kangyonggan.app.controller.BaseController;
 import com.kangyonggan.app.dto.Page;
 import com.kangyonggan.app.dto.UserDto;
+import com.kangyonggan.app.model.User;
 import com.kangyonggan.app.service.UserService;
 import com.kangyonggan.common.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -132,6 +133,36 @@ public class DashboardSystemUserController extends BaseController {
     @ResponseBody
     public Response restore(@RequestParam("userIds") String userIds) {
         userService.restoreUsers(userIds);
+        return Response.getSuccessResponse();
+    }
+
+    /**
+     * 修改密码
+     *
+     * @param userId
+     * @param model
+     * @return
+     */
+    @GetMapping("{userId:[\\d]+}/editPassword")
+    @PermissionMenu("SYSTEM_USER")
+    @Token(key = "editPassword")
+    public String editPassword(@PathVariable("userId") Long userId, Model model) {
+        model.addAttribute("userDto", userService.findUserDtoByUserId(userId));
+        return PATH_ROOT + "/password-modal";
+    }
+
+    /**
+     * 修改密码提交
+     *
+     * @param user
+     * @return
+     */
+    @PostMapping("editPassword")
+    @ResponseBody
+    @PermissionMenu("SYSTEM_USER")
+    @Token(key = "editPassword", type = Token.Type.CHECK)
+    public Response editPassword(User user) {
+        userService.updateUserPassword(user);
         return Response.getSuccessResponse();
     }
 }

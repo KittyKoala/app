@@ -145,7 +145,7 @@ $(function () {
         return false;
     });
 
-    // 编辑
+    // 编辑/模态框
     $(document).on("click", "[data-type='edit']", function (e) {
         e.preventDefault();
         var $this = $(this);

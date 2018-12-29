@@ -146,6 +146,19 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
         myMapper.updateByExampleSelective(user, example);
     }
 
+    @Override
+    public void updateUserPassword(User user) {
+        if (user.getUserId() == null) {
+            return;
+        }
+        User u = new User();
+        u.setPassword(user.getPassword());
+        u.setUserId(user.getUserId());
+        entryptPassword(u);
+
+        myMapper.updateByPrimaryKeySelective(u);
+    }
+
     /**
      * 设定安全的密码，生成随机的salt并经过N次 sha-1 hash
      *

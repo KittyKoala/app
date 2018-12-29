@@ -79,4 +79,11 @@ public interface UserService {
      * @param userIds
      */
     void restoreUsers(String userIds);
+
+    /**
+     * 更新密码
+     *
+     * @param user
+     */
+    void updateUserPassword(User user);
 }

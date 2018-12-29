@@ -43,7 +43,7 @@
 
 <#--输入框-->
 <#macro input label type="text" name="" id="" value="" placeholder="" readonly=false
-required=false min_length=-1 max_length=-1 validator="" remote="">
+required=false min_length=-1 max_length=-1 validator="" remote="" equal_to="">
     <#if id==''>
         <#local id=func('uuid')/>
     </#if>
@@ -66,6 +66,9 @@ required=false min_length=-1 max_length=-1 validator="" remote="">
         </#if>
         <#if remote!=''>
             remote="${remote}"
+        </#if>
+        <#if equal_to!=''>
+            equalTo="${equal_to}"
         </#if>
         />
     </div>
@@ -133,6 +136,16 @@ required=false min_length=-1 max_length=-1 validator="" remote="">
 <a href="javascript:" class="btn btn-sm btn-info" data-table-id="${table_id}" data-url="${url}" data-type="edit">
     <i class="ace-icon fa fa-pencil-square-o"></i>
     编辑
+</a>
+</#macro>
+
+<#--模态框按钮-->
+<#macro modal name table_id url icon="">
+<a href="javascript:" class="btn btn-sm btn-skin" data-table-id="${table_id}" data-url="${url}" data-type="edit">
+    <#if icon!=''>
+        <i class="ace-icon fa ${icon}"></i>
+    </#if>
+    ${name}
 </a>
 </#macro>
 
