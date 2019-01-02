@@ -255,39 +255,6 @@ CREATE TABLE tb_login_log
 CREATE INDEX ix_email
   ON tb_login_log (email);
 
--- ----------------------------
---  Table structure for tb_category
--- ----------------------------
-DROP TABLE
-IF EXISTS tb_category;
-
-CREATE TABLE tb_category
-(
-  category_id   BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
-  COMMENT '栏目ID',
-  category_type VARCHAR(20)                           NOT NULL
-  COMMENT '栏目类型',
-  parent_code   VARCHAR(20)                           NOT NULL                    DEFAULT ''
-  COMMENT '父栏目代码',
-  category_code VARCHAR(20)                           NOT NULL
-  COMMENT '栏目代码',
-  category_name VARCHAR(20)                           NOT NULL
-  COMMENT '栏目名称',
-  sort          INT(11)                               NOT NULL                    DEFAULT 0
-  COMMENT '栏目排序(从0开始)',
-  is_blank      TINYINT                               NOT NULL                    DEFAULT 0
-  COMMENT '是否开启新界面',
-  is_deleted    TINYINT                               NOT NULL                    DEFAULT 0
-  COMMENT '逻辑删除',
-  created_time  TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP
-  COMMENT '创建时间',
-  updated_time  TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-  COMMENT '更新时间'
-)
-  COMMENT '栏目表';
-CREATE UNIQUE INDEX category_type_code_UNIQUE
-  ON tb_category (category_type, category_code);
-
 #====================初始数据====================#
 
 -- ----------------------------
@@ -318,29 +285,26 @@ VALUES
 --  data for tb_menu
 -- ----------------------------
 INSERT INTO tb_menu
-(menu_id, menu_code, menu_name, parent_code, url, sort, icon)
+(menu_code, menu_name, parent_code, url, sort, icon)
 VALUES
-  (1, 'DASHBOARD', '工作台', '', 'dashboard', 0, 'menu-icon fa fa-dashboard'),
+  ('DASHBOARD', '工作台', '', 'dashboard', 0, 'menu-icon fa fa-dashboard'),
 
-  (10, 'SYSTEM', '系统', '', '', 1, 'menu-icon fa fa-cogs'),
-  (11, 'SYSTEM_USER', '用户管理', 'SYSTEM', 'dashboard/system/user', 0, ''),
-  (12, 'SYSTEM_ROLE', '角色管理', 'SYSTEM', 'dashboard/system/role', 1, ''),
-  (13, 'SYSTEM_MENU', '菜单管理', 'SYSTEM', 'dashboard/system/menu', 2, ''),
+  ('SYSTEM', '系统', '', '', 1, 'menu-icon fa fa-cogs'),
+  ('SYSTEM_USER', '用户管理', 'SYSTEM', 'dashboard/system/user', 0, ''),
+  ('SYSTEM_ROLE', '角色管理', 'SYSTEM', 'dashboard/system/role', 1, ''),
+  ('SYSTEM_MENU', '菜单管理', 'SYSTEM', 'dashboard/system/menu', 2, ''),
 
-  (20, 'CONTENT', '内容', '', '', 2, 'menu-icon fa fa-folder-open-o'),
-  (21, 'CONTENT_DICT', '字典管理', 'CONTENT', 'dashboard/content/dict', 0, ''),
-  (22, 'CONTENT_CATEGORY', '栏目管理', 'SITES', 'dashboard/content/category', 1, ''),
+  ('CONTENT', '内容', '', '', 2, 'menu-icon fa fa-folder-open-o'),
+  ('CONTENT_DICT', '字典管理', 'CONTENT', 'dashboard/content/dict', 0, ''),
+  ('CONTENT_CATEGORY', '栏目管理', 'SITES', 'dashboard/content/category', 1, ''),
 
-  (30, 'QUERY', '查询', '', '', 3, 'menu-icon fa fa-laptop'),
-  (31, 'QUERY_EMAIL', '邮件查询', 'QUERY', 'dashboard/query/email', 1, ''),
-  (32, 'QUERY_LOGIN', '登录日志查询', 'QUERY', 'dashboard/query/login', 2, ''),
+  ('QUERY', '查询', '', '', 3, 'menu-icon fa fa-laptop'),
+  ('QUERY_EMAIL', '邮件查询', 'QUERY', 'dashboard/query/email', 1, ''),
+  ('QUERY_LOGIN', '登录日志查询', 'QUERY', 'dashboard/query/login', 2, ''),
 
-  (40, 'SITES', '网站', '', '', 4, 'menu-icon fa fa-globe'),
-  (41, 'SITES_ARTICLE', '文章管理', 'SITES', 'dashboard/sites/article', 1, ''),
-
-  (50, 'STAT', '统计', '', '', 5, 'menu-icon fa fa-bar-chart-o'),
-  (51, 'STAT_USER', '注册统计', 'STAT', 'dashboard/stat/user', 0, ''),
-  (52, 'STAT_LOGIN', '登录统计', 'STAT', 'dashboard/stat/login', 1, '');
+  ('STAT', '统计', '', '', 5, 'menu-icon fa fa-bar-chart-o'),
+  ('STAT_USER', '注册统计', 'STAT', 'dashboard/stat/user', 0, ''),
+  ('STAT_LOGIN', '登录统计', 'STAT', 'dashboard/stat/login', 1, '');
 
 -- ----------------------------
 --  data for tb_user_role
