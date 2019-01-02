@@ -28,7 +28,7 @@
 </#macro>
 
 <#--表格的行-->
-<#macro th title="" field="" sortable=true render=false type="" auto_hide=false>
+<#macro th title="" field="" sortable=true render=false type="" auto_hide=false enum_key="" show_code=false>
 <th data-field="${field}"
     <#if field!='' && sortable>
     data-sortable="${sortable?c}"
@@ -54,11 +54,30 @@ ${title}
                 {{value | datetimeFormat}}
             </#if>
         </div>
-        <script>
+        <script id="${uuid}-script">
+            <#if type=='enum'>
+                var obj${uuid} = {};
+                <#local map=enum('map', enum_key)/>
+                <#if map?? && map?size gt 0>
+                    <#list map?keys as key>
+                    obj${uuid}["${key}"] = "${map[key]}";
+                    </#list>
+                </#if>
+            </#if>
             function ${formatter}(value, row, index) {
-                var data = {"value": value, "row": row, "index": index};
-                return template('${uuid}', data);
+                <#if type=='enum'>
+                    for (var key in obj${uuid}) {
+                        if (key === value) {
+                            return obj${uuid}[key]<#if show_code> + "[" + key + "]"</#if>;
+                        }
+                    }
+                    return value;
+                <#else>
+                    var data = {"value": value, "row": row, "index": index};
+                    return template('${uuid}', data);
+                </#if>
             }
+            $("#${uuid}-script").remove();
         </script>
     </#if>
 </th>
@@ -82,4 +101,9 @@ ${title}
 <#--datetime格式化-->
 <#macro thDatetime title="" field="" sortable=true auto_hide=false>
     <@th title=title field=field render=true type="datetime" auto_hide=auto_hide/>
+</#macro>
+
+<#--enum格式化-->
+<#macro thEnum enum_key title="" field="" sortable=true auto_hide=false show_code=false>
+    <@th title=title field=field render=true type="enum" enum_key=enum_key auto_hide=auto_hide show_code=show_code/>
 </#macro>

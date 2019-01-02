@@ -15,12 +15,7 @@ public enum DictType {
     /**
      * 证件类型
      */
-    ID_TYPE("ID_TYPE", "证件类型"),
-
-    /**
-     * 邮件类型
-     */
-    EMAIL_TYPE("EMAIL_TYPE", "邮件类型");
+    ID_TYPE("ID_TYPE", "证件类型");
 
     /**
      * 类型代码

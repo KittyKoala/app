@@ -11,7 +11,7 @@
 </#macro>
 
 <#--普通表单-->
-<#macro form action id="" method="post" table_id="" token=false beforeSubmit="">
+<#macro form action id="" method="post" table_id="" token=false beforeSubmit="" valid_ignore=":hidden" rules="">
     <#if id==''>
         <#local id=func('uuid')/>
     </#if>
@@ -29,6 +29,10 @@
         var $btn = $modal.find("button[data-type=submit]");
 
         $form.validate({
+            ignore: '${valid_ignore}',
+            <#if rules!=''>
+                rules: eval('${rules}()'),
+            </#if>
             submitHandler: function (form, event) {
                 event.preventDefault();
 
@@ -87,6 +91,44 @@ required=false min_length=-1 max_length=-1 validator="" remote="" equal_to="" ra
             number="true"
         </#if>
         />
+    </div>
+</div>
+</#macro>
+
+<#--枚举选择-->
+<#macro selectEnum name label enum_key id="" value="" show_code=false required=false readonly=false>
+    <#if id==''>
+        <#local id=func('uuid')/>
+    </#if>
+<div class="form-group <#if _isSearchForm??>col-lg-4 col-md-6 col-xs-12</#if>">
+    <div class="app-label nowrap <#if _isSearchForm??>col-md-5 col-xs-12<#else>col-md-3</#if>">
+        <label class="<#if required>required</#if>">${label}</label>
+    </div>
+    <div class="col-md-7 controls <#if _isSearchForm??>col-xs-12</#if>">
+        <select id="${id}" name="${name}" class="chosen-select <#if readonly>readonly</#if>"
+                <#if readonly>disabled</#if>
+                <#if required>required</#if>>
+            <#local map=enum('map', enum_key)/>
+            <#if map?? && map?size gt 0>
+                <#list map?keys as key>
+                    <option value="${key}" <#if value==key>selected</#if>>
+                    ${map[key]}<#if show_code>[${key}]</#if>
+                    </option>
+                </#list>
+            </#if>
+            <#nested />
+        </select>
+        <script>
+            $(function () {
+                $('#${id}').chosen({
+                    allow_single_deselect: false,
+                    width: "100%",
+                    disable_search_threshold: 10,
+                    no_results_text: "没有匹配的结果",
+                    placeholder_text: "请选择${label}"
+                });
+            })
+        </script>
     </div>
 </div>
 </#macro>
@@ -208,7 +250,7 @@ ${name}
     <i class="ace-icon fa fa-check"></i>
     提交
 </button>
-<@cancel/>
+    <@cancel/>
 </#macro>
 
 <#--删除按钮-->

@@ -72,11 +72,11 @@
                     <@app.user property='name' default='大佬'/><i class="fa fa-small fa-chevron-down"></i>
                 </a>
                 <ul class="sec-menus hidden">
-                    <@app.hasRole code="ROLE_DASHBOARD">
+                    <@app.hasMenu code="DASHBOARD">
                         <li>
                             <a href="${ctx}/dashboard">工作台</a>
                         </li>
-                    </@app.hasRole>
+                    </@app.hasMenu>
                     <li>
                         <a href="${ctx}/profile">个人中心</a>
                     </li>

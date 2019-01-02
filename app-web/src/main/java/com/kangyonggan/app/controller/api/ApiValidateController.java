@@ -1,5 +1,6 @@
 package com.kangyonggan.app.controller.api;
 
+import com.kangyonggan.app.service.DictService;
 import com.kangyonggan.app.service.MenuService;
 import com.kangyonggan.app.service.RoleService;
 import com.kangyonggan.app.service.UserService;
@@ -27,6 +28,9 @@ public class ApiValidateController {
 
     @Autowired
     private MenuService menuService;
+
+    @Autowired
+    private DictService dictService;
 
     /**
      * 校验电子邮箱是否可用
@@ -74,6 +78,27 @@ public class ApiValidateController {
     @ResponseBody
     public boolean menuCode(@RequestParam("menuCode") String menuCode) {
         return !menuService.existsMenuCode(menuCode);
+    }
+
+    /**
+     * 校验字典代码是否可用
+     *
+     * @param oldDictType
+     * @param oldDictCode
+     * @param dictType
+     * @param dictCode
+     * @return
+     */
+    @GetMapping("dictCode")
+    @ResponseBody
+    public boolean dictCode(@RequestParam(value = "oldDictType", required = false, defaultValue = "") String oldDictType,
+                            @RequestParam(value = "oldDictCode", required = false, defaultValue = "") String oldDictCode,
+                            @RequestParam("dictType") String dictType, @RequestParam("dictCode") String dictCode) {
+        if (dictType.equals(oldDictType) && dictCode.equals(oldDictCode)) {
+            return true;
+        }
+
+        return !dictService.existsDict(dictType, dictCode);
     }
 
 }

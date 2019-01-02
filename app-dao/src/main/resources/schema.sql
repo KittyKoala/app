@@ -312,8 +312,7 @@ VALUES
 INSERT INTO tb_role
 (role_id, role_code, role_name)
 VALUES
-  (1, 'ROLE_ADMIN', '管理员'),
-  (2, 'ROLE_DASHBOARD', '工作台');
+  (1, 'ROLE_ADMIN', '管理员');
 
 -- ----------------------------
 --  data for tb_menu
@@ -348,8 +347,7 @@ VALUES
 -- ----------------------------
 INSERT INTO tb_user_role
 VALUES
-  (1, 1),
-  (1, 2);
+  (1, 1);
 
 -- ----------------------------
 --  data for tb_role_menu
