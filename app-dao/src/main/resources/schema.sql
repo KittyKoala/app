@@ -296,15 +296,7 @@ VALUES
 
   ('CONTENT', '内容', '', '', 2, 'menu-icon fa fa-folder-open-o'),
   ('CONTENT_DICT', '字典管理', 'CONTENT', 'dashboard/content/dict', 0, ''),
-  ('CONTENT_CATEGORY', '栏目管理', 'SITES', 'dashboard/content/category', 1, ''),
-
-  ('QUERY', '查询', '', '', 3, 'menu-icon fa fa-laptop'),
-  ('QUERY_EMAIL', '邮件查询', 'QUERY', 'dashboard/query/email', 1, ''),
-  ('QUERY_LOGIN', '登录日志查询', 'QUERY', 'dashboard/query/login', 2, ''),
-
-  ('STAT', '统计', '', '', 5, 'menu-icon fa fa-bar-chart-o'),
-  ('STAT_USER', '注册统计', 'STAT', 'dashboard/stat/user', 0, ''),
-  ('STAT_LOGIN', '登录统计', 'STAT', 'dashboard/stat/login', 1, '');
+  ('CONTENT_CATEGORY', '栏目管理', 'SITES', 'dashboard/content/category', 1, '');
 
 -- ----------------------------
 --  data for tb_user_role
