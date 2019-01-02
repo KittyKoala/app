@@ -2,21 +2,21 @@
 
 <@override name="main">
     <@panel bg_img="/app/images/bg.jpg">
-        <@web_form action="${ctx}/register" class="register-form">
-            <@web_input label="电子邮箱" id="email" name="email" placeholder="可用于登录找回密码和接收通知"/>
-            <@web_input label="邮箱验证码" name="code">
+        <@form action="${ctx}/register" class="register-form">
+            <@input label="电子邮箱" id="email" name="email" placeholder="可用于登录找回密码和接收通知"/>
+            <@input label="邮箱验证码" name="code">
             <button id="sendBtn" class="btn" data-loading-text="正在发送...">
                 获取
             </button>
-            </@web_input>
-            <@web_input label="密码" id="password" name="password" type="password"/>
-            <@web_input label="确认密码" name="rePassword" type="password"/>
+            </@input>
+            <@input label="密码" id="password" name="password" type="password"/>
+            <@input label="确认密码" name="rePassword" type="password"/>
 
-            <@web_actions>
-                <@web_button name="注册" type="submit" icon="fa-users"/>
-                <@web_button name="重置" type="reset" icon="fa-undo"/>
-            </@web_actions>
-        </@web_form>
+            <@actions>
+                <@button name="注册" type="submit" icon="fa-users"/>
+                <@button name="重置" type="reset" icon="fa-undo"/>
+            </@actions>
+        </@form>
     </@panel>
 </@override>
 
@@ -24,7 +24,7 @@
 <script>
     $(function () {
         // 表单校验
-        var $form = $('.form');
+        var $form = $('.register-form');
         var $btn = $form.find("button[type='submit']");
 
         $form.validate({

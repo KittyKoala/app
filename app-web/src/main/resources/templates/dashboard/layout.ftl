@@ -1,5 +1,6 @@
 <#assign ctx="${(rca.contextPath)!''}">
-<#include "../common/all.ftl"/>
+<#include "../common/form.ftl"/>
+<#include "../common/table.ftl"/>
 
 <!DOCTYPE html>
 <html lang="zh-cn">

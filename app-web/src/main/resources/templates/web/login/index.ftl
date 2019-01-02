@@ -2,16 +2,16 @@
 
 <@override name="main">
     <@panel bg_img="/app/images/bg.jpg">
-        <@web_form action="${ctx}/login" class="login-form">
-            <@web_input label="电子邮箱" name="email"/>
-            <@web_input label="密码" name="password" type="password"/>
-            <@web_captcha label="验证码" id="captcha" name="captcha"/>
+        <@form action="${ctx}/login" class="login-form">
+            <@input label="电子邮箱" name="email"/>
+            <@input label="密码" name="password" type="password"/>
+            <@captcha label="验证码" id="captcha" name="captcha"/>
 
-            <@web_actions>
-                <@web_button name="登录" type="submit" icon="fa-check"/>
-                <@web_button name="重置" type="reset" icon="fa-undo"/>
-            </@web_actions>
-        </@web_form>
+            <@actions>
+                <@button name="登录" type="submit" icon="fa-check"/>
+                <@button name="重置" type="reset" icon="fa-undo"/>
+            </@actions>
+        </@form>
     </@panel>
 </@override>
 
@@ -19,14 +19,13 @@
 <script>
     $(function () {
         // 表单校验
-        var $form = $('.form');
+        var $form = $('.login-form');
         var $btn = $form.find("button[type='submit']");
 
         $form.validate({
             rules: {
                 email: {
-                    required: true,
-                    isEmail: true
+                    required: true
                 },
                 password: {
                     required: true,
@@ -40,7 +39,7 @@
                 event.preventDefault();
                 formSubmit($form, $btn, function () {
                     var redirectUrl = '${redirectUrl}';
-                    if (redirectUrl != '') {
+                    if (redirectUrl !== '') {
                         window.location.href = redirectUrl;
                         return;
                     }

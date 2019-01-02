@@ -1,5 +1,5 @@
 <#--web表单-->
-<#macro web_form action="" id="" action="" method="post" class="">
+<#macro form action="" id="" action="" method="post" class="">
     <#if id==''>
         <#local id=func('uuid')/>
     </#if>
@@ -12,18 +12,12 @@
 
 <script>
     $(function () {
-        /**
-         * 重置
-         */
-        $("#${id}").find("button[type='reset']").click(function () {
-            $("#${id}").validate().resetForm();
-        });
     })
 </script>
 </#macro>
 
 <#--web输入框-->
-<#macro web_input label name="" id="" type="text" required=true placeholder="">
+<#macro input label name="" id="" type="text" required=true placeholder="">
 <div class="form-group">
     <div class="label">
         <label <#if required>class="required"</#if>>${label}</label>
@@ -41,23 +35,23 @@
 </div>
 </#macro>
 
-<#macro web_captcha label name="" id="">
-    <@web_input label="${label}" name="${name}" id="${id}">
+<#macro captcha label name="" id="">
+    <@input label="${label}" name="${name}" id="${id}">
     <img class="captcha" onclick="this.src='${ctx}/captcha?r=' + Math.random();" src="${ctx}/captcha"/>
-    </@web_input>
+    </@input>
 </#macro>
 
 <#--web按钮组-->
-<#macro web_actions>
+<#macro actions>
 <div class="form-actions">
     <#nested />
 </div>
 </#macro>
 
 <#--web按钮-->
-<#macro web_button name id="" loading_text="" type="button" icon="">
+<#macro button name id="" loading_text="" type="button" icon="">
 <button <#if id!=''>id="${id}"</#if>
-        class="btn" type="${type}"
+        class="btn" data-type="${type}"
     <#if loading_text!=''>
         data-loading-text="${loading_text}"
     <#else>

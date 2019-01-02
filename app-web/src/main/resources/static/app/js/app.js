@@ -1,5 +1,19 @@
 $(function () {
+    /**
+     * 提交
+     */
+    $(document).on("click", "[data-type='submit']", function (e) {
+        e.preventDefault();
+        $(this).parents("form").submit();
+        return false;
+    });
 
+    /**
+     * 重置
+     */
+    $(document).on("click", "[data-type='reset']", function (e) {
+        $(this).parents("form").validate().resetForm();
+    });
 });
 
 /**
