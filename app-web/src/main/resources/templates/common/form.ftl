@@ -11,7 +11,7 @@
 </#macro>
 
 <#--普通表单-->
-<#macro form action id="" method="post" table_id="" token=false beforeSubmit="" valid_ignore=":hidden" rules="">
+<#macro form action id="" method="post" table_id="" token=false beforeSubmit="" valid_ignore="" rules="">
     <#if id==''>
         <#local id=func('uuid')/>
     </#if>
@@ -29,7 +29,9 @@
         var $btn = $modal.find("button[data-type=submit]");
 
         $form.validate({
-            ignore: '${valid_ignore}',
+            <#if valid_ignore!=''>
+                ignore: '${valid_ignore}',
+            </#if>
             <#if rules!=''>
                 rules: eval('${rules}()'),
             </#if>
@@ -95,8 +97,8 @@ required=false min_length=-1 max_length=-1 validator="" remote="" equal_to="" ra
 </div>
 </#macro>
 
-<#--枚举选择-->
-<#macro selectEnum name label enum_key id="" value="" show_code=false required=false readonly=false>
+<#--选择-->
+<#macro select name label id="" value="" required=false readonly=false>
     <#if id==''>
         <#local id=func('uuid')/>
     </#if>
@@ -106,6 +108,37 @@ required=false min_length=-1 max_length=-1 validator="" remote="" equal_to="" ra
     </div>
     <div class="col-md-7 controls <#if _isSearchForm??>col-xs-12</#if>">
         <select id="${id}" name="${name}" class="chosen-select <#if readonly>readonly</#if>"
+                <#if readonly>disabled</#if>
+                <#if required>required</#if>>
+            <option value=""></option>
+            <#nested />
+        </select>
+        <script>
+            $(function () {
+                $('#${id}').chosen({
+                    allow_single_deselect: false,
+                    width: "100%",
+                    disable_search_threshold: 10,
+                    no_results_text: "没有匹配的结果",
+                    placeholder_text: "请选择${label}"
+                });
+            })
+        </script>
+    </div>
+</div>
+</#macro>
+
+<#--枚举选择-->
+<#macro selectEnum label enum_key id="" name="" value="" show_code=false required=false readonly=false>
+    <#if id==''>
+        <#local id=func('uuid')/>
+    </#if>
+<div class="form-group <#if _isSearchForm??>col-lg-4 col-md-6 col-xs-12</#if>">
+    <div class="app-label nowrap <#if _isSearchForm??>col-md-5 col-xs-12<#else>col-md-3</#if>">
+        <label class="<#if required>required</#if>">${label}</label>
+    </div>
+    <div class="col-md-7 controls <#if _isSearchForm??>col-xs-12</#if>">
+        <select id="${id}" <#if name!=''>name="${name}"</#if> class="chosen-select <#if readonly>readonly</#if>"
                 <#if readonly>disabled</#if>
                 <#if required>required</#if>>
             <#local map=enum('map', enum_key)/>
@@ -266,5 +299,15 @@ ${name}
 <a href="javascript:" class="btn btn-sm btn-info2" data-table-id="${table_id}" data-url="${url}" data-type="delete">
     <i class="ace-icon fa fa-recycle"></i>
     恢复
+</a>
+</#macro>
+
+<#--按钮-->
+<#macro button name id icon="">
+<a id="${id}" href="javascript:" class="btn btn-sm btn-skin">
+    <#if icon!=''>
+        <i class="ace-icon fa ${icon}"></i>
+    </#if>
+${name}
 </a>
 </#macro>

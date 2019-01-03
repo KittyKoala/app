@@ -146,7 +146,8 @@ $(function () {
     });
 
     // 编辑/模态框
-    $(document).on("click", "[data-type='edit']", function (e) {
+    $(document).on("click", "[data-type='edit']", editSelection);
+    function editSelection(e) {
         e.preventDefault();
         var $this = $(this);
         var tableId = $this.data("table-id");
@@ -175,7 +176,7 @@ $(function () {
             Message.warning("请选择一条记录");
         }
         return false;
-    });
+    }
 
     // 删除/恢复
     $(document).on("click", "[data-type='delete']", function (e) {
@@ -222,7 +223,7 @@ $(function () {
             });
 
         } else {
-            Message.warning("至少选择一条记录");
+            Message.warning("请选择一条记录");
         }
         return false;
     });
@@ -238,7 +239,7 @@ $(function () {
             keyboard: false,
             show: true,
             remote: url
-        })
+        });
         return false;
     });
 

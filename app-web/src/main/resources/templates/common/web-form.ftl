@@ -1,5 +1,5 @@
 <#--web表单-->
-<#macro form action="" id="" action="" method="post" class="" beforeSubmit="" valid_ignore=":hidden" rules="" success="" error="">
+<#macro form action="" id="" action="" method="post" class="" beforeSubmit="" valid_ignore="" rules="" success="" error="">
     <#if id==''>
         <#local id=func('uuid')/>
     </#if>
@@ -18,7 +18,9 @@
         var $btn = $form.find("button[data-type='submit']");
 
         $form.validate({
-            ignore: '${valid_ignore}',
+            <#if valid_ignore!=''>
+                ignore: '${valid_ignore}',
+            </#if>
             <#if rules!=''>
                 rules: eval('${rules}()'),
             </#if>

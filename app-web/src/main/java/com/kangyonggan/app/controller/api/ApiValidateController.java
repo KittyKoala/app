@@ -1,9 +1,6 @@
 package com.kangyonggan.app.controller.api;
 
-import com.kangyonggan.app.service.DictService;
-import com.kangyonggan.app.service.MenuService;
-import com.kangyonggan.app.service.RoleService;
-import com.kangyonggan.app.service.UserService;
+import com.kangyonggan.app.service.*;
 import com.kangyonggan.app.util.IdNoUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,6 +28,9 @@ public class ApiValidateController {
 
     @Autowired
     private DictService dictService;
+
+    @Autowired
+    private CategoryService categoryService;
 
     /**
      * 校验电子邮箱是否可用
@@ -99,6 +99,27 @@ public class ApiValidateController {
         }
 
         return !dictService.existsDict(dictType, dictCode);
+    }
+
+    /**
+     * 校验栏目代码是否可用
+     *
+     * @param oldCategoryType
+     * @param oldCategoryCode
+     * @param categoryType
+     * @param categoryCode
+     * @return
+     */
+    @GetMapping("categoryCode")
+    @ResponseBody
+    public boolean categoryCode(@RequestParam(value = "oldCategoryType", required = false, defaultValue = "") String oldCategoryType,
+                            @RequestParam(value = "oldCategoryCode", required = false, defaultValue = "") String oldCategoryCode,
+                            @RequestParam("categoryType") String categoryType, @RequestParam("categoryCode") String categoryCode) {
+        if (categoryType.equals(oldCategoryType) && categoryCode.equals(oldCategoryCode)) {
+            return true;
+        }
+
+        return !categoryService.existsCategory(categoryType, categoryCode);
     }
 
 }

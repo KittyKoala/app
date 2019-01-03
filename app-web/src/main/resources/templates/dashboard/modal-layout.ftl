@@ -1,5 +1,6 @@
 <#assign ctx="${(rca.contextPath)!''}">
-<#include "../common/all.ftl"/>
+<#include "../common/form.ftl"/>
+<#include "../common/table.ftl"/>
 
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>

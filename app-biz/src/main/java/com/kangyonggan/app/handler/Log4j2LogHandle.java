@@ -13,6 +13,9 @@ import lombok.extern.log4j.Log4j2;
 @Handler(Handler.Type.LOG)
 public class Log4j2LogHandle implements LogHandler {
 
+    /**
+     * 最大执行时间
+     */
     private static final Long MAX_TIME = 1000L;
 
     @Override

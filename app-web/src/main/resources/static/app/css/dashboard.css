@@ -116,6 +116,18 @@ input[readonly], input[readonly].readonly {
 tr.no-records-found td {
     padding: 40px 0 !important;
 }
+
+.page-list .dropup button.btn {
+    color: #333 !important;
+    background-color: #fff !important;
+    border: 0px solid #ccc !important;
+    padding: 0px 0px 0px 5px !important;
+}
+
+.pagination-detail {
+    border: 1px solid #d4dfe3;
+    padding: 0 5px;
+}
 /*自定义*/
 
 

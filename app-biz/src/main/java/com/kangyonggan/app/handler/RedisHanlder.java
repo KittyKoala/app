@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
  * @author kangyonggan
  * @since 8/30/18
  */
-@Handler(value = Handler.Type.CACHE, prefix = "APP")
+@Handler(value = Handler.Type.CACHE, prefix = "CK")
 public class RedisHanlder implements CacheHandler {
 
     private RedisService redisService;
