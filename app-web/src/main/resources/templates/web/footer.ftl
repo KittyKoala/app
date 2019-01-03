@@ -39,13 +39,16 @@
                     <a href="https://ckfksc.com" target="_blank">疯狂赛车</a>
                 </li>
                 <li>
-                    <a href="https://houbb.github.io/" target="_blank">侯宾宾</a>
+                    <a href="https://houbb.github.io/" target="_blank">侯宾宾博客</a>
                 </li>
                 <li>
-                    <a href="http://www.ssme.gov.cn/" target="_blank">市小办</a>
+                    <a href="http://www.ssme.gov.cn/" target="_blank">上海市小办</a>
                 </li>
                 <li>
                     <a href="http://tzmh.shmh.gov.cn/" target="_blank">投资闵行网</a>
+                </li>
+                <li>
+                    <a href="javascript:alert('开发中');">点此申请</a>
                 </li>
             </ul>
         </div>
@@ -139,8 +142,8 @@
 
     .footer .links li a {
         display: inline-block;
-        width: 70px;
-        line-height: 35px;
+        width: 94px;
+        line-height: 40px;
         color: #ddd;
     }
 
