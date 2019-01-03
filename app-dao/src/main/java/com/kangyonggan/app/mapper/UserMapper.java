@@ -2,10 +2,8 @@ package com.kangyonggan.app.mapper;
 
 import com.kangyonggan.app.dto.UserDto;
 import com.kangyonggan.app.model.User;
-import com.kangyonggan.common.Query;
 import com.kangyonggan.common.mybatis.MyMapper;
 import org.apache.ibatis.annotations.InsertProvider;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 import tk.mybatis.mapper.provider.SqlServerProvider;
@@ -17,7 +15,6 @@ import java.util.Map;
  * @author kangyonggan
  * @since 8/8/18
  */
-@Mapper
 public interface UserMapper extends MyMapper<User> {
 
     /**
