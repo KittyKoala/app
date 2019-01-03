@@ -3,14 +3,14 @@
 <@override name="main">
     <@panel bg_img="/app/images/bg.jpg">
         <@form action="${ctx}/register" class="register-form">
-            <@input label="电子邮箱" id="email" name="email" placeholder="可用于登录找回密码和接收通知"/>
-            <@input label="邮箱验证码" name="code">
+            <@input type="email" label="电子邮箱" id="email" name="email" placeholder="可用于登录找回密码和接收通知" remote="${ctx}/api/validate/email" required=true/>
+            <@input label="邮箱验证码" name="code" required=true>
             <button id="sendBtn" class="btn" data-loading-text="正在发送...">
                 获取
             </button>
             </@input>
-            <@input label="密码" id="password" name="password" type="password"/>
-            <@input label="确认密码" name="rePassword" type="password"/>
+            <@input label="密码" id="password" name="password" type="password" validator="isPassword" required=true/>
+            <@input label="确认密码" name="rePassword" type="password" equal_to="#password" required=true/>
 
             <@actions>
                 <@button name="注册" type="submit" icon="fa-users"/>
@@ -22,49 +22,16 @@
 
 <@override name="script">
 <script>
+    /**
+     * 注册成功的回调
+     */
+    function success() {
+        window.location.href = ctx + "/register/success";
+    }
+
     $(function () {
-        // 表单校验
-        var $form = $('.register-form');
-        var $btn = $form.find("button[type='submit']");
-
-        $form.validate({
-            rules: {
-                email: {
-                    required: true,
-                    isEmail: true,
-                    remote: {
-                        url: "${ctx}/api/validate/email",
-                        type: 'post',
-                        data: {
-                            'email': function () {
-                                return $('#email').val()
-                            }
-                        }
-                    }
-                },
-                password: {
-                    required: true,
-                    isPassword: true
-                },
-                rePassword: {
-                    required: true,
-                    equalTo: "#password"
-                },
-                code: {
-                    required: true
-                }
-            },
-            submitHandler: function (form, event) {
-                event.preventDefault();
-                $btn.button('loading');
-                formSubmit($form, $btn, function () {
-                    window.location.href = ctx + "/register/success";
-                })
-            },
-            errorElement: "div"
-        });
-
         var time = 60;
+        var $form = $(".register-form");
 
         // 发送验证码
         var $sendSmsBtn = $("#sendBtn");

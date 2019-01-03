@@ -2,9 +2,9 @@
 
 <@override name="main">
     <@panel bg_img="/app/images/bg.jpg">
-        <@form action="${ctx}/login" class="login-form">
-            <@input label="电子邮箱" name="email"/>
-            <@input label="密码" name="password" type="password"/>
+        <@form action="${ctx}/login" class="login-form" success="success" error="error">
+            <@input type="email" label="电子邮箱" name="email" required=true/>
+            <@input label="密码" name="password" type="password" required=true validator="isPassword"/>
             <@captcha label="验证码" id="captcha" name="captcha"/>
 
             <@actions>
@@ -17,41 +17,27 @@
 
 <@override name="script">
 <script>
-    $(function () {
-        // 表单校验
-        var $form = $('.login-form');
-        var $btn = $form.find("button[type='submit']");
+    /**
+     * 登录成功的回调
+     *
+     * @param response
+     */
+    function success(response) {
+        var redirectUrl = '${redirectUrl}';
+        if (redirectUrl !== '') {
+            window.location.href = redirectUrl;
+            return;
+        }
+        window.location.href = "${ctx}/";
+    }
 
-        $form.validate({
-            rules: {
-                email: {
-                    required: true
-                },
-                password: {
-                    required: true,
-                    isPassword: true
-                },
-                captcha: {
-                    required: true
-                }
-            },
-            submitHandler: function (form, event) {
-                event.preventDefault();
-                formSubmit($form, $btn, function () {
-                    var redirectUrl = '${redirectUrl}';
-                    if (redirectUrl !== '') {
-                        window.location.href = redirectUrl;
-                        return;
-                    }
-                    window.location.href = "${ctx}/";
-                }, function () {
-                    $(".captcha").attr('src', '${ctx}/captcha?r=' + Math.random());
-                    $("#captcha").val("");
-                })
-            },
-            errorElement: "div"
-        });
-    })
+    /**
+     * 登录失败的回调
+     */
+    function error() {
+        $("#captcha").attr('src', '${ctx}/captcha?r=' + Math.random());
+        $("#captcha").val("");
+    }
 </script>
 </@override>
 
