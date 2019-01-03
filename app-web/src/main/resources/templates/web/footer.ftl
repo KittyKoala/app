@@ -51,16 +51,16 @@
             <div class="title">友情链接</div>
             <ul class="links">
                 <li>
-                    <a href="#">侯宾宾</a>
+                    <a href="https://houbb.github.io/" target="_blank">侯宾宾</a>
                 </li>
                 <li>
-                    <a href="#">疯狂赛车</a>
+                    <a href="https://ckfksc.com" target="_blank">疯狂赛车</a>
                 </li>
                 <li>
-                    <a href="#">市小办</a>
+                    <a href="http://www.ssme.gov.cn/" target="_blank">市小办</a>
                 </li>
                 <li>
-                    <a href="#">投资闵行网</a>
+                    <a href="http://tzmh.shmh.gov.cn/" target="_blank">投资闵行网</a>
                 </li>
             </ul>
         </div>

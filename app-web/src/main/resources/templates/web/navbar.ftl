@@ -89,7 +89,7 @@
     </@app.user>
     </div>
 </div>
-<div style="height: 70px;"></div>
+<div style="height: 60px;"></div>
 
 <style>
     .navbar {
@@ -99,7 +99,7 @@
         top: 0;
         z-index: 2;
         color: #fff;
-        height: 70px;
+        height: 60px;
         background: rgba(0, 0, 0, 0.88);
         font-size: 1rem;
         font-weight: 400;
@@ -113,8 +113,8 @@
 
     .navbar a {
         display: inline-block;
-        height: 70px;
-        line-height: 70px;
+        height: 60px;
+        line-height: 60px;
         color: #ccc;
         text-decoration: none;
         text-align: center;
@@ -155,7 +155,7 @@
     .navbar .sec-menus {
         position: absolute;
         left: 0;
-        top: 70px;
+        top: 60px;
         width: 150px;
         list-style: none;
         margin-top: 0;
@@ -228,7 +228,7 @@
         if (type === 'show') {
             $navbar.find(".inner").show();
             $navbar.css("overflow", "visible");
-            $navbar.animate({height: 70});
+            $navbar.animate({height: 60});
         } else if (type === 'hide') {
             $navbar.find(".inner").hide();
             $navbar.animate({height: 0});
