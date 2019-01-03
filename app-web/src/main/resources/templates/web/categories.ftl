@@ -1,6 +1,6 @@
 <li data-pathname="${category.categoryCode}">
 <#assign hasChildren=category.leaf?size gt 0/>
-<#assign href=ctx + "/category/" + category.categoryCode/>
+<#assign href=ctx + "/" + category.categoryCode/>
 <#if category.url!=''>
     <#assign href=category.url/>
 </#if>
