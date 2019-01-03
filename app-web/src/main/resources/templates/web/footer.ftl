@@ -47,9 +47,6 @@
                 <li>
                     <a href="http://tzmh.shmh.gov.cn/" target="_blank">投资闵行网</a>
                 </li>
-                <li>
-                    <a href="http://github.com/kangyonggan" target="_blank">github</a>
-                </li>
             </ul>
         </div>
 
