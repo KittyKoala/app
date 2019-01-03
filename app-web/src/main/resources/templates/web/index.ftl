@@ -1,5 +1,5 @@
 <@override name="main">
-<div style="height: 2000px;">
+<div>
     main
 </div>
 </@override>

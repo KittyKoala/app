@@ -24,14 +24,4 @@ public class IndexController {
         return "web/index";
     }
 
-    /**
-     * 作品
-     *
-     * @return
-     */
-    @GetMapping("works")
-    public String works() {
-        return "web/works";
-    }
-
 }

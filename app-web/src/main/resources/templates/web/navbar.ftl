@@ -9,17 +9,49 @@
                 <a href="${ctx}/">首页</a>
             </li>
             <li>
-                <a href="https://blog.kangyonggan.com" target="_blank">站长博客</a>
+                <a href="https://blog.kangyonggan.com" target="_blank">博客</a>
             </li>
-            <li data-pathname="works">
-                <a href="${ctx}/works">作品案例</a>
+            <li data-pathname="photo">
+                <a href="javascript:">
+                    相册<i class="fa fa-small fa-chevron-down"></i>
+                </a>
+                <ul class="sec-menus hidden">
+                    <li>
+                        <a href="#">随手拍</a>
+                    </li>
+                    <li>
+                        <a href="#">风景</a>
+                    </li>
+                    <li>
+                        <a href="#">游戏</a>
+                    </li>
+                    <li>
+                        <a href="#">内涵</a>
+                    </li>
+                </ul>
             </li>
-            <li data-pathname="order">
-                <a href="${ctx}/order">找我合作</a>
+            <li data-pathname="video">
+                <a href="javascript:">
+                    视频<i class="fa fa-small fa-chevron-down"></i>
+                </a>
+                <ul class="sec-menus hidden">
+                    <li>
+                        <a href="#">随手拍</a>
+                    </li>
+                    <li>
+                        <a href="#">风景</a>
+                    </li>
+                    <li>
+                        <a href="#">游戏</a>
+                    </li>
+                    <li>
+                        <a href="#">内涵</a>
+                    </li>
+                </ul>
             </li>
             <li data-pathname="tools">
                 <a href="javascript:">
-                    常用工具<i class="fa fa-small fa-chevron-down"></i>
+                    工具<i class="fa fa-small fa-chevron-down"></i>
                 </a>
                 <ul class="sec-menus hidden">
                     <li>
