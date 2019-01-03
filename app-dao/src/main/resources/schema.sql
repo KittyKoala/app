@@ -225,6 +225,41 @@ CREATE INDEX ix_type
   ON tb_email (type);
 
 -- ----------------------------
+--  Table structure for tb_category
+-- ----------------------------
+DROP TABLE
+IF EXISTS tb_category;
+
+CREATE TABLE tb_category
+(
+  category_id   BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
+  COMMENT '栏目ID',
+  category_type VARCHAR(20)                           NOT NULL
+  COMMENT '栏目类型',
+  parent_code   VARCHAR(20)                           NOT NULL                    DEFAULT ''
+  COMMENT '父栏目代码',
+  category_code VARCHAR(20)                           NOT NULL
+  COMMENT '栏目代码',
+  category_name VARCHAR(20)                           NOT NULL
+  COMMENT '栏目名称',
+  url           VARCHAR(128)                          NOT NULL                    DEFAULT ''
+  COMMENT '地址',
+  sort          INT(11)                               NOT NULL                    DEFAULT 0
+  COMMENT '栏目排序(从0开始)',
+  is_blank      TINYINT                               NOT NULL                    DEFAULT 0
+  COMMENT '是否开启新界面',
+  is_deleted    TINYINT                               NOT NULL                    DEFAULT 0
+  COMMENT '逻辑删除',
+  created_time  TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP
+  COMMENT '创建时间',
+  updated_time  TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间'
+)
+  COMMENT '栏目表';
+CREATE UNIQUE INDEX category_type_code_UNIQUE
+  ON tb_category (category_type, category_code);
+
+-- ----------------------------
 --  Table structure for tb_login_log
 -- ----------------------------
 DROP TABLE
@@ -320,3 +355,33 @@ INSERT INTO tb_dict
 (dict_type, dict_code, value, sort)
 VALUES
   ('ID_TYPE', '0', '身份证', 0);
+
+-- ----------------------------
+--  data for tb_dict
+-- ----------------------------
+INSERT INTO tb_category
+(category_type, parent_code, category_code, category_name, url, sort, is_blank)
+VALUES
+  ('NAV_BAR', '', 'blog', '博客', 'https://blog.kangyonggan.com', 0, 1),
+  ('NAV_BAR', '', 'photo', '相册', '', 1, 0),
+  ('NAV_BAR', 'photo', 'lifePhoto', '生活照', '', 0, 0),
+  ('NAV_BAR', 'photo', 'screenshot', '截图', '', 1, 0),
+  ('NAV_BAR', 'photo', 'tourPhoto', '旅游照', '', 2, 0),
+  ('NAV_BAR', 'photo', 'jobPhoto', '工作照', '', 3, 0),
+  ('NAV_BAR', 'photo', 'familyPhoto', '家庭照', '', 4, 0),
+  ('NAV_BAR', 'photo', 'otherPhoto', '其他', '', 5, 0),
+  ('NAV_BAR', '', 'video', '视频', '', 2, 0),
+  ('NAV_BAR', 'video', 'lifeVideo', '生活视频', '', 0, 0),
+  ('NAV_BAR', 'video', 'gameVideo', '游戏视频', '', 1, 0),
+  ('NAV_BAR', 'video', 'tourVideo', '旅游视频', '', 2, 0),
+  ('NAV_BAR', 'video', 'familyVideo', '家庭视频', '', 3, 0),
+  ('NAV_BAR', 'video', 'other', '其他', '', 4, 0),
+  ('NAV_BAR', '', 'tool', '工具', '', 3, 0),
+  ('NAV_BAR', 'tool', 'xml', 'XML格式化', '', 0, 0),
+  ('NAV_BAR', 'tool', 'json', 'JSON格式化', '', 1, 0),
+  ('NAV_BAR', 'tool', 'sql', 'SQL格式化', '', 2, 0),
+  ('NAV_BAR', 'sql', 'MySQL', 'MySQL', '', 0, 0),
+  ('NAV_BAR', 'sql', 'SQLServer', 'SQLServer', '', 1, 0),
+  ('NAV_BAR', 'sql', 'Oracle', 'Oracle', '', 2, 0),
+  ('NAV_BAR', 'tool', 'idNoCheck', '身份证校验', '', 3, 0),
+  ('NAV_BAR', 'tool', 'idNoGen', '生成身份证', '', 4, 0);

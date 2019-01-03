@@ -23,7 +23,10 @@ public class FreemarkerConfigure {
     private freemarker.template.Configuration configuration;
 
     @Autowired
-    private MenusDirective menusDirective;
+    private MenuDirective menuDirective;
+
+    @Autowired
+    private CategoryDirective categoryDirective;
 
     @Autowired
     private DictTag dictTag;
@@ -46,7 +49,8 @@ public class FreemarkerConfigure {
         configuration.setSharedVariable("dict", dictTag);
         configuration.setSharedVariable("func", new FuncTag());
         configuration.setSharedVariable("app", new AppTags());
-        configuration.setSharedVariable("menus", menusDirective);
+        configuration.setSharedVariable("menus", menuDirective);
+        configuration.setSharedVariable("categories", categoryDirective);
     }
 
 }

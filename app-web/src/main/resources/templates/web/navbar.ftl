@@ -8,83 +8,11 @@
             <li data-pathname="">
                 <a href="${ctx}/">首页</a>
             </li>
-            <li>
-                <a href="https://blog.kangyonggan.com" target="_blank">博客</a>
-            </li>
-            <li data-pathname="photo">
-                <a href="javascript:">
-                    相册<i class="fa fa-small fa-chevron-down"></i>
-                </a>
-                <ul class="sec-menus hidden">
-                    <li>
-                        <a href="#">随手拍</a>
-                    </li>
-                    <li>
-                        <a href="#">风景</a>
-                    </li>
-                    <li>
-                        <a href="#">游戏</a>
-                    </li>
-                    <li>
-                        <a href="#">内涵</a>
-                    </li>
-                </ul>
-            </li>
-            <li data-pathname="video">
-                <a href="javascript:">
-                    视频<i class="fa fa-small fa-chevron-down"></i>
-                </a>
-                <ul class="sec-menus hidden">
-                    <li>
-                        <a href="#">随手拍</a>
-                    </li>
-                    <li>
-                        <a href="#">风景</a>
-                    </li>
-                    <li>
-                        <a href="#">游戏</a>
-                    </li>
-                    <li>
-                        <a href="#">内涵</a>
-                    </li>
-                </ul>
-            </li>
-            <li data-pathname="tools">
-                <a href="javascript:">
-                    工具<i class="fa fa-small fa-chevron-down"></i>
-                </a>
-                <ul class="sec-menus hidden">
-                    <li>
-                        <a href="#">XML格式化</a>
-                    </li>
-                    <li>
-                        <a href="#">JSON格式化</a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            SQL格式化
-                            <i class="fa fa-small fa-right fa-caret-right"></i>
-                        </a>
-                        <ul class="sub-menus hidden">
-                            <li>
-                                <a href="#">MySQL</a>
-                            </li>
-                            <li>
-                                <a href="#">SQLServer</a>
-                            </li>
-                            <li>
-                                <a href="#">Oracle</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">身份证校验</a>
-                    </li>
-                    <li>
-                        <a href="#">生成身份证</a>
-                    </li>
-                </ul>
-            </li>
+        <@categories>
+            <#list _categories as category>
+                <#include "categories.ftl"/>
+            </#list>
+        </@categories>
         </ul>
 
     <@app.guest>

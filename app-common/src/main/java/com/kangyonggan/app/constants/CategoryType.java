@@ -13,19 +13,9 @@ import lombok.Getter;
 public enum CategoryType {
 
     /**
-     * 文章栏目
-     */
-    ARTICLE("ARTICLE", "文章栏目"),
-
-    /**
      * 导航栏目
      */
-    NAVBAR("NAVBAR", "导航栏目"),
-
-    /**
-     * 消息栏目
-     */
-    MESSAGE("MESSAGE", "消息栏目");
+    NAV_BAR("NAV_BAR", "导航栏目");
 
     /**
      * 类型代码

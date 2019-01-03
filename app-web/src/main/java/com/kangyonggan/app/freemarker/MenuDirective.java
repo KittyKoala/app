@@ -20,7 +20,7 @@ import java.util.Map;
  * @since 8/10/18
  */
 @Component
-public class MenusDirective extends AbstractSuperTag {
+public class MenuDirective extends AbstractSuperTag {
 
     @Autowired
     private MenuService menuService;

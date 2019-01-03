@@ -6,55 +6,40 @@
                 康永敢一直努力的向全栈看齐，多年的实战经验可轻松的为中小企业提供系统级解决方案，比如：后管系统、充值系统、门户网站、公共号、小程序等，并长期提供有保障的维护及售后。
             </div>
             <div class="space-10"></div>
-            <div class="contacts">
-                <a href="#" title="微信">
-                    <i class="fa fa-weixin"></i>
-                </a>
-                <a href="#" title="QQ">
-                    <i class="fa fa-qq"></i>
-                </a>
-                <a href="#" title="手机">
-                    <i class="fa fa-phone"></i>
-                </a>
-                <a href="#" title="邮箱">
-                    <i class="fa fa-envelope-o"></i>
-                </a>
-                <a href="#" title="项目">
-                    <i class="fa fa-github"></i>
-                </a>
-            </div>
         </div>
         <div class="center">
-            <div class="title">网站目录</div>
-            <ul class="links">
-                <li>
-                    <a href="#">首页</a>
-                </li>
-                <li>
-                    <a href="#">博客</a>
-                </li>
-                <li>
-                    <a href="#">小说</a>
-                </li>
-                <li>
-                    <a href="#">小棉袄</a>
-                </li>
-                <li>
-                    <a href="#">作品</a>
-                </li>
-                <li>
-                    <a href="#">工具</a>
-                </li>
-            </ul>
+            <div class="title">联系方式</div>
+            <div class="contacts">
+                <ul>
+                    <li>
+                        <a href="javascript:" title="微信">
+                            <i class="fa fa-weixin"></i> Brave_Kang
+                        </a>
+
+                        <a href="javascript:" title="QQ">
+                            <i class="fa fa-qq"></i> 316071722
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:" title="手机">
+                            <i class="fa fa-phone"></i> 18516690317
+                        </a>
+
+                        <a href="javascript:" title="邮箱">
+                            <i class="fa fa-envelope-o"></i> java@kangyonggan.com
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
         <div class="right">
             <div class="title">友情链接</div>
             <ul class="links">
                 <li>
-                    <a href="https://houbb.github.io/" target="_blank">侯宾宾</a>
+                    <a href="https://ckfksc.com" target="_blank">疯狂赛车</a>
                 </li>
                 <li>
-                    <a href="https://ckfksc.com" target="_blank">疯狂赛车</a>
+                    <a href="https://houbb.github.io/" target="_blank">侯宾宾</a>
                 </li>
                 <li>
                     <a href="http://www.ssme.gov.cn/" target="_blank">市小办</a>
@@ -62,13 +47,17 @@
                 <li>
                     <a href="http://tzmh.shmh.gov.cn/" target="_blank">投资闵行网</a>
                 </li>
+                <li>
+                    <a href="http://github.com/kangyonggan" target="_blank">github</a>
+                </li>
             </ul>
         </div>
 
         <div class="space-10"></div>
 
         <div class="bottom">
-            Copyright &copy; 2015-${.now?string('yyyy')} . <a href="http://www.miitbeian.gov.cn" target="_blank" style="color: #ddd">皖ICP备18009089号</a>.
+            Copyright &copy; 2015-${.now?string('yyyy')} . <a href="http://www.miitbeian.gov.cn" target="_blank"
+                                                              style="color: #ddd">皖ICP备18009089号</a>.
         </div>
     </div>
 </div>
@@ -127,12 +116,19 @@
 
     .footer .bottom {
         border-top: 1px solid #444;
-        padding-top: 20px;
+        padding-top: 25px;
         color: #d4d4d4;
     }
 
-    .footer .contacts a {
-        margin-right: 20px;
+    .footer .contacts ul {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .footer .contacts ul li a {
+        display: inline-block;
+        line-height: 40px;
+        min-width: 120px;
     }
 
     .footer .links {
