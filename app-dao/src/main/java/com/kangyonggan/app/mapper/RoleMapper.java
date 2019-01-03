@@ -2,6 +2,7 @@ package com.kangyonggan.app.mapper;
 
 import com.kangyonggan.app.model.Role;
 import com.kangyonggan.common.mybatis.MyMapper;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
  * @author kangyonggan
  * @since 8/8/18
  */
+@Mapper
 public interface RoleMapper extends MyMapper<Role> {
 
     /**
