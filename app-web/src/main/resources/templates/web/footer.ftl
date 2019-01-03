@@ -47,9 +47,6 @@
                 <li>
                     <a href="http://tzmh.shmh.gov.cn/" target="_blank">投资闵行网</a>
                 </li>
-                <li>
-                    <a href="javascript:alert('开发中');">点此申请</a>
-                </li>
             </ul>
         </div>
 

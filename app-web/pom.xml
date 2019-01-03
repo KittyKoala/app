@@ -39,7 +39,7 @@
     <dependencies>
         <!--project-->
         <dependency>
-            <groupId>${parent.groupId}</groupId>
+            <groupId>${project.parent.groupId}</groupId>
             <artifactId>app-biz</artifactId>
         </dependency>
 

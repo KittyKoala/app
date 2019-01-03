@@ -38,9 +38,6 @@
                         </li>
                     </@app.hasMenu>
                     <li>
-                        <a href="${ctx}/profile">个人中心</a>
-                    </li>
-                    <li>
                         <a href="${ctx}/logout">安全退出</a>
                     </li>
                 </ul>
