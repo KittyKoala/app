@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
+ * 首页
+ *
  * @author kangyonggan
  * @since 12/6/18
  */

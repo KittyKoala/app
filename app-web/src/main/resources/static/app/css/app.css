@@ -142,6 +142,17 @@ body {
     color: #f5f5f5;
     margin-top: 20px;
 }
+
+.forgot {
+    position: absolute;
+    left: 415px;
+    top: 29px;
+    color: #F5F5F5;
+    font-size: 13px;
+    width: 90px;
+    line-height: 28px;
+    text-decoration: none;
+}
 /*登录界面*/
 
 /*注册界面*/
@@ -166,3 +177,16 @@ body {
     width: 100px !important;
 }
 /*注册界面*/
+
+/*找回密码界面*/
+.forgot-form {
+    clear: both;
+    float: right;
+    color: #d5d5d5;
+    margin-top: 20px;
+}
+
+.forgot-form .sending {
+    width: 100px !important;
+}
+/*找回密码界面*/

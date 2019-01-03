@@ -4,7 +4,9 @@
     <@panel bg_img="/app/images/bg.jpg">
         <@form action="${ctx}/login" class="login-form" success="success" error="error">
             <@input type="email" label="电子邮箱" name="email" required=true/>
-            <@input label="密码" name="password" type="password" required=true validator="isPassword"/>
+            <@input label="密码" name="password" type="password" required=true validator="isPassword">
+                <a href="${ctx}/forgot" target="_blank" class="forgot">忘记密码？</a>
+            </@input>
             <@captcha label="验证码" id="captcha" name="captcha"/>
 
             <@actions>

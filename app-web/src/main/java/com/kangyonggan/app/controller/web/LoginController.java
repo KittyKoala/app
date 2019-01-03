@@ -17,6 +17,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 /**
+ * 登录、注销
+ *
  * @author kangyonggan
  * @since 8/8/18
  */
