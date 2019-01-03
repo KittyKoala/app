@@ -12,22 +12,22 @@
             <div class="contacts">
                 <ul>
                     <li>
-                        <a href="javascript:" title="微信">
+                        <span title="微信">
                             <i class="fa fa-weixin"></i> Brave_Kang
-                        </a>
+                        </span>
 
-                        <a href="javascript:" title="QQ">
+                        <span title="QQ">
                             <i class="fa fa-qq"></i> 316071722
-                        </a>
+                        </span>
                     </li>
                     <li>
-                        <a href="javascript:" title="手机">
+                        <span title="手机">
                             <i class="fa fa-phone"></i> 18516690317
-                        </a>
+                        </span>
 
-                        <a href="javascript:" title="邮箱">
+                        <span title="邮箱">
                             <i class="fa fa-envelope-o"></i> java@kangyonggan.com
-                        </a>
+                        </span>
                     </li>
                 </ul>
             </div>
@@ -122,7 +122,7 @@
         padding-left: 0;
     }
 
-    .footer .contacts ul li a {
+    .footer .contacts ul li span {
         display: inline-block;
         line-height: 40px;
         min-width: 120px;
