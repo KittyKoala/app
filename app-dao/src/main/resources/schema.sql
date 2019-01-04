@@ -290,6 +290,70 @@ CREATE TABLE tb_login_log
 CREATE INDEX ix_email
   ON tb_login_log (email);
 
+-- ----------------------------
+--  Table structure for tb_novel
+-- ----------------------------
+DROP TABLE
+IF EXISTS tb_novel;
+
+CREATE TABLE tb_novel
+(
+  novel_id     BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
+  COMMENT '书籍ID',
+  source       VARCHAR(32)                           NOT NULL
+  COMMENT '来源',
+  code         VARCHAR(20)                           NOT NULL
+  COMMENT '书籍代码',
+  name         VARCHAR(32)                           NOT NULL
+  COMMENT '书名',
+  author       VARCHAR(32)                           NOT NULL
+  COMMENT '作者',
+  cover        VARCHAR(256)                          NOT NULL                    DEFAULT ''
+  COMMENT '封面',
+  summary      VARCHAR(2048)                         NOT NULL
+  COMMENT '描述',
+  is_deleted   TINYINT                               NOT NULL                    DEFAULT 0
+  COMMENT '逻辑删除',
+  created_time TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP
+  COMMENT '创建时间',
+  updated_time TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间'
+)
+  COMMENT '书籍表';
+CREATE UNIQUE INDEX source_code_UNIQUE
+  ON tb_novel (source, code);
+
+-- ----------------------------
+--  Table structure for tb_section
+-- ----------------------------
+DROP TABLE
+IF EXISTS tb_section;
+
+CREATE TABLE tb_section
+(
+  section_id   BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
+  COMMENT '章节ID',
+  novel_code   VARCHAR(20)                           NOT NULL
+  COMMENT '小说代码',
+  code         VARCHAR(20)                           NOT NULL
+  COMMENT '章节代码',
+  title        VARCHAR(64)                           NOT NULL
+  COMMENT '标题',
+  content      LONGTEXT                              NOT NULL
+  COMMENT '内容',
+  is_deleted   TINYINT                               NOT NULL                    DEFAULT 0
+  COMMENT '逻辑删除',
+  created_time TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP
+  COMMENT '创建时间',
+  updated_time TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间'
+)
+  COMMENT '章节表';
+CREATE UNIQUE INDEX novel_code_code_UNIQUE
+  ON tb_section (novel_code, code);
+CREATE INDEX ix_novel_code
+  ON tb_section (novel_code);
+
 #====================初始数据====================#
 
 -- ----------------------------
@@ -331,7 +395,10 @@ VALUES
 
   ('CONTENT', '内容', '', '', 2, 'menu-icon fa fa-folder-open-o'),
   ('CONTENT_DICT', '字典管理', 'CONTENT', 'dashboard/content/dict', 0, ''),
-  ('CONTENT_CATEGORY', '栏目管理', 'CONTENT', 'dashboard/content/category', 1, '');
+  ('CONTENT_CATEGORY', '栏目管理', 'CONTENT', 'dashboard/content/category', 1, ''),
+
+  ('SITES', '网站', '', '', 3, 'menu-icon fa fa-globe'),
+  ('SITES_NOVEL', '小说管理', 'SITES', 'dashboard/sites/novel', 0, '');
 
 -- ----------------------------
 --  data for tb_user_role

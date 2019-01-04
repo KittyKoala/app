@@ -58,34 +58,47 @@
         border-image: initial;
         padding: 1px;
     }
+
+    .empty {
+        text-align: center;
+        line-height: 80px;
+    }
 </style>
 </@override>
 
 <@override name="main">
     <@panel>
-    <ul class="novel-list">
-        <#list 1..11 as i>
-            <li>
-                <dl>
-                    <dd>
-                        <a href="${ctx}/novel/123432">
-                            <img src="${ctx}/app/images/demo.jpg"/>
-                        </a>
-                    </dd>
-                    <dt>
-                        <div>
-                            <a href="${ctx}/novel/123432">逆天邪神</a>
-                            <span class="author">火星引力</span>
-                        </div>
-                        <div class="summary">
-                            大墟的祖训说，天黑，别出门。大墟残老村的老弱病残们从江边捡到了一个婴儿，取名秦牧，含辛茹苦将他养大。这一天夜幕降临，黑暗笼罩大墟，秦牧走出了家门…
-                        </div>
-                    </dt>
-                </dl>
-            </li>
-        </#list>
-        <div class="clear"></div>
-    </ul>
+        <#if novels?size gt 0>
+        <ul class="novel-list">
+            <#list novels as novel>
+                <li>
+                    <dl>
+                        <dd>
+                            <a href="${ctx}/novel/${novel.novelId}">
+                                <#if novel.cover!=''>
+                                    <img src="${ctx}/${novel.cover}"/>
+                                <#else>
+                                    <img src="${ctx}/app/images/nocover.jpg"/>
+                                </#if>
+                            </a>
+                        </dd>
+                        <dt>
+                            <div>
+                                <a href="${ctx}/novel/${novel.novelId}">${novel.name}</a>
+                                <span class="author">${novel.author}</span>
+                            </div>
+                            <div class="summary">
+                            ${novel.summary}
+                            </div>
+                        </dt>
+                    </dl>
+                </li>
+            </#list>
+            <div class="clear"></div>
+        </ul>
+        <#else>
+        <div class="empty">暂时没有小说</div>
+        </#if>
     </@panel>
 </@override>
 

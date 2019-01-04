@@ -4,7 +4,7 @@
         <#local id=func('uuid')/>
     </#if>
     <#assign _isSearchForm=true/>
-<form class="form-horizontal col-xs-12 fa-border radius-base" id="${id}">
+<form class="form-horizontal col-xs-12 fa-border radius-base" id="${id}" enctype="multipart/form-data">
     <div class="space-10"></div>
     <#nested />
 </form>
@@ -212,6 +212,48 @@ required=false min_length=-1 max_length=-1 validator="" remote="" equal_to="" ra
         $(function () {
             $('#${id}').datepicker({
                 format: '${date_format}'
+            });
+        })
+    </script>
+</div>
+</#macro>
+
+<#--文件选择框-->
+<#macro file label name="" id="" required=false size=2097152 remark="">
+    <#if id==''>
+        <#local id=func('uuid')/>
+    </#if>
+<div class="form-group <#if _isSearchForm??>col-lg-4 col-md-6 col-xs-12</#if>">
+    <div class="app-label nowrap <#if _isSearchForm??>col-md-5 col-xs-12<#else>col-md-3</#if>">
+        <label class="<#if required>required</#if>">${label}</label>
+    </div>
+    <div class="col-md-7 controls <#if _isSearchForm??>col-xs-12</#if>">
+        <input type="file" id="${id}" <#if name!=''>name="${name}"</#if>
+               <#if required>required</#if> class="ace ace-file-input"/>
+        <#if remark!=''>
+            <div style="font-size: 12px;color: #999;">${remark}</div>
+        </#if>
+    </div>
+
+    <script>
+        $(function () {
+            var $file = $('#${id}');
+            $file.ace_file_input({
+                style: 'well',
+                btn_choose: '点击这里添加图片',
+                btn_change: null,
+                no_icon: 'ace-icon fa fa-picture-o',
+                droppable: false,
+                allowExt: ["jpeg", "jpg", "png", "gif"],
+                allowMime: ["image/jpeg", "image/jpg", "image/png", "image/gif"],
+                maxSize: ${size},//bytes
+                thumbnail: 'fit'
+            });
+
+            $file.on('file.error.ace', function (event, info) {
+                if (info.error_count['size']) Message.warning('超出最大上传限制。');
+                if (info.error_count['ext'] || info.error_count['mime']) Message.warning('不合法的文件类型。');
+                event.preventDefault();
             });
         })
     </script>

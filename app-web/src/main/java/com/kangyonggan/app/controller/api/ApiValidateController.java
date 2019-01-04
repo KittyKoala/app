@@ -32,6 +32,9 @@ public class ApiValidateController {
     @Autowired
     private CategoryService categoryService;
 
+    @Autowired
+    private NovelService novelService;
+
     /**
      * 校验电子邮箱是否可用
      *
@@ -99,6 +102,27 @@ public class ApiValidateController {
         }
 
         return !dictService.existsDict(dictType, dictCode);
+    }
+
+    /**
+     * 校验小说代码是否可用
+     *
+     * @param oldSource
+     * @param oldCode
+     * @param source
+     * @param code
+     * @return
+     */
+    @GetMapping("novelCode")
+    @ResponseBody
+    public boolean novelCode(@RequestParam(value = "oldSource", required = false, defaultValue = "") String oldSource,
+                            @RequestParam(value = "oldCode", required = false, defaultValue = "") String oldCode,
+                            @RequestParam("source") String source, @RequestParam("code") String code) {
+        if (source.equals(oldSource) && code.equals(oldCode)) {
+            return true;
+        }
+
+        return !novelService.existsNovel(source, code);
     }
 
     /**
