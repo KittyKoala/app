@@ -158,4 +158,18 @@ public class DashboardSitesNovelController extends BaseController {
         return Response.getSuccessResponse();
     }
 
+    /**
+     * 批量拉取小说
+     *
+     * @param novelIds 小说ID
+     * @return 响应
+     */
+    @GetMapping("pull")
+    @PermissionMenu("SITES_NOVEL")
+    @ResponseBody
+    public Response pull(@RequestParam("novelIds") String novelIds) {
+        novelService.pullNovels(novelIds);
+        return Response.getSuccessResponse();
+    }
+
 }

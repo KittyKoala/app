@@ -31,7 +31,6 @@
 <script>
     $(function () {
         $("#createBtn").click(function () {
-            var $this = $(this);
             var $table = $("#table");
 
             var selections = $table.bootstrapTable('getSelections');

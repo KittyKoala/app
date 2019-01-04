@@ -11,6 +11,7 @@
             <@create url="${_baseUrl}/create"/>
             <@delete table_id="table" url="${_baseUrl}/delete?novelIds={{novelId}}"/>
             <@restore table_id="table" url="${_baseUrl}/restore?novelIds={{novelId}}"/>
+            <@button id="updateBtn" name="更新" icon="fa-refresh"/>
         </@form_actions>
     </@search_form>
 
@@ -31,6 +32,42 @@
         <@thYesNo field="isDeleted" title="逻辑删除"/>
         <@thDatetime field="createdTime" title="创建时间" auto_hide=true/>
     </@table>
+</@override>
+
+<@override name="script">
+<script>
+    $(function () {
+        $("#updateBtn").click(function () {
+            var $table = $("#table");
+
+            var selections = $table.bootstrapTable('getSelections');
+            if (selections.length === 0) {
+                Message.warning("至少选择一条记录");
+                return false;
+            }
+
+            var ids = [];
+            for (var i = 0; i < selections.length; i++) {
+                ids.push(selections[i].novelId);
+            }
+
+            $.messager.confirm("提示", "确定更新所选择的" + ids.length + "本小说吗?", function () {
+                $.get("${ctx}/dashboard/sites/novel/pull?novelIds=" + ids.join(",")).success(function (res) {
+                    if (res.respCo === '0000') {
+                        Message.success(res.respMsg);
+                        $table.bootstrapTable("refresh");
+                    } else {
+                        Message.error(res.respMsg);
+                    }
+                }).error(function () {
+                    Message.error("网络错误，请稍后重试");
+                })
+            });
+
+            return false;
+        });
+    })
+</script>
 </@override>
 
 <@extends name="../../layout.ftl"/>

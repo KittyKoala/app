@@ -70,4 +70,19 @@ public interface NovelService {
      * @return
      */
     boolean existsNovel(String source, String code);
+
+    /**
+     * 批量拉取小说
+     *
+     * @param novelIds
+     */
+    void pullNovels(String novelIds);
+
+    /**
+     * 如果没有线程在消费队列，则启动一个
+     *
+     * @param isCheck
+     * @return
+     */
+    Long popOrCheck(boolean isCheck);
 }

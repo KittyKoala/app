@@ -141,23 +141,20 @@ public class RedisService {
     }
 
     /**
-     * listLeftPush
-     *
      * @param key
+     * @param value
      * @return
      */
-    public long listLeftPush(String key, String url) {
-        return redisTemplate.opsForList().leftPush(key, url);
+    public long leftPush(String key, Object value) {
+        return redisTemplate.opsForList().leftPush(key, value);
     }
 
     /**
-     * listRightPush
-     *
      * @param key
      * @return
      */
-    public long listRightPush(String key, String url) {
-        return redisTemplate.opsForList().rightPush(key, url);
+    public Object rightPop(String key) {
+        return redisTemplate.opsForList().rightPop(key);
     }
 
     /**
