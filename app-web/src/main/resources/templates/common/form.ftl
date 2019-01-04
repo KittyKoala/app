@@ -129,7 +129,7 @@ required=false min_length=-1 max_length=-1 validator="" remote="" equal_to="" ra
 </#macro>
 
 <#--枚举选择-->
-<#macro selectEnum label enum_key id="" name="" value="" show_code=false required=false readonly=false>
+<#macro selectEnum label enum_key id="" name="" value="" show_code=false required=false readonly=false empty=true>
     <#if id==''>
         <#local id=func('uuid')/>
     </#if>
@@ -141,6 +141,9 @@ required=false min_length=-1 max_length=-1 validator="" remote="" equal_to="" ra
         <select id="${id}" <#if name!=''>name="${name}"</#if> class="chosen-select <#if readonly>readonly</#if>"
                 <#if readonly>disabled</#if>
                 <#if required>required</#if>>
+            <#if empty>
+                <option value=""></option>
+            </#if>
             <#local map=enum('map', enum_key)/>
             <#if map?? && map?size gt 0>
                 <#list map?keys as key>

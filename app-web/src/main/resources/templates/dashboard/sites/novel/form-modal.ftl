@@ -51,7 +51,7 @@
         <#if isEdit>
             <@input name="novelId" label="小说ID" value="${novel.novelId}" readonly=true/>
         </#if>
-        <@selectEnum id="source" name="source" value="${novel.source!''}" label="来源" enum_key="NovelSource" required=true/>
+        <@selectEnum id="source" name="source" value="${novel.source!''}" label="来源" enum_key="NovelSource" required=true empty=false/>
         <@input id="code" name="code" value="${novel.code!''}" label="小说代码" required=true range_length=[1, 20]/>
         <@input name="name" label="小说名称" value="${novel.name!''}" required=true range_length=[1, 20]/>
         <@input name="author" label="作者" value="${novel.author!''}" required=true range_length=[1, 20]/>
