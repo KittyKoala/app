@@ -385,6 +385,35 @@ CREATE INDEX ix_novel_id
 CREATE INDEX ix_status
   ON tb_novel_queue (status);
 
+-- ----------------------------
+--  Table structure for tb_record
+-- ----------------------------
+DROP TABLE
+IF EXISTS tb_record;
+
+CREATE TABLE tb_record
+(
+  id           BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
+  COMMENT '',
+  content      LONGTEXT                              NOT NULL
+  COMMENT '内容',
+  file_names   VARCHAR(2048)                         NOT NULL                    DEFAULT ''
+  COMMENT '图片',
+  video_names  VARCHAR(2048)                         NOT NULL                    DEFAULT ''
+  COMMENT '视频',
+  openid       VARCHAR(128)                          NOT NULL
+  COMMENT 'openid',
+  is_deleted   TINYINT                               NOT NULL                    DEFAULT 0
+  COMMENT '逻辑删除',
+  created_time TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP
+  COMMENT '创建时间',
+  updated_time TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间'
+)
+  COMMENT '记录表';
+CREATE INDEX ix_openid
+  ON tb_record (openid);
+
 #====================初始数据====================#
 
 -- ----------------------------
