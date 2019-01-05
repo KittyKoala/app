@@ -1,7 +1,7 @@
 package com.kangyonggan.app.constants;
 
 import com.kangyonggan.app.annotation.Enum;
-import com.kangyonggan.extra.core.util.StringUtil;
+import com.kangyonggan.app.util.StringUtil;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
