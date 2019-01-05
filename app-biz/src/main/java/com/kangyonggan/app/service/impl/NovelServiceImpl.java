@@ -3,12 +3,12 @@ package com.kangyonggan.app.service.impl;
 import com.github.ofofs.jca.annotation.Log;
 import com.github.pagehelper.PageHelper;
 import com.kangyonggan.app.constants.NovelSource;
-import com.kangyonggan.app.constants.RedisKey;
 import com.kangyonggan.app.constants.YesNo;
 import com.kangyonggan.app.model.Novel;
+import com.kangyonggan.app.model.NovelQueue;
 import com.kangyonggan.app.model.Section;
+import com.kangyonggan.app.service.NovelQueueService;
 import com.kangyonggan.app.service.NovelService;
-import com.kangyonggan.app.service.RedisService;
 import com.kangyonggan.app.service.SectionService;
 import com.kangyonggan.app.util.HtmlUtil;
 import com.kangyonggan.app.util.StringUtil;
@@ -40,10 +40,10 @@ public class NovelServiceImpl extends BaseService<Novel> implements NovelService
     private ExecutorService executorService = Executors.newFixedThreadPool(1);
 
     @Autowired
-    private RedisService redisService;
+    private SectionService sectionService;
 
     @Autowired
-    private SectionService sectionService;
+    private NovelQueueService novelQueueService;
 
     /**
      * 线程是否启动
@@ -160,9 +160,11 @@ public class NovelServiceImpl extends BaseService<Novel> implements NovelService
 
         String[] ids = novelIds.split(",");
         for (String id : ids) {
-            redisService.leftPush(RedisKey.KEY_NOVEL_PULL, Long.parseLong(id));
+            if (!novelQueueService.exists(Long.parseLong(id))) {
+                novelQueueService.saveNovelQueue(Long.parseLong(id));
+            }
         }
-        log.info("小说已经放入redis队列:{}", novelIds);
+        log.info("小说已经放入队列:{}", novelIds);
         popOrCheck(true);
     }
 
@@ -180,13 +182,14 @@ public class NovelServiceImpl extends BaseService<Novel> implements NovelService
             }
             return null;
         } else {
-            Long id = (Long) redisService.rightPop(RedisKey.KEY_NOVEL_PULL);
-            if (id == null) {
+            NovelQueue novelQueue = novelQueueService.findNextNovel();
+            if (novelQueue == null) {
                 isStarting = false;
                 log.info("队列中没有待更新的小说了，线程启动标识置为false");
+                return null;
             }
 
-            return id;
+            return novelQueue.getNovelId();
         }
     }
 
@@ -267,6 +270,8 @@ public class NovelServiceImpl extends BaseService<Novel> implements NovelService
             parseSection(novel, code);
         }
 
+        // 队列状态变为更新完成
+        novelQueueService.finished(novelId);
         log.info("小说{}更新完成", novel.getName());
     }
 

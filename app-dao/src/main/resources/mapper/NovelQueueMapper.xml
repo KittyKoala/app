@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kangyonggan.app.mapper.NovelQueueMapper">
+    <resultMap id="BaseResultMap" type="com.kangyonggan.app.model.NovelQueue">
+        <!--
+          WARNING - @mbggenerated
+        -->
+        <id column="queue_id" property="queueId" jdbcType="BIGINT"/>
+        <result column="novel_id" property="novelId" jdbcType="BIGINT"/>
+        <result column="status" property="status" jdbcType="CHAR"/>
+        <result column="is_deleted" property="isDeleted" jdbcType="TINYINT"/>
+        <result column="created_time" property="createdTime" jdbcType="TIMESTAMP"/>
+        <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+</mapper>

@@ -299,11 +299,11 @@ IF EXISTS tb_novel;
 CREATE TABLE tb_novel
 (
   novel_id     BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
-  COMMENT '书籍ID',
+  COMMENT '小说ID',
   source       VARCHAR(32)                           NOT NULL
   COMMENT '来源',
   code         VARCHAR(20)                           NOT NULL
-  COMMENT '书籍代码',
+  COMMENT '小说代码',
   name         VARCHAR(32)                           NOT NULL
   COMMENT '书名',
   author       VARCHAR(32)                           NOT NULL
@@ -319,7 +319,7 @@ CREATE TABLE tb_novel
   updated_time TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
   COMMENT '更新时间'
 )
-  COMMENT '书籍表';
+  COMMENT '小说表';
 CREATE UNIQUE INDEX source_code_UNIQUE
   ON tb_novel (source, code);
 CREATE INDEX ix_source
@@ -357,6 +357,33 @@ CREATE UNIQUE INDEX novel_id_code_UNIQUE
   ON tb_section (novel_id, code);
 CREATE INDEX ix_novel_id
   ON tb_section (novel_id);
+
+-- ----------------------------
+--  Table structure for tb_novel_queue
+-- ----------------------------
+DROP TABLE
+IF EXISTS tb_novel_queue;
+
+CREATE TABLE tb_novel_queue
+(
+  queue_id     BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
+  COMMENT '队列ID',
+  novel_id     BIGINT(20)                            NOT NULL
+  COMMENT '小说ID',
+  status       CHAR(1)                               NOT NULL                    DEFAULT 'N'
+  COMMENT '状态',
+  is_deleted   TINYINT                               NOT NULL                    DEFAULT 0
+  COMMENT '逻辑删除',
+  created_time TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP
+  COMMENT '创建时间',
+  updated_time TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间'
+)
+  COMMENT '小说更新队列表';
+CREATE INDEX ix_novel_id
+  ON tb_novel_queue (novel_id);
+CREATE INDEX ix_status
+  ON tb_novel_queue (status);
 
 #====================初始数据====================#
 

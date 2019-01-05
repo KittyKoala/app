@@ -64,6 +64,12 @@
         background: #f5f5f5;
     }
 
+    .header a {
+        font-size: 14px;
+        text-decoration: none;
+        color: #a72c11;
+    }
+
     .section-list ul {
         list-style: none;
         margin-top: 6px;
@@ -121,7 +127,10 @@
         </div>
 
         <div class="section-list border">
-            <div class="header">《${novel.name}》章节列表</div>
+            <div class="header">
+                《${novel.name}》章节列表
+                <a class="pull-right" href="${ctx}/novel/${novel.novelId}/pull">抓取最新章节</a>
+            </div>
             <ul>
                <#list sections as section>
                    <li>

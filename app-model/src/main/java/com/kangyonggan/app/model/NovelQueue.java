@@ -1,56 +1,39 @@
 package com.kangyonggan.app.model;
 
-import java.io.Serializable;
-import java.util.Date;
-import javax.persistence.*;
-
 import com.github.ofofs.jca.annotation.Serial;
 import lombok.Data;
+
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @author kangyonggan
  * @since 8/8/18
  */
-@Table(name = "tb_novel")
+@Table(name = "tb_novel_queue")
 @Data
 @Serial
-public class Novel implements Serializable {
+public class NovelQueue implements Serializable {
+    /**
+     * 队列ID
+     */
+    @Id
+    @Column(name = "queue_id")
+    private Long queueId;
+
     /**
      * 小说ID
      */
-    @Id
     @Column(name = "novel_id")
     private Long novelId;
 
     /**
-     * 来源
+     * 状态
      */
-    private String source;
-
-    /**
-     * 小说代码
-     */
-    private String code;
-
-    /**
-     * 书名
-     */
-    private String name;
-
-    /**
-     * 作者
-     */
-    private String author;
-
-    /**
-     * 封面
-     */
-    private String cover;
-
-    /**
-     * 描述
-     */
-    private String summary;
+    private String status;
 
     /**
      * 逻辑删除

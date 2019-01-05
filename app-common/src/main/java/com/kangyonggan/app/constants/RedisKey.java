@@ -15,9 +15,4 @@ public interface RedisKey {
      * filename
      */
     String KEY_FILE_NAME = "APP:FILENAME";
-
-    /**
-     * 待更新的小说
-     */
-    String KEY_NOVEL_PULL = "APP:NOVELPULL";
 }
