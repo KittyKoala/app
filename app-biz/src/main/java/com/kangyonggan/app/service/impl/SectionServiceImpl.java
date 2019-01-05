@@ -87,4 +87,16 @@ public class SectionServiceImpl extends BaseService<Section> implements SectionS
 
         return sections.get(0);
     }
+
+    @Override
+    public List<Section> findSectionsByPage(Long novelId, Integer pageNum) {
+        Example example = new Example(Section.class);
+        example.createCriteria().andEqualTo("novelId", novelId);
+
+        example.selectProperties("sectionId", "novelId", "code", "title", "createdTime");
+        example.setOrderByClause("section_id asc");
+
+        PageHelper.startPage(pageNum, 50);
+        return myMapper.selectByExample(example);
+    }
 }
