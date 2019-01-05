@@ -43,7 +43,7 @@ public class FileUploadController {
         try {
             String fileName = fileHelper.genFileName("bbdd");
             // 上传到本地
-            FileUpload.upload(fileHelper.getFileUploadPath(), fileName, file);
+            FileUpload.upload(fileHelper.getFileUploadPath() + "bbdd", fileName, file);
 
             // 上传到文件服务器
             fileName += "." + FilenameUtils.getExtension(file.getOriginalFilename());
