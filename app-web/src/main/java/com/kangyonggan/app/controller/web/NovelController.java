@@ -89,6 +89,9 @@ public class NovelController extends BaseController {
             return "web/novel/none";
         }
         Section section = sectionService.findSection(sectionId);
+        if (section == null) {
+            return "web/novel/none";
+        }
         Section prevSection = sectionService.findPrevSection(novelId, sectionId);
         Section nextSection = sectionService.findNextSection(novelId, sectionId);
         if (nextSection == null) {
