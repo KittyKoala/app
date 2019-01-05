@@ -16,7 +16,7 @@ public class EmailServiceTest extends AbstractTest {
 
     @Test
     public void send() {
-        emailService.sendEmailCode("java2@kangyonggan.com", EmailType.REGISTER.getType(), "123456", "127.0.0.1");
+        emailService.sendEmailCode("java@kangyonggan.com", EmailType.REGISTER.getType(), "123456", "127.0.0.1");
     }
 
 }
