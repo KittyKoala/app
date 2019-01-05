@@ -395,7 +395,7 @@ CREATE TABLE tb_record
 (
   id           BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
   COMMENT '记录ID',
-  content      LONGTEXT                              NOT NULL
+  content      LONGTEXT                              CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
   COMMENT '内容',
   file_names   VARCHAR(2048)                         NOT NULL                    DEFAULT ''
   COMMENT '图片',
