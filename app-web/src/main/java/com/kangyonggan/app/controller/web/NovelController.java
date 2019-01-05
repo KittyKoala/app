@@ -60,6 +60,9 @@ public class NovelController extends BaseController {
     @GetMapping("{novelId:[\\d]+}")
     public String sectionList(@PathVariable("novelId") Long novelId, Model model) {
         Novel novel = novelService.findNovelByNovelId(novelId);
+        if (novel == null) {
+            return "web/novel/none";
+        }
         List<Section> sections = sectionService.findSections(novelId);
         Section lastSection = sectionService.findLastSection(novelId);
         NovelQueue novelQueue = novelQueueService.findNovelQueue(novelId);
@@ -82,6 +85,9 @@ public class NovelController extends BaseController {
     @GetMapping("{novelId:[\\d]+}/{sectionId:[\\d]+}")
     public String sectionDetail(@PathVariable("novelId") Long novelId, @PathVariable("sectionId") Long sectionId, Model model) {
         Novel novel = novelService.findNovelByNovelId(novelId);
+        if (novel == null) {
+            return "web/novel/none";
+        }
         Section section = sectionService.findSection(sectionId);
         Section prevSection = sectionService.findPrevSection(novelId, sectionId);
         Section nextSection = sectionService.findNextSection(novelId, sectionId);
