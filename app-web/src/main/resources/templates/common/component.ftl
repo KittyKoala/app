@@ -1,6 +1,6 @@
 <#--面板-->
-<#macro panel bg_img="">
-<div class="panel" <#if bg_img != ''>style="background: url('${bg_img}') no-repeat;" </#if>>
+<#macro panel bg_img="" style="">
+<div class="panel" style="<#if bg_img != ''>background: url('${bg_img}') no-repeat;background-size: cover;</#if> ${style}">
     <div class="inner">
         <#nested />
     </div>
