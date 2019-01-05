@@ -85,4 +85,12 @@ public interface NovelService {
      * @return
      */
     Long popOrCheck(boolean isCheck);
+
+    /**
+     * 获取小说
+     *
+     * @param novelId
+     * @return
+     */
+    Novel getNovel(Long novelId);
 }

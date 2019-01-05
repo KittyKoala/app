@@ -104,7 +104,7 @@ public class DashboardSitesNovelController extends BaseController {
     @PermissionMenu("SITES_NOVEL")
     @Token(key = "editNovel")
     public String edit(@PathVariable("novelId") Long novelId, Model model) {
-        model.addAttribute("novel", novelService.findNovelByNovelId(novelId));
+        model.addAttribute("novel", novelService.getNovel(novelId));
         return PATH_ROOT + "/form-modal";
     }
 

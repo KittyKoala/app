@@ -40,12 +40,12 @@
     }
 
     .novel-list .summary {
-        height: 127px;
+        height: 116px;
         overflow: hidden;
         font-size: 13px;
-        line-height: 20px;
+        line-height: 21px;
         text-indent: 2em;
-        padding: 7px 0px 0px;
+        padding: 7px 0;
     }
 
     .novel-list img {

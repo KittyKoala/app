@@ -125,7 +125,7 @@
     .footer .contacts ul li span {
         display: inline-block;
         line-height: 40px;
-        min-width: 120px;
+        min-width: 112px;
     }
 
     .footer .links {

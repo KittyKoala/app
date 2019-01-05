@@ -15,27 +15,27 @@ public enum NovelSource {
     /**
      * 笔趣阁1
      */
-    NS01("NS01", "笔趣阁1", "https://www.biquga.com"),
+    NS01("NS01", "笔趣阁1", "https://www.biquga.com/"),
 
     /**
      * 笔趣阁2
      */
-    NS02("NS02", "笔趣阁2", "https://www.biqubao.com"),
+    NS02("NS02", "笔趣阁2", "https://www.biqubao.com/"),
 
     /**
      * 笔趣阁3
      */
-    NS03("NS03", "笔趣阁3", "https://www.qu.la"),
+    NS03("NS03", "笔趣阁3", "https://www.qu.la/"),
 
     /**
      * 800小说网
      */
-    NS04("NS04", "800小说网", "http://www.800txt.net"),
+    NS04("NS04", "800小说网", "http://www.800txt.net/"),
 
     /**
      * 言情小说阁
      */
-    NS05("NS05", "言情小说阁", "http://www.xianqihaotianmi.com");
+    NS05("NS05", "言情小说阁", "http://www.xianqihaotianmi.com/");
 
     /**
      * 来源代码
