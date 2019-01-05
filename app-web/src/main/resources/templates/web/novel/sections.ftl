@@ -67,6 +67,7 @@
         font-size: 18px;
         text-align: center;
         background: #f5f5f5;
+        padding: 3px;
     }
 
     .header a {
@@ -94,6 +95,11 @@
         line-height: 32px;
         margin-left: 10px;
         font-size: 14px;
+    }
+
+    .empty-sections {
+        text-align: center;
+        margin-top: 20px;
     }
 </style>
 </@override>
@@ -148,11 +154,15 @@
                     </#if>
             </div>
             <ul>
-               <#list sections as section>
+                <#if sections?size gt 0>
+                    <#list sections as section>
                    <li>
                        <a href="${ctx}/novel/${novel.novelId}/${section.sectionId}">${section.title}</a>
                    </li>
-               </#list>
+                    </#list>
+                <#else>
+                    <div class="empty-sections">没有相关章节</div>
+                </#if>
                 <@clear/>
             </ul>
         </div>
