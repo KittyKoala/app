@@ -127,7 +127,7 @@
                             href="${ctx}/novel/${novel.novelId}/${lastSection.sectionId}">${lastSection.title}</a><#else>
                         无</#if></span>
                     <span>来源：${enum('name', 'NovelSource', novel.source)}</span>
-                    <span>最后更新：<#if lastSection??>${lastSection.createdTime?datetime}<#else>无</#if></span>
+                    <span>最后更新：<#if novelQueue??>${novelQueue.createdTime?datetime}<#else>无</#if></span>
                 </div>
 
                 <div class="summary">
