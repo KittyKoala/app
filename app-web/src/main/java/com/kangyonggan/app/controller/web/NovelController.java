@@ -62,4 +62,26 @@ public class NovelController extends BaseController {
         return "web/novel/sections";
     }
 
+    /**
+     * 章节详情
+     *
+     * @param novelId
+     * @param sectionId
+     * @param model
+     * @return
+     */
+    @GetMapping("{novelId:[\\d]+}/{sectionId:[\\d]+}")
+    public String sectionDetail(@PathVariable("novelId") Long novelId, @PathVariable("sectionId") Long sectionId, Model model) {
+        Novel novel = novelService.findNovelByNovelId(novelId);
+        Section section = sectionService.findSection(sectionId);
+        Section prevSection = sectionService.findPrevSection(novelId, sectionId);
+        Section nextSection = sectionService.findNextSection(novelId, sectionId);
+
+        model.addAttribute("novel", novel);
+        model.addAttribute("section", section);
+        model.addAttribute("prevSection", prevSection);
+        model.addAttribute("nextSection", nextSection);
+        return "web/novel/section";
+    }
+
 }

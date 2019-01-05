@@ -63,6 +63,14 @@ body {
 .pull-left {
     float: left !important;
 }
+
+.text-center {
+    text-align: center !important;
+}
+
+.text-right {
+    text-align: right !important;
+}
 /*通用*/
 
 /*面包屑*/

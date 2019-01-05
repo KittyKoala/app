@@ -48,4 +48,41 @@ public class SectionServiceImpl extends BaseService<Section> implements SectionS
 
         return myMapper.selectByExample(example);
     }
+
+    @Override
+    public Section findSection(Long sectionId) {
+        return myMapper.selectByPrimaryKey(sectionId);
+    }
+
+    @Override
+    public Section findPrevSection(Long novelId, Long sectionId) {
+        Example example = new Example(Section.class);
+        example.createCriteria().andEqualTo("novelId", novelId).andLessThan("sectionId", sectionId);
+        example.setOrderByClause("section_id desc");
+
+        PageHelper.startPage(1, 1);
+        List<Section> sections = myMapper.selectByExample(example);
+
+        if (sections.isEmpty()) {
+            return null;
+        }
+
+        return sections.get(0);
+    }
+
+    @Override
+    public Section findNextSection(Long novelId, Long sectionId) {
+        Example example = new Example(Section.class);
+        example.createCriteria().andEqualTo("novelId", novelId).andGreaterThan("sectionId", sectionId);
+        example.setOrderByClause("section_id asc");
+
+        PageHelper.startPage(1, 1);
+        List<Section> sections = myMapper.selectByExample(example);
+
+        if (sections.isEmpty()) {
+            return null;
+        }
+
+        return sections.get(0);
+    }
 }
