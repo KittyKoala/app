@@ -6,6 +6,7 @@
           WARNING - @mbggenerated
         -->
         <id column="section_id" property="sectionId" jdbcType="BIGINT"/>
+        <result column="novel_id" property="novelId" jdbcType="BIGINT"/>
         <result column="novel_code" property="novelCode" jdbcType="VARCHAR"/>
         <result column="code" property="code" jdbcType="VARCHAR"/>
         <result column="title" property="title" jdbcType="VARCHAR"/>

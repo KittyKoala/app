@@ -234,7 +234,7 @@ public class NovelServiceImpl extends BaseService<Novel> implements NovelService
         }
 
         // 查找最新章节
-        Section lastSection = sectionService.findLastSection(novel.getCode());
+        Section lastSection = sectionService.findLastSection(novel.getNovelId());
 
         // 获取章节列表
         Elements sectionList = getSectionList(novel);
@@ -326,7 +326,7 @@ public class NovelServiceImpl extends BaseService<Novel> implements NovelService
         // 内容过滤
         content = filterContent(content);
 
-        section.setNovelCode(novel.getCode());
+        section.setNovelId(novel.getNovelId());
         section.setCode(code);
         section.setTitle(title);
         section.setContent(content);

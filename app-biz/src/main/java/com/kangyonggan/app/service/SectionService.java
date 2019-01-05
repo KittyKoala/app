@@ -14,10 +14,10 @@ public interface SectionService {
     /**
      * 查找最新章节
      *
-     * @param novelCode
+     * @param novelId
      * @return
      */
-    Section findLastSection(String novelCode);
+    Section findLastSection(Long novelId);
 
     /**
      * 保存章节
@@ -29,8 +29,8 @@ public interface SectionService {
     /**
      * 查找小说所有章节
      *
-     * @param novelCode
+     * @param novelId
      * @return
      */
-    List<Section> findSections(String novelCode);
+    List<Section> findSections(Long novelId);
 }

@@ -268,6 +268,9 @@
         // 激活导航条
         var pathname = window.location.pathname;
         pathname = pathname.substring(1);
+        if (pathname.indexOf("/") >= 0) {
+            pathname = pathname.substring(0, pathname.indexOf("/"));
+        }
         if (pathname) {
             var pathIndex = pathname.indexOf("/");
             if (pathIndex > 0) {

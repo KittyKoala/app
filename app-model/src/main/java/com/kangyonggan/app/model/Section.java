@@ -23,10 +23,10 @@ public class Section implements Serializable {
     private Long sectionId;
 
     /**
-     * 小说代码
+     * 小说ID
      */
-    @Column(name = "novel_code")
-    private String novelCode;
+    @Column(name = "novel_id")
+    private Long novelId;
 
     /**
      * 章节代码

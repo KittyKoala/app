@@ -36,4 +36,24 @@ public class EnumTag extends AbstractFunctionTag {
         return map;
     }
 
+    /**
+     * 获取枚举的name, 根据key和code
+     *
+     * @param arguments 参数
+     * @return 返回对应的name
+     */
+    public Object name(List arguments) {
+        if (!hasLessThreeArgs(arguments)) {
+            throw new RuntimeException("获取枚举的name时必须指定枚举的key和code！");
+        }
+        String key = arguments.get(1).toString();
+        String code = arguments.get(2).toString();
+        LinkedHashMap<String, Object> map = enumHelper.getEnumMap(key);
+        if (map == null) {
+            throw new RuntimeException("获取枚举的name时异常，key=" + key + "不存在！");
+        }
+
+        return map.getOrDefault(code, code);
+    }
+
 }

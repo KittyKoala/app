@@ -322,6 +322,10 @@ CREATE TABLE tb_novel
   COMMENT '书籍表';
 CREATE UNIQUE INDEX source_code_UNIQUE
   ON tb_novel (source, code);
+CREATE INDEX ix_source
+  ON tb_novel (source);
+CREATE INDEX ix_code
+  ON tb_novel (code);
 
 -- ----------------------------
 --  Table structure for tb_section
@@ -333,8 +337,8 @@ CREATE TABLE tb_section
 (
   section_id   BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
   COMMENT '章节ID',
-  novel_code   VARCHAR(20)                           NOT NULL
-  COMMENT '小说代码',
+  novel_id   BIGINT(20)                           NOT NULL
+  COMMENT '小说ID',
   code         VARCHAR(20)                           NOT NULL
   COMMENT '章节代码',
   title        VARCHAR(64)                           NOT NULL
@@ -349,10 +353,10 @@ CREATE TABLE tb_section
   COMMENT '更新时间'
 )
   COMMENT '章节表';
-CREATE UNIQUE INDEX novel_code_code_UNIQUE
-  ON tb_section (novel_code, code);
-CREATE INDEX ix_novel_code
-  ON tb_section (novel_code);
+CREATE UNIQUE INDEX novel_id_code_UNIQUE
+  ON tb_section (novel_id, code);
+CREATE INDEX ix_novel_id
+  ON tb_section (novel_id);
 
 #====================初始数据====================#
 
@@ -453,3 +457,8 @@ VALUES
   ('NAV_BAR', 'sql', 'Oracle', 'Oracle', '', 2, 0),
   ('NAV_BAR', 'tool', 'idNoCheck', '身份证校验', '', 3, 0),
   ('NAV_BAR', 'tool', 'idNoGen', '生成身份证', '', 4, 0);
+
+INSERT INTO tb_novel
+(source, code, name, author, cover, summary)
+VALUE
+('NS02', '2722', '逆天邪神', '火星引力', 'app/images/novel2722.jpg', '掌天毒之珠，承邪神之血，修逆天之力，一代邪神，君临天下！【添加微信公众号：火星引力】【我们的yy频道：49554】，各位书友要是觉得《逆天邪神》还不错的话请不要忘记向您QQ群和微博里的朋友推荐哦！');

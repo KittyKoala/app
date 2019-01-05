@@ -13,3 +13,29 @@
 </script>
 </#macro>
 
+<#--面包屑-->
+<#macro breadcrumbs>
+    <ul class="breadcrumbs">
+        <li>当前位置：</li>
+        <li>
+            <a href="${ctx}/">首页</a>
+        </li>
+        <#nested />
+        <div class="clear"></div>
+    </ul>
+</#macro>
+<#macro breadcrumb name href="">
+    <li class="split">&gt;</li>
+    <li>
+        <#if href!=''>
+            <a href="${href}">${name}</a>
+        <#else>
+            <span>${name}</span>
+        </#if>
+    </li>
+</#macro>
+
+<#--清除浮动-->
+<#macro clear>
+    <div class="clear"></div>
+</#macro>

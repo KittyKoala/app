@@ -28,7 +28,7 @@
             恭喜您密码修改成功啦！现在就去登录吧(<span id="timer">5s</span>)...
         </div>
     </div>
-    <div class="clear"></div>
+    <@clear/>
 </div>
 </@override>
 

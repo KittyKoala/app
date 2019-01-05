@@ -28,6 +28,13 @@ body {
     padding: 0 10px;
 }
 
+.border {
+    border: 1px solid #D5D5D5;
+    border-radius: 5px;
+    padding: 5px !important;
+    background: #fff;
+}
+
 .hidden {
     display: none;
 }
@@ -57,6 +64,32 @@ body {
     float: left !important;
 }
 /*通用*/
+
+/*面包屑*/
+.breadcrumbs {
+    list-style: none;
+    margin-top: 15px;
+    padding: 5px 15px;
+    border: 1px solid #d5d5d5;
+    background: #fff;
+    border-radius: 3px;
+    font-size: 13px;
+}
+.breadcrumbs li {
+    float: left;
+    margin-left: 10px;
+}
+.breadcrumbs li a {
+    color: rgb(111, 120, 167);
+    text-decoration: none;
+}
+.breadcrumbs li.split {
+    margin-left: 10px;
+}
+.breadcrumbs li span {
+    color: #595959;
+}
+/*面包屑*/
 
 /*表单*/
 .btn {

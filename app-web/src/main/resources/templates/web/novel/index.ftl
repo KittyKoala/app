@@ -14,8 +14,10 @@
 
     .novel-list li {
         float: left;
-        width: 340px;
-        margin-bottom: 20px;
+        width: 330px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-right: 7px;
     }
 
     .novel-list dd {
@@ -68,8 +70,12 @@
 
 <@override name="main">
     <@panel>
+        <@breadcrumbs>
+            <@breadcrumb name=title/>
+        </@breadcrumbs>
+
         <#if novels?size gt 0>
-        <ul class="novel-list">
+        <ul class="novel-list border">
             <#list novels as novel>
                 <li>
                     <dl>

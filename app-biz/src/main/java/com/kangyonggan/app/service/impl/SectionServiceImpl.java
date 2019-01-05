@@ -17,12 +17,12 @@ import java.util.List;
 public class SectionServiceImpl extends BaseService<Section> implements SectionService {
 
     @Override
-    public Section findLastSection(String novelCode) {
+    public Section findLastSection(Long novelId) {
         Example example = new Example(Section.class);
-        example.createCriteria().andEqualTo("novelCode", novelCode);
-        example.setOrderByClause("code desc");
+        example.createCriteria().andEqualTo("novelId", novelId);
+        example.setOrderByClause("section_id desc");
 
-        example.selectProperties("code", "title", "novelCode");
+        example.selectProperties("sectionId", "code", "title", "novelId", "createdTime");
 
         PageHelper.startPage(1, 1);
         List<Section> sections = myMapper.selectByExample(example);
@@ -38,13 +38,13 @@ public class SectionServiceImpl extends BaseService<Section> implements SectionS
     }
 
     @Override
-    public List<Section> findSections(String novelCode) {
+    public List<Section> findSections(Long novelId) {
         Example example = new Example(Section.class);
-        example.createCriteria().andEqualTo("novelCode", novelCode);
+        example.createCriteria().andEqualTo("novelId", novelId);
 
-        example.selectProperties("sectionId", "novelCode", "code", "title", "createdTime");
+        example.selectProperties("sectionId", "novelId", "code", "title", "createdTime");
 
-        example.setOrderByClause("code desc");
+        example.setOrderByClause("section_id asc");
 
         return myMapper.selectByExample(example);
     }

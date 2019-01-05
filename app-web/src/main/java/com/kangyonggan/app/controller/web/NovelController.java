@@ -53,10 +53,12 @@ public class NovelController extends BaseController {
     @GetMapping("{novelId:[\\d]+}")
     public String sectionList(@PathVariable("novelId") Long novelId, Model model) {
         Novel novel = novelService.findNovelByNovelId(novelId);
-        List<Section> sections = sectionService.findSections(novel.getCode());
+        List<Section> sections = sectionService.findSections(novelId);
+        Section lastSection = sectionService.findLastSection(novelId);
 
         model.addAttribute("novel", novel);
         model.addAttribute("sections", sections);
+        model.addAttribute("lastSection", lastSection);
         return "web/novel/sections";
     }
 
