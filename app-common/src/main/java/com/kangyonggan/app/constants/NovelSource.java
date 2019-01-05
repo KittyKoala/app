@@ -35,7 +35,12 @@ public enum NovelSource {
     /**
      * 言情小说阁
      */
-    NS05("NS05", "言情小说阁", "http://www.xianqihaotianmi.com/");
+    NS05("NS05", "言情小说阁", "http://www.xianqihaotianmi.com/"),
+
+    /**
+     * 笔趣阁4
+     */
+    NS06("NS06", "笔趣阁4", "https://www.yuanzunxs.cc/");
 
     /**
      * 来源代码

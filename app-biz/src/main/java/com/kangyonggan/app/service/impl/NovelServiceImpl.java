@@ -324,6 +324,11 @@ public class NovelServiceImpl extends BaseService<Novel> implements NovelService
             Document sectionDoc = HtmlUtil.parseUrl(NovelSource.NS05.getUrl() + "read/" + code + ".html");
             title = sectionDoc.select(".panel-heading").html().trim();
             content = sectionDoc.select(".content-body").html();
+        } else if (NovelSource.NS06.getCode().equals(novel.getSource())) {
+            // yuanzunxs
+            Document sectionDoc = HtmlUtil.parseUrl(NovelSource.NS06.getUrl() + "go/" + novel.getCode() + "/" + code + ".html");
+            title = sectionDoc.select("h1.pt10").html().trim().replaceAll("<small>.*</small>", "");
+            content = sectionDoc.select(".readcontent").html();
         } else {
             log.error("未知小说源, name={}, source={}", novel.getName(), novel.getSource());
         }
@@ -371,6 +376,8 @@ public class NovelServiceImpl extends BaseService<Novel> implements NovelService
             // 800txt
         } else if (NovelSource.NS05.getCode().equals(novel.getSource())) {
             // xianqihaotianmi
+        } else if (NovelSource.NS06.getCode().equals(novel.getSource())) {
+            // yuanzunxs
         } else {
             log.error("未知小说源, name={}, source={}", novel.getName(), novel.getSource());
         }
@@ -404,6 +411,10 @@ public class NovelServiceImpl extends BaseService<Novel> implements NovelService
             // xianqihaotianmi
             Document document = HtmlUtil.parseUrl(NovelSource.NS05.getUrl() + "book/" + novel.getCode() + ".html");
             return document.select(".list-charts li a");
+        } else if (NovelSource.NS06.getCode().equals(novel.getSource())) {
+            // yuanzunxs
+            Document document = HtmlUtil.parseUrl(NovelSource.NS06.getUrl() + "go/" + novel.getCode() + "/");
+            return document.select("#list-chapterAll dd a");
         } else {
             log.error("未知小说源, name={}, source={}", novel.getName(), novel.getSource());
         }
