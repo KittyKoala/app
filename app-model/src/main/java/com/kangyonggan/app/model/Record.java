@@ -15,7 +15,7 @@ import java.util.Date;
 @Serial
 public class Record {
     /**
-     * 主键, 自增
+     * 记录ID
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
