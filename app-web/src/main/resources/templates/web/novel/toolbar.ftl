@@ -19,6 +19,13 @@
         <i class="fa fa-arrow-right"></i>
     </a>
 <#else>
-    <a href="javascript:" class="text-right">没有下一章</a>
+    <#if !novelQueue?? || novelQueue.status=='Y'>
+        <a class="text-right pull-btn" href="${ctx}/novel/${novel.novelId}/pull" data-loading-text="更新中">
+            更新
+            <i class="fa fa-refresh"></i>
+        </a>
+    <#else>
+        <a href="javascript:" class="text-right">${enum('name', 'NovelQueueStatus', novelQueue.status)}</a>
+    </#if>
 </#if>
 </div>

@@ -1,5 +1,6 @@
 package com.kangyonggan.app.service;
 
+import com.kangyonggan.app.model.Novel;
 import com.kangyonggan.app.model.NovelQueue;
 
 /**
@@ -36,4 +37,12 @@ public interface NovelQueueService {
      * @param novelId
      */
     void finished(Long novelId);
+
+    /**
+     * 查找小说更新进度
+     *
+     * @param novelId
+     * @return
+     */
+    NovelQueue findNovelQueue(Long novelId);
 }

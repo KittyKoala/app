@@ -48,4 +48,32 @@
     </@panel>
 </@override>
 
+<@override name="script">
+<script>
+    $(function () {
+        // 更新
+        $(".pull-btn").click(function () {
+            $this = $(this);
+            $this.button('loading');
+            $.get($this.attr("href"), function (response) {
+                $this.button('reset');
+                if ("0000" === response.respCo) {
+                    $.growl.notice({
+                        title: '消息',
+                        message: '已经加入更新队列'
+                    });
+                } else {
+                    $.growl.error({
+                        title: '错误',
+                        message: response.respMsg
+                    });
+                }
+            });
+
+            return false;
+        });
+    })
+</script>
+</@override>
+
 <@extends name="../layout.ftl"/>

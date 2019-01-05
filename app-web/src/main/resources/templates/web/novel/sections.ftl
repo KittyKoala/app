@@ -21,6 +21,11 @@
         font-size: 22px;
     }
 
+    .name span {
+        font-size: 14px;
+        color: #a72c11;
+    }
+
     .info {
         margin-top: 5px;
         font-size: 14px;
@@ -68,6 +73,7 @@
         font-size: 14px;
         text-decoration: none;
         color: #a72c11;
+        margin-right: 10px;
     }
 
     .section-list ul {
@@ -108,7 +114,12 @@
             </#if>
             </div>
             <div class="right">
-                <div class="name">${novel.name}</div>
+                <div class="name">
+                    ${novel.name}
+                    <#if novelQueue??>
+                        <span>（${enum('name', 'NovelQueueStatus', novelQueue.status)}）</span>
+                    </#if>
+                </div>
 
                 <div class="info">
                     <span>作者：${novel.author}</span>
@@ -129,7 +140,12 @@
         <div class="section-list border">
             <div class="header">
                 《${novel.name}》章节列表
-                <a class="pull-right" href="${ctx}/novel/${novel.novelId}/pull">抓取最新章节</a>
+                    <#if !novelQueue?? || novelQueue.status=='Y'>
+                        <a class="pull-right pull-btn" href="${ctx}/novel/${novel.novelId}/pull" data-loading-text="更新中">
+                            更新
+                            <i class="fa fa-refresh"></i>
+                        </a>
+                    </#if>
             </div>
             <ul>
                <#list sections as section>
@@ -141,6 +157,34 @@
             </ul>
         </div>
     </@panel>
+</@override>
+
+<@override name="script">
+<script>
+    $(function () {
+        // 更新
+        $(".pull-btn").click(function () {
+            $this = $(this);
+            $this.button('loading');
+            $.get($this.attr("href"), function (response) {
+                $this.button('reset');
+                if ("0000" === response.respCo) {
+                    $.growl.notice({
+                        title: '消息',
+                        message: '已经加入更新队列'
+                    });
+                } else {
+                    $.growl.error({
+                        title: '错误',
+                        message: response.respMsg
+                    });
+                }
+            });
+
+            return false;
+        });
+    })
+</script>
 </@override>
 
 <@extends name="../layout.ftl"/>
