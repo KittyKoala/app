@@ -59,6 +59,7 @@ public class SectionServiceImpl extends BaseService<Section> implements SectionS
         Example example = new Example(Section.class);
         example.createCriteria().andEqualTo("novelId", novelId).andLessThan("sectionId", sectionId);
         example.setOrderByClause("section_id desc");
+        example.selectProperties("sectionId", "novelId", "code", "title", "createdTime");
 
         PageHelper.startPage(1, 1);
         List<Section> sections = myMapper.selectByExample(example);
@@ -75,6 +76,7 @@ public class SectionServiceImpl extends BaseService<Section> implements SectionS
         Example example = new Example(Section.class);
         example.createCriteria().andEqualTo("novelId", novelId).andGreaterThan("sectionId", sectionId);
         example.setOrderByClause("section_id asc");
+        example.selectProperties("sectionId", "novelId", "code", "title", "createdTime");
 
         PageHelper.startPage(1, 1);
         List<Section> sections = myMapper.selectByExample(example);
