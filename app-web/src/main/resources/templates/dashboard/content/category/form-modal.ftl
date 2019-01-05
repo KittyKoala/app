@@ -57,8 +57,8 @@
             <@input label="父栏目" value="${parentCategory.categoryName!''}" readonly=true/>
             <@selectEnum label="栏目类型" enum_key="CategoryType" value="${parentCategory.categoryType}" readonly=true empty=false/>
         <#elseif isEdit>
-        <input type="hidden" id="categoryType" name="categoryType" value="${parentCategory.categoryType}"/>
-            <@selectEnum label="栏目类型" enum_key="CategoryType" value="${parentCategory.categoryType}" readonly=true empty=false/>
+        <input type="hidden" id="categoryType" name="categoryType" value="${category.categoryType}"/>
+            <@selectEnum label="栏目类型" enum_key="CategoryType" value="${category.categoryType}" readonly=true empty=false/>
         <#else>
             <@selectEnum id="categoryType" name="categoryType" label="栏目类型" enum_key="CategoryType" required=true empty=false/>
         </#if>

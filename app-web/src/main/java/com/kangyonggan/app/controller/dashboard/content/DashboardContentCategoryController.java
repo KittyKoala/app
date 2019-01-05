@@ -94,7 +94,7 @@ public class DashboardContentCategoryController extends BaseController {
     @Token(key = "editDict")
     public String edit(@PathVariable("categoryId") Long categoryId, Model model) {
         Category category = categoryService.findCategoryByCategoryId(categoryId);
-        Category parentCategory = categoryService.findCategoryByTypeAndCode(category.getCategoryType(), category.getCategoryCode());
+        Category parentCategory = categoryService.findCategoryByTypeAndCode(category.getCategoryType(), category.getParentCode());
 
         model.addAttribute("category", category);
         model.addAttribute("parentCategory", parentCategory);

@@ -23,4 +23,10 @@ public class CategoryServiceTest extends AbstractTest {
         System.out.println(categories);
     }
 
+    @Test
+    public void testUpdate() {
+        Category category = categoryService.findCategoryByTypeAndCode(CategoryType.NAV_BAR.getCode(), "novel");
+        categoryService.updateCategory(category);
+    }
+
 }
