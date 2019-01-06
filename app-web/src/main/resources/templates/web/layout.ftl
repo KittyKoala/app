@@ -26,7 +26,6 @@
     <script>
         function IsPC() {
             var userAgentInfo = navigator.userAgent;
-            alert(userAgentInfo)
             var Agents = ["Android", "iPhone",
                 "SymbianOS", "Windows Phone",
                 "iPad", "iPod"];
