@@ -17,19 +17,19 @@
 
     <@table id="table" url="${_baseUrl}/list" form_id="form" checkbox=true>
         <@th field="novelId" title="小说ID" auto_hide=true/>
-        <@thEnum field="source" title="来源" enum_key="NovelSource"/>
+        <@thEnum field="source" title="来源" enum_key="NovelSource" auto_hide=true/>
         <@th field="code" title="小说代码"/>
         <@th field="name" title="小说名称"/>
         <@th field="author" title="作者"/>
-        <@th field="cover" title="封面" render=true>
+        <@th field="cover" title="封面" render=true auto_hide=true>
         {{if value==''}}
         <a href="${ctx}/app/images/nocover.jpg" target="_blank">查看</a>
         {{else}}
         <a href="${ctx}/{{value}}" target="_blank">查看</a>
         {{/if}}
         </@th>
-        <@th field="summary" title="描述"/>
-        <@thYesNo field="isDeleted" title="逻辑删除"/>
+        <@th field="summary" title="描述" auto_hide=true/>
+        <@thYesNo field="isDeleted" title="逻辑删除" auto_hide=true/>
         <@thDatetime field="createdTime" title="创建时间" auto_hide=true/>
     </@table>
 </@override>

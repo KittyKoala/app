@@ -19,10 +19,10 @@
         <@th field="parentCode" title="父栏目代码"/>
         <@th field="categoryCode" title="栏目代码"/>
         <@th field="categoryName" title="栏目名称"/>
-        <@th field="sort" title="排序"/>
+        <@th field="sort" title="排序" auto_hide=true/>
         <@th field="url" title="路径"/>
         <@thYesNo field="isBlank" title="开启新界面"/>
-        <@thYesNo field="isDeleted" title="逻辑删除"/>
+        <@thYesNo field="isDeleted" title="逻辑删除" auto_hide=true/>
         <@thDatetime field="createdTime" title="创建时间" auto_hide=true/>
     </@table>
 </@override>
