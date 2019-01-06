@@ -1,6 +1,4 @@
 <#assign ctx="${(rca.contextPath)!''}">
-<#include "../common/web-form.ftl"/>
-<#include "../common/component.ftl"/>
 
 <!DOCTYPE html>
 <html lang="zh-cn">
@@ -18,9 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
     <link rel="stylesheet" href="${ctx}/ace/dist/css/font-awesome.min.css"/>
 
-    <link rel="stylesheet" href="${ctx}/libs/jquery/jquery.growl.css"/>
-
-    <link rel="stylesheet" href="${ctx}/app/css/app.css"/>
+    <link rel="stylesheet" href="${ctx}/app/css/wap.css"/>
     <script src="${ctx}/libs/jquery/jquery-1.8.3.min.js"></script>
     <script>var ctx = '${ctx}';</script>
     <script>
@@ -40,27 +36,23 @@
         }
 
         var flag = IsPC(); //true为PC端，false为手机端
-        if (!flag) {
-            window.location.href = "${ctx}/wap"
+        if (flag) {
+            window.location.href = "${ctx}/"
         }
     </script>
 <@block name="style"/>
 </head>
 
 <body>
-<div class="container">
-<#include "navbar.ftl"/>
-    <@block name="main"/>
-    <div class="empty"></div>
-</div>
+<@block name="main"/>
 
-<#include "footer.ftl"/>
-
-<script src="${ctx}/libs/jquery/jquery.growl.js"></script>
+<a href="#" class="toTop hidden" id="back-top">
+    <i class="fa fa-angle-up"></i>
+</a>
 <script src="${ctx}/libs/jquery/jquery.form.min.js"></script>
 <script src="${ctx}/libs/jquery/jquery.validate.min.js"></script>
 <script src="${ctx}/libs/jquery/jquery.validate.extends.js"></script>
-<script src="${ctx}/app/js/app.js"></script>
+<script src="${ctx}/app/js/wap.js"></script>
 <@block name="script"/>
 </body>
 </html>

@@ -1,0 +1,54 @@
+/*布局*/
+html {
+    margin: 0;
+    padding: 0;
+}
+body {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    font-size: 15px;
+    background: rgba(5, 5, 5, 0.8);
+    color: #d5d5d5;
+}
+
+.toTop {
+    position: fixed;
+    width: 35px;
+    height: 35px;
+    bottom: 10px;
+    right: 10px;
+    line-height: 35px;
+    border-radius: 35px;
+    text-align: center;
+    background: rgba(144, 144, 144, 0.8);
+    color: #000;
+}
+/*布局*/
+
+/*通用*/
+.hidden {
+    display: none;
+}
+
+.clear {
+    clear: both;
+    height: 1px;
+}
+
+.pull-right {
+    float: right !important;
+}
+
+.pull-left {
+    float: left !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.text-right {
+    text-align: right !important;
+}
+/*通用*/
