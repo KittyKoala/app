@@ -458,7 +458,7 @@ VALUES
   ('SITES', '网站', '', '', 3, 'menu-icon fa fa-globe'),
   ('SITES_NOVEL', '小说管理', 'SITES', 'dashboard/sites/novel', 0, ''),
   ('SITES_NOVEL_QUEUE', '小说队列', 'SITES', 'dashboard/sites/novelQueue', 1, ''),
-  ('SITES_BBDD', '宝宝点滴', 'SITES', 'dashboard/sites/bbdd', 2, '');
+  ('SITES_RECORD', '宝宝点滴', 'SITES', 'dashboard/sites/record', 2, '');
 
 -- ----------------------------
 --  data for tb_user_role
