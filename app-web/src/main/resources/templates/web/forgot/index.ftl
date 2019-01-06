@@ -2,7 +2,7 @@
 
 <@override name="main">
     <@panel bg_img="/app/images/bg.jpg">
-        <@form action="${ctx}/forgot" class="forgot-form">
+        <@form action="${ctx}/forgot" class="forgot-form" success="success">
             <@input type="email" label="电子邮箱" id="email" name="email" required=true/>
             <@input label="邮箱验证码" name="code" required=true>
             <button id="sendBtn" class="btn" data-loading-text="正在发送...">

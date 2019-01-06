@@ -2,7 +2,7 @@
 
 <@override name="main">
     <@panel bg_img="/app/images/bg.jpg">
-        <@form action="${ctx}/register" class="register-form">
+        <@form action="${ctx}/register" class="register-form" success="success">
             <@input type="email" label="电子邮箱" id="email" name="email" placeholder="可用于登录找回密码和接收通知" remote="${ctx}/api/validate/email" required=true/>
             <@input label="邮箱验证码" name="code" required=true>
             <button id="sendBtn" class="btn" data-loading-text="正在发送...">
