@@ -2,6 +2,9 @@ package com.kangyonggan.app.service;
 
 import com.kangyonggan.app.model.Novel;
 import com.kangyonggan.app.model.NovelQueue;
+import com.kangyonggan.common.Params;
+
+import java.util.List;
 
 /**
  * @author kangyonggan
@@ -39,10 +42,26 @@ public interface NovelQueueService {
     void finished(Long novelId);
 
     /**
+     * 批量更新完成
+     *
+     * @param queueId
+     */
+    void finished(String queueId);
+
+    /**
      * 查找小说更新进度
      *
      * @param novelId
      * @return
      */
     NovelQueue findNovelQueue(Long novelId);
+
+    /**
+     * 搜索小说队列
+     *
+     * @param params
+     * @return
+     */
+    List<NovelQueue> searchNovelQueues(Params params);
+
 }

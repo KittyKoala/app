@@ -423,14 +423,12 @@ INSERT INTO tb_user
 (user_id, email, PASSWORD, salt)
 VALUES
   # 密码：11111111
-  (1, 'admin@kangyonggan.com', '8d0d54520fe0466ac80827d9f2f038b22e3c7c2d', 'd820c214488d7c6f'),
-  (2, 'java@kangyonggan.com', '8d0d54520fe0466ac80827d9f2f038b22e3c7c2d', 'd820c214488d7c6f');
+  (1, 'admin@kangyonggan.com', '8d0d54520fe0466ac80827d9f2f038b22e3c7c2d', 'd820c214488d7c6f');
 
 INSERT INTO tb_user_profile
 (user_id, name, id_type, id_no, ip_address)
 VALUES
-  (1, '管理员', '0', '', '127.0.0.1'),
-  (2, '康永敢', '0', '', '127.0.0.1');
+  (1, '管理员', '0', '', '127.0.0.1');
 
 -- ----------------------------
 --  data for tb_role
@@ -458,7 +456,9 @@ VALUES
   ('CONTENT_CATEGORY', '栏目管理', 'CONTENT', 'dashboard/content/category', 1, ''),
 
   ('SITES', '网站', '', '', 3, 'menu-icon fa fa-globe'),
-  ('SITES_NOVEL', '小说管理', 'SITES', 'dashboard/sites/novel', 0, '');
+  ('SITES_NOVEL', '小说管理', 'SITES', 'dashboard/sites/novel', 0, ''),
+  ('SITES_NOVEL_QUEUE', '小说队列', 'SITES', 'dashboard/sites/novelQueue', 1, ''),
+  ('SITES_BBDD', '宝宝点滴', 'SITES', 'dashboard/sites/bbdd', 2, '');
 
 -- ----------------------------
 --  data for tb_user_role
