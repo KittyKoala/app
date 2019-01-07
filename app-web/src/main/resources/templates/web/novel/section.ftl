@@ -16,7 +16,7 @@
         color: #333;
         display: inline-block;
         text-decoration: none;
-        width: 334px;
+        width: 333px;
     }
 
     .content {
