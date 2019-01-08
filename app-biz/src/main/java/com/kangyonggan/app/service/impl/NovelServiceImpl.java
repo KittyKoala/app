@@ -205,8 +205,9 @@ public class NovelServiceImpl extends BaseService<Novel> implements NovelService
         isStarting = true;
         executorService.execute(() -> {
             while (true) {
+                Long id = null;
                 try {
-                    Long id = popOrCheck(false);
+                    id = popOrCheck(false);
 
                     if (id == null) {
                         log.info("队列中没有待更新的小说了，关闭线程");
@@ -215,8 +216,13 @@ public class NovelServiceImpl extends BaseService<Novel> implements NovelService
 
                     // 更新小说
                     pullNovel(id);
+                    log.info("小说{}更新完成", id);
                 } catch (Exception e) {
                     log.error("消费线程出现异常, 继续处理下一个", e);
+                } finally {
+                    if (id != null) {
+                        novelQueueService.finished(id);
+                    }
                 }
             }
         });
@@ -269,10 +275,6 @@ public class NovelServiceImpl extends BaseService<Novel> implements NovelService
             // 解析章节
             parseSection(novel, code);
         }
-
-        // 队列状态变为更新完成
-        novelQueueService.finished(novelId);
-        log.info("小说{}更新完成", novel.getName());
     }
 
     /**
@@ -329,6 +331,11 @@ public class NovelServiceImpl extends BaseService<Novel> implements NovelService
             Document sectionDoc = HtmlUtil.parseUrl(NovelSource.NS06.getUrl() + "go/" + novel.getCode() + "/" + code + ".html");
             title = sectionDoc.select("h1.pt10").html().trim().replaceAll("<small>.*</small>", "");
             content = sectionDoc.select(".readcontent").html();
+        } else if (NovelSource.NS07.getCode().equals(novel.getSource())) {
+            // 63xs
+            Document sectionDoc = HtmlUtil.parseUrl(NovelSource.NS07.getUrl() + "book/" + novel.getCode() + "/" + code + ".html");
+            title = sectionDoc.select(".bookname h1").html().trim().replace("章节目录 ", "");
+            content = sectionDoc.select("#content").html();
         } else {
             log.error("未知小说源, name={}, source={}", novel.getName(), novel.getSource());
         }
@@ -378,6 +385,8 @@ public class NovelServiceImpl extends BaseService<Novel> implements NovelService
             // xianqihaotianmi
         } else if (NovelSource.NS06.getCode().equals(novel.getSource())) {
             // yuanzunxs
+        } else if (NovelSource.NS07.getCode().equals(novel.getSource())) {
+            // 63xs
         } else {
             log.error("未知小说源, name={}, source={}", novel.getName(), novel.getSource());
         }
@@ -415,6 +424,10 @@ public class NovelServiceImpl extends BaseService<Novel> implements NovelService
             // yuanzunxs
             Document document = HtmlUtil.parseUrl(NovelSource.NS06.getUrl() + "go/" + novel.getCode() + "/");
             return document.select("#list-chapterAll dd a");
+        } else if (NovelSource.NS07.getCode().equals(novel.getSource())) {
+            // 63xs
+            Document document = HtmlUtil.parseUrl(NovelSource.NS07.getUrl() + "book/" + novel.getCode() + "/");
+            return document.select("#list dd a");
         } else {
             log.error("未知小说源, name={}, source={}", novel.getName(), novel.getSource());
         }

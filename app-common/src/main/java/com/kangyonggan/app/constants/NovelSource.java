@@ -40,7 +40,12 @@ public enum NovelSource {
     /**
      * 笔趣阁4
      */
-    NS06("NS06", "笔趣阁4", "https://www.yuanzunxs.cc/");
+    NS06("NS06", "笔趣阁4", "https://www.yuanzunxs.cc/"),
+
+    /**
+     * 63小说
+     */
+    NS07("NS07", "63小说", "https://www.63xs.com/");
 
     /**
      * 来源代码
