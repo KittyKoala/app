@@ -96,7 +96,7 @@
         position: relative;
     }
 
-    .navbar .navbar-menus > li.active a:after {
+    .navbar .navbar-menus > li.active > a:after {
         content: "";
         position: absolute;
         bottom: 15px;
