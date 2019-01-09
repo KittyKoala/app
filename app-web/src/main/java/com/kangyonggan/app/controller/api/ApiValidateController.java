@@ -56,7 +56,7 @@ public class ApiValidateController {
     @GetMapping("idNo")
     @ResponseBody
     public boolean idNo(@RequestParam("idNo") String idNo) {
-        return IdNoUtil.isIdNo18(idNo);
+        return IdNoUtil.isIdCard18(idNo);
     }
 
     /**

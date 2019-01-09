@@ -22,7 +22,7 @@ public class UserProfileServiceImpl extends BaseService<UserProfile> implements 
         ValidUtil.valid(userProfile);
 
         if (StringUtils.isNotEmpty(userProfile.getIdNo())) {
-            if (!IdNoUtil.isIdNo18(userProfile.getIdNo())) {
+            if (!IdNoUtil.isIdCard18(userProfile.getIdNo())) {
                 throw new ValidException("请输入合法身份证号码");
             }
         }
