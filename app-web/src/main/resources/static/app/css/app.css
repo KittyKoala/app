@@ -145,7 +145,7 @@ body {
     color: red;
 }
 
-.form input {
+.form input[type=text],.form input[type=password],.form input[type=email] {
     display: block;
     width: 400px;
     height: 34px;

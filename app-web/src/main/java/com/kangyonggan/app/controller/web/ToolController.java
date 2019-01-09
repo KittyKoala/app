@@ -6,7 +6,10 @@ import com.kangyonggan.app.util.DestinyUtil;
 import com.kangyonggan.app.util.IdNoUtil;
 import com.kangyonggan.common.Response;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author kangyonggan
@@ -29,7 +32,7 @@ public class ToolController extends BaseController {
     }
 
     /**
-     * 身份证校验界面
+     * 身份证查询界面
      *
      * @return
      */
@@ -39,7 +42,7 @@ public class ToolController extends BaseController {
     }
 
     /**
-     * 身份证查询界面
+     * 身份证查询
      *
      * @param idNo
      * @return
@@ -82,11 +85,39 @@ public class ToolController extends BaseController {
     /**
      * 生成身份证界面
      *
+     * @param model
      * @return
      */
     @GetMapping("idNoGen")
-    public String idNoGen() {
+    public String idNoGen(Model model) {
+        model.addAttribute("cities", IdNoUtil.getCityCodes());
         return PATH_ROOT + "/idNoGen";
+    }
+
+    /**
+     * 生成身份证
+     *
+     * @param prov
+     * @param startAge
+     * @param endAge
+     * @param sex
+     * @param len
+     * @param size
+     * @return
+     */
+    @PostMapping("idNoGen")
+    @ResponseBody
+    public Response idNoGen(@RequestParam(value = "prov", required = false, defaultValue = "") String prov,
+                            @RequestParam(value = "startAge", required = false, defaultValue = "") Integer startAge,
+                            @RequestParam(value = "endAge", required = false, defaultValue = "60") Integer endAge,
+                            @RequestParam(value = "sex", required = false, defaultValue = "") String sex,
+                            @RequestParam(value = "len", required = false, defaultValue = "-1") Integer len,
+                            @RequestParam(value = "size", required = false, defaultValue = "30") Integer size) {
+        Response response = Response.getSuccessResponse();
+        List<String> idNos = IdNoUtil.genIdCard(prov, startAge, endAge, sex, len, size);
+
+        response.put("idNos", idNos);
+        return response;
     }
 
 }

@@ -4,11 +4,11 @@
 <@override name="style">
 <style>
     .tool-form {
-        width: 800px;
+        width: 600px;
         margin: 0 auto;
     }
 
-    .tool-form input {
+    .tool-form input[type=text] {
         background: #fff;
         border: 1px solid #aaa;
         color: #333;
@@ -24,11 +24,11 @@
         color: #999;
         font-size: 12px;
         margin-top: 5px;
-        text-indent: 2em;
+        margin-left: 90px;
     }
 
     .result {
-        width: 800px;
+        width: 600px;
         margin: 0 auto;
         margin-top: 20px;
     }
@@ -64,7 +64,7 @@
     <div class="border">
         <@form action="${ctx}/tool/idNoCheck" beforeSubmit="beforeSubmit" class="tool-form" success="success">
             身份证号码:
-            <input id="data" name="idNo" placeholder="请输入要查询的身份证号码" required/>
+            <input type="text" id="data" name="idNo" placeholder="请输入要查询的身份证号码" required/>
             <button class="btn" data-type="submit" data-loading-text="正在查询...">
                 <i class="fa fa-search"></i>
                 查询
