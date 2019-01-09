@@ -493,7 +493,7 @@ VALUES
   ('NAV_BAR', '', 'novel', '小说', '/novel', 1, 0),
   ('NAV_BAR', '', 'tool', '工具', '/tool', 2, 0),
   ('NAV_BAR', 'tool', 'format', '代码格式化', '/tool/format', 0, 0),
-  ('NAV_BAR', 'tool', 'idNoCheck', '身份证校验', '/tool/idNoCheck', 3, 0),
+  ('NAV_BAR', 'tool', 'idNoCheck', '身份证查询', '/tool/idNoCheck', 3, 0),
   ('NAV_BAR', 'tool', 'idNoGen', '生成身份证', '/tool/idNoGen', 4, 0);
 
 INSERT INTO tb_novel

@@ -39,7 +39,7 @@ public class ToolController extends BaseController {
     }
 
     /**
-     * 身份证校验界面
+     * 身份证查询界面
      *
      * @param idNo
      * @return
@@ -77,6 +77,16 @@ public class ToolController extends BaseController {
             }
         }
         return response;
+    }
+
+    /**
+     * 生成身份证界面
+     *
+     * @return
+     */
+    @GetMapping("idNoGen")
+    public String idNoGen() {
+        return PATH_ROOT + "/idNoGen";
     }
 
 }

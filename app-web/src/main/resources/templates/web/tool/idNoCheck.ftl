@@ -1,4 +1,5 @@
-<#assign title="身份证校验"/>
+<#assign title="身份证查询"/>
+<#include "../../common/web-form.ftl"/>
 
 <@override name="style">
 <style>
@@ -56,6 +57,7 @@
 <@override name="main">
     <@panel>
         <@breadcrumbs>
+            <@breadcrumb name="工具" href="${ctx}/tool"/>
             <@breadcrumb name=title/>
         </@breadcrumbs>
 

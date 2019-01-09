@@ -1,4 +1,5 @@
 <#assign title="找回密码"/>
+<#include "../../common/auth-form.ftl"/>
 
 <@override name="main">
     <@panel bg_img="/app/images/bg.jpg">
