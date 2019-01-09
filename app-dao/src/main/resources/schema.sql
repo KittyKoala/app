@@ -491,10 +491,13 @@ INSERT INTO tb_category
 VALUES
   ('NAV_BAR', '', 'blog', '博客', 'https://blog.kangyonggan.com', 0, 1),
   ('NAV_BAR', '', 'novel', '小说', '/novel', 1, 0),
-  ('NAV_BAR', '', 'tool', '工具', '/tool', 2, 0),
-  ('NAV_BAR', 'tool', 'format', '代码格式化', '/tool/format', 0, 0),
-  ('NAV_BAR', 'tool', 'idNoCheck', '身份证查询', '/tool/idNoCheck', 3, 0),
-  ('NAV_BAR', 'tool', 'idNoGen', '生成身份证', '/tool/idNoGen', 4, 0);
+  ('NAV_BAR', '', 'tool', '工具', '', 2, 0),
+  ('NAV_BAR', 'tool', 'idNoCheck', '身份证查询', '/tool/idNoCheck', 0, 0),
+  ('NAV_BAR', 'tool', 'idNoGen', '生成身份证', '/tool/idNoGen', 1, 0),
+  ('NAV_BAR', 'tool', 'codeFormat', '代码格式化', 'http://tool.oschina.net/codeformat', 2, 1),
+  ('NAV_BAR', 'tool', 'compressor', '代码压缩', 'http://tool.oschina.net/jscompress', 3, 1),
+  ('NAV_BAR', 'tool', 'qrCode', '二维码工具', 'http://tool.oschina.net/qr', 4, 1),
+  ('NAV_BAR', 'tool', 'other', '其他工具', 'http://tool.oschina.net', 5, 1);
 
 INSERT INTO tb_novel
 (source, code, name, author, cover, summary)
