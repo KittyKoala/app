@@ -110,7 +110,6 @@
 <@override name="main">
     <@panel>
         <@breadcrumbs>
-            <@breadcrumb name="工具" href="${ctx}/tool"/>
             <@breadcrumb name=title/>
         </@breadcrumbs>
 

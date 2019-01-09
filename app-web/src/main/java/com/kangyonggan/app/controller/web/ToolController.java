@@ -22,16 +22,6 @@ public class ToolController extends BaseController {
     private static final String PATH_ROOT = "web/tool";
 
     /**
-     * 工具
-     *
-     * @return
-     */
-    @GetMapping
-    public String index() {
-        return PATH_ROOT + "/index";
-    }
-
-    /**
      * 身份证查询界面
      *
      * @return

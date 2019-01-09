@@ -13,6 +13,7 @@
         border: 1px solid #aaa;
         color: #333;
         display: inline;
+        width: 330px !important;
     }
 
     .tool-form .btn {
@@ -57,7 +58,6 @@
 <@override name="main">
     <@panel>
         <@breadcrumbs>
-            <@breadcrumb name="工具" href="${ctx}/tool"/>
             <@breadcrumb name=title/>
         </@breadcrumbs>
 
