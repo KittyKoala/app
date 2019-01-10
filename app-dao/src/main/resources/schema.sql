@@ -337,7 +337,7 @@ CREATE TABLE tb_section
 (
   section_id   BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
   COMMENT '章节ID',
-  novel_id   BIGINT(20)                           NOT NULL
+  novel_id     BIGINT(20)                            NOT NULL
   COMMENT '小说ID',
   code         VARCHAR(20)                           NOT NULL
   COMMENT '章节代码',
@@ -395,7 +395,8 @@ CREATE TABLE tb_record
 (
   id           BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
   COMMENT '记录ID',
-  content      LONGTEXT                              CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+  content      LONGTEXT CHARACTER SET utf8mb4
+               COLLATE utf8mb4_unicode_ci            NOT NULL
   COMMENT '内容',
   file_names   VARCHAR(2048)                         NOT NULL                    DEFAULT ''
   COMMENT '图片',
@@ -413,6 +414,70 @@ CREATE TABLE tb_record
   COMMENT '记录表';
 CREATE INDEX ix_openid
   ON tb_record (openid);
+
+-- ----------------------------
+--  Table structure for tb_album
+-- ----------------------------
+DROP TABLE
+IF EXISTS tb_album;
+
+CREATE TABLE tb_album
+(
+  album_id     BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
+  COMMENT '相册ID',
+  user_id      BIGINT(20)                            NOT NULL
+  COMMENT '用户ID',
+  album_name   VARCHAR(64)                           NOT NULL
+  COMMENT '相册名称',
+  cover        VARCHAR(256)                          NOT NULL                    DEFAULT ''
+  COMMENT '封面',
+  password     VARCHAR(6)                            NOT NULL                    DEFAULT ''
+  COMMENT '密码',
+  size         INT(11)                               NOT NULL                    DEFAULT 0
+  COMMENT '大小',
+  sort         INT(11)                               NOT NULL                    DEFAULT 0
+  COMMENT '排序(从0开始)',
+  is_deleted   TINYINT                               NOT NULL                    DEFAULT 0
+  COMMENT '逻辑删除',
+  created_time TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP
+  COMMENT '创建时间',
+  updated_time TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间'
+)
+  COMMENT '相册表';
+CREATE INDEX ix_user_id
+  ON tb_album (user_id);
+
+-- ----------------------------
+--  Table structure for tb_album_photo
+-- ----------------------------
+DROP TABLE
+IF EXISTS tb_album_photo;
+
+CREATE TABLE tb_album_photo
+(
+  photo_id     BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
+  COMMENT '照片ID',
+  album_id     BIGINT(20)                            NOT NULL
+  COMMENT '相册ID',
+  description  VARCHAR(64)                           NOT NULL
+  COMMENT '描述',
+  url          VARCHAR(256)                          NOT NULL                    DEFAULT ''
+  COMMENT '图片地址',
+  sort         INT(11)                               NOT NULL                    DEFAULT 0
+  COMMENT '排序(从0开始)',
+  is_deleted   TINYINT                               NOT NULL                    DEFAULT 0
+  COMMENT '逻辑删除',
+  created_time TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP
+  COMMENT '创建时间',
+  updated_time TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间'
+)
+  COMMENT '照片表';
+CREATE INDEX ix_album_id
+  ON tb_album_photo (album_id);
+CREATE INDEX ix_sort
+  ON tb_album_photo (sort);
 
 #====================初始数据====================#
 
@@ -458,7 +523,8 @@ VALUES
   ('SITES', '网站', '', '', 3, 'menu-icon fa fa-globe'),
   ('SITES_NOVEL', '小说管理', 'SITES', 'dashboard/sites/novel', 0, ''),
   ('SITES_NOVEL_QUEUE', '小说队列', 'SITES', 'dashboard/sites/novelQueue', 1, ''),
-  ('SITES_RECORD', '宝宝点滴', 'SITES', 'dashboard/sites/record', 2, '');
+  ('SITES_RECORD', '宝宝点滴', 'SITES', 'dashboard/sites/record', 2, ''),
+  ('SITES_ALBUM', '相册管理', 'SITES', 'dashboard/sites/album', 3, '');
 
 -- ----------------------------
 --  data for tb_user_role
@@ -491,7 +557,8 @@ INSERT INTO tb_category
 VALUES
   ('NAV_BAR', '', 'blog', '博客', 'https://blog.kangyonggan.com', 0, 1),
   ('NAV_BAR', '', 'novel', '小说', '/novel', 1, 0),
-  ('NAV_BAR', '', 'tool', '工具', '', 2, 0),
+  ('NAV_BAR', '', 'album', '相册', '/album', 2, 0),
+  ('NAV_BAR', '', 'tool', '工具', '', 3, 0),
   ('NAV_BAR', 'tool', 'idNoCheck', '身份证查询', '/tool/idNoCheck', 0, 0),
   ('NAV_BAR', 'tool', 'idNoGen', '生成身份证', '/tool/idNoGen', 1, 0),
   ('NAV_BAR', 'tool', 'codeFormat', '代码格式化', 'http://tool.oschina.net/codeformat', 2, 1),
@@ -501,6 +568,8 @@ VALUES
 
 INSERT INTO tb_novel
 (source, code, name, author, cover, summary)
-VALUE
-('NS02', '2722', '逆天邪神', '火星引力', 'app/images/novel/2722.jpg', '掌天毒之珠，承邪神之血，修逆天之力，一代邪神，君临天下！【添加微信公众号：火星引力】【我们的yy频道：49554】，各位书友要是觉得《逆天邪神》还不错的话请不要忘记向您QQ群和微博里的朋友推荐哦！'),
-('NS06', '40359', ' 仁手邪妃倾世心', '凌婧', '', '被嫡姐设计，错上神秘男子床榻，声名狼藉。五年后，她浴血归来，不谈情爱，只为复仇，却被权倾天下的冷面摄政王盯上。“王爷，妾身不是第一次了，身子早就不干净了，连孩子都有了，您现在退婚还来得及。”垂眸假寐的男子，豁然睁开双目，精光迸射：“娶一送一，爷赚了。”');
+  VALUE
+  ('NS02', '2722', '逆天邪神', '火星引力', 'app/images/novel/2722.jpg',
+   '掌天毒之珠，承邪神之血，修逆天之力，一代邪神，君临天下！【添加微信公众号：火星引力】【我们的yy频道：49554】，各位书友要是觉得《逆天邪神》还不错的话请不要忘记向您QQ群和微博里的朋友推荐哦！'),
+  ('NS06', '40359', ' 仁手邪妃倾世心', '凌婧', '',
+   '被嫡姐设计，错上神秘男子床榻，声名狼藉。五年后，她浴血归来，不谈情爱，只为复仇，却被权倾天下的冷面摄政王盯上。“王爷，妾身不是第一次了，身子早就不干净了，连孩子都有了，您现在退婚还来得及。”垂眸假寐的男子，豁然睁开双目，精光迸射：“娶一送一，爷赚了。”');

@@ -10,7 +10,6 @@
             <@delete table_id="table" url="${_baseUrl}/delete?roleIds={{roleId}}"/>
             <@restore table_id="table" url="${_baseUrl}/restore?roleIds={{roleId}}"/>
             <@modal name="查看授权用户" table_id="table" url="${_baseUrl}/{{roleId}}/users"/>
-            <@modal name="查看授权用户" table_id="table" url="${_baseUrl}/{{roleId}}/users"/>
             <@modal name="设置权限" table_id="table" url="${_baseUrl}/{{roleId}}/menus"/>
         </@form_actions>
     </@search_form>
