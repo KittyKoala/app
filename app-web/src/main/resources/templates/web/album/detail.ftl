@@ -1,6 +1,7 @@
 <#assign title="${album.albumName}"/>
 
 <@override name="style">
+<link rel="stylesheet" href="${ctx}/libs/zoomify/dist/zoomify.min.css">
 <style>
     .album-list, .album-list dl, .album-list dt, .album-list dd {
         margin: 0;
@@ -67,7 +68,8 @@
                 <li>
                     <dl>
                         <dd>
-                            <div style="background-image: url('${ctx}/${photo.url}')"></div>
+                            <div style="background-image: url('${ctx}/${photo.url}')">
+                            </div>
                         </dd>
                         <dt>
                         ${photo.createdTime?date}
@@ -131,6 +133,13 @@
         <div class="empty">没有照片</div>
         </#if>
     </@panel>
+</@override>
+
+<@override name="script">
+<script src="${ctx}/libs/zoomify/dist/zoomify.min.js"></script>
+<script>
+    $('.album-list li dl dd').zoomify();
+</script>
 </@override>
 
 <@extends name="../layout.ftl"/>
