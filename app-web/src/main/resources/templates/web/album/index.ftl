@@ -1,4 +1,5 @@
 <#assign title="相册"/>
+<#assign msg = RequestParameters.msg!'' />
 
 <@override name="style">
 <style>
@@ -84,7 +85,8 @@
                 <li>
                     <dl>
                         <dd>
-                            <a href="${ctx}/album/${album.albumId}" style="background-image: url('${ctx}/${album.cover}')"></a>
+                            <a href="${ctx}/album/${album.albumId}" data-pwd="${(album.password!='')?c}"
+                               style="background-image: url('${ctx}/${album.cover}')"></a>
                             <div class="size">${album.size}</div>
                         </dd>
                         <dt>
@@ -103,6 +105,29 @@
         <div class="empty">没有相册</div>
         </#if>
     </@panel>
+</@override>
+
+<@override name="script">
+<script>
+    $(function () {
+        $(".album-list li a").click(function () {
+            var needPwd = $(this).data("pwd");
+            if (needPwd) {
+                var pwd = prompt("输入密码后查看");
+                if (pwd) {
+                    window.location.href = $(this).attr("href") + "?pwd=" + pwd;
+                }
+                return false;
+            }
+
+            return true;
+        });
+
+        <#if msg=='err-pwd'>
+            alert("密码错误！");
+        </#if>
+    })
+</script>
 </@override>
 
 <@extends name="../layout.ftl"/>

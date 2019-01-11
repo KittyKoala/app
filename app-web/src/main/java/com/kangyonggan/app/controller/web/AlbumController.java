@@ -6,6 +6,7 @@ import com.kangyonggan.app.model.Album;
 import com.kangyonggan.app.model.AlbumPhoto;
 import com.kangyonggan.app.service.AlbumPhotoService;
 import com.kangyonggan.app.service.AlbumService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,17 +49,24 @@ public class AlbumController extends BaseController {
      * 相册
      *
      * @param albumId
+     * @param pwd
+     * @param pageNum
      * @param model
      * @return
      */
     @GetMapping("{albumId:[\\d]+}")
     public String detail(@PathVariable("albumId") Long albumId,
+                         @RequestParam(value = "pwd", required = false, defaultValue = "") String pwd,
                          @RequestParam(value = "pageNum", required = false, defaultValue = "1") int pageNum,
                          Model model) {
         Album album = albumService.findAlbumByAlbumId(albumId);
         if (album == null) {
             return "web/album/none";
         }
+        if (StringUtils.isNotEmpty(album.getPassword()) && !album.getPassword().equals(pwd)) {
+            return "redirect:/album?msg=err-pwd";
+        }
+
         album.setPassword(null);
 
         List<AlbumPhoto> albumPhotos = albumPhotoService.findAlbumPhotos(albumId, pageNum);

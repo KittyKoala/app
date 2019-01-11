@@ -1,4 +1,5 @@
 <#assign title="${album.albumName}"/>
+<#assign pwd = RequestParameters.pwd!'' />
 
 <@override name="style">
 <link rel="stylesheet" href="${ctx}/libs/zoomify/dist/zoomify.min.css">
@@ -83,7 +84,7 @@
         <div style="height: 20px;"></div>
 
             <#assign url="album/${album.albumId}"/>
-            <#assign params=""/>
+            <#assign params="pwd=${pwd}"/>
             <#if (page.list)?? && page.pages gt 1>
             <ul class="pagination">
                 <#if page.hasPreviousPage>
