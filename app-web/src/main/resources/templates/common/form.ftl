@@ -356,3 +356,44 @@ ${name}
 ${name}
 </a>
 </#macro>
+
+<#--视频选择框-->
+<#macro video_file label name="" id="" required=false size=104857600 remark="">
+    <#if id==''>
+        <#local id=func('uuid')/>
+    </#if>
+<div class="form-group <#if _isSearchForm??>col-lg-4 col-md-6 col-xs-12</#if>">
+    <div class="app-label nowrap <#if _isSearchForm??>col-md-5 col-xs-12<#else>col-md-3</#if>">
+        <label class="<#if required>required</#if>">${label}</label>
+    </div>
+    <div class="col-md-7 controls <#if _isSearchForm??>col-xs-12</#if>">
+        <input type="file" id="${id}" <#if name!=''>name="${name}"</#if>
+               <#if required>required</#if> class="ace ace-file-input"/>
+        <#if remark!=''>
+            <div style="font-size: 12px;color: #999;">${remark}</div>
+        </#if>
+    </div>
+
+    <script>
+        $(function () {
+            var $file = $('#${id}');
+            $file.ace_file_input({
+                style: 'well',
+                btn_choose: '点击这里添加视频',
+                btn_change: null,
+                no_icon: 'ace-icon fa fa-film',
+                droppable: false,
+                allowExt: ["rmvb", "avi", "mp4", "3gp", "wmv", "flv"],
+                maxSize: ${size},//bytes
+                thumbnail: 'fit'
+            });
+
+            $file.on('file.error.ace', function (event, info) {
+                if (info.error_count['size']) Message.warning('超出最大上传限制。');
+                if (info.error_count['ext'] || info.error_count['mime']) Message.warning('不合法的文件类型。');
+                event.preventDefault();
+            });
+        })
+    </script>
+</div>
+</#macro>

@@ -479,6 +479,35 @@ CREATE INDEX ix_album_id
 CREATE INDEX ix_sort
   ON tb_album_photo (sort);
 
+-- ----------------------------
+--  Table structure for tb_video
+-- ----------------------------
+DROP TABLE
+IF EXISTS tb_video;
+
+CREATE TABLE tb_video
+(
+  video_id     BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
+  COMMENT '视频ID',
+  user_id      BIGINT(20)                            NOT NULL
+  COMMENT '用户ID',
+  title        VARCHAR(64)                           NOT NULL
+  COMMENT '标题',
+  url          VARCHAR(256)                          NOT NULL                    DEFAULT ''
+  COMMENT '视频地址',
+  view_num     INT(11)                               NOT NULL                    DEFAULT 0
+  COMMENT '观看量',
+  is_deleted   TINYINT                               NOT NULL                    DEFAULT 0
+  COMMENT '逻辑删除',
+  created_time TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP
+  COMMENT '创建时间',
+  updated_time TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间'
+)
+  COMMENT '视频表';
+CREATE INDEX ix_user_id
+  ON tb_video (user_id);
+
 #====================初始数据====================#
 
 -- ----------------------------
@@ -524,7 +553,8 @@ VALUES
   ('SITES_NOVEL', '小说管理', 'SITES', 'dashboard/sites/novel', 0, ''),
   ('SITES_NOVEL_QUEUE', '小说队列', 'SITES', 'dashboard/sites/novelQueue', 1, ''),
   ('SITES_RECORD', '宝宝点滴', 'SITES', 'dashboard/sites/record', 2, ''),
-  ('SITES_ALBUM', '相册管理', 'SITES', 'dashboard/sites/album', 3, '');
+  ('SITES_ALBUM', '相册管理', 'SITES', 'dashboard/sites/album', 3, ''),
+  ('SITES_VIDEO', '视频管理', 'SITES', 'dashboard/sites/video', 4, '');
 
 -- ----------------------------
 --  data for tb_user_role
@@ -552,13 +582,15 @@ VALUES
 -- ----------------------------
 --  data for tb_dict
 -- ----------------------------
+TRUNCATE tb_category;
 INSERT INTO tb_category
 (category_type, parent_code, category_code, category_name, url, sort, is_blank)
 VALUES
   ('NAV_BAR', '', 'blog', '博客', 'https://blog.kangyonggan.com', 0, 1),
   ('NAV_BAR', '', 'novel', '小说', '/novel', 1, 0),
   ('NAV_BAR', '', 'album', '相册', '/album', 2, 0),
-  ('NAV_BAR', '', 'tool', '工具', '', 3, 0),
+  ('NAV_BAR', '', 'video', '视频', '/video', 3, 0),
+  ('NAV_BAR', '', 'tool', '工具', '', 4, 0),
   ('NAV_BAR', 'tool', 'idNoCheck', '身份证查询', '/tool/idNoCheck', 0, 0),
   ('NAV_BAR', 'tool', 'idNoGen', '生成身份证', '/tool/idNoGen', 1, 0),
   ('NAV_BAR', 'tool', 'codeFormat', '代码格式化', 'http://tool.oschina.net/codeformat', 2, 1),
