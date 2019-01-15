@@ -1,14 +1,21 @@
 package com.kangyonggan.app.controller.web;
 
+import com.kangyonggan.app.constants.DictType;
 import com.kangyonggan.app.constants.IdNoConstants;
 import com.kangyonggan.app.controller.BaseController;
+import com.kangyonggan.app.model.Dict;
+import com.kangyonggan.app.service.DictService;
 import com.kangyonggan.app.util.DestinyUtil;
+import com.kangyonggan.app.util.FileHelper;
 import com.kangyonggan.app.util.IdNoUtil;
+import com.kangyonggan.app.util.SealUtil;
 import com.kangyonggan.common.Response;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,6 +27,12 @@ import java.util.List;
 public class ToolController extends BaseController {
 
     private static final String PATH_ROOT = "web/tool";
+
+    @Autowired
+    private FileHelper fileHelper;
+
+    @Autowired
+    private DictService dictService;
 
     /**
      * 身份证查询界面
@@ -107,6 +120,42 @@ public class ToolController extends BaseController {
         List<String> idNos = IdNoUtil.genIdCard(prov, startAge, endAge, sex, len, size);
 
         response.put("idNos", idNos);
+        return response;
+    }
+
+    /**
+     * 电子印章
+     *
+     * @return
+     */
+    @GetMapping("seal")
+    public String seal() {
+        return "web/tool/seal";
+    }
+
+    /**
+     * 生成电子印章
+     *
+     * @param name
+     * @return
+     * @throws Exception
+     */
+    @PostMapping("seal")
+    @ResponseBody
+    public Response seal(@RequestParam("name") String name) throws Exception {
+        Response response = Response.getSuccessResponse();
+        List<Dict> dicts = dictService.findDictsByDictType(DictType.FONT.getCode());
+        List<String[]> result = new ArrayList<>();
+        for (Dict dict : dicts) {
+            String[] arr = new String[2];
+            String fileName = fileHelper.genFileName("seal") + ".png";
+            SealUtil.build(name, dict.getValue(), fileHelper.getFileUploadPath() + "seal/" + fileName);
+            arr[0] = "upload/seal/" + fileName;
+            arr[1] = dict.getValue();
+            result.add(arr);
+        }
+
+        response.put("result", result);
         return response;
     }
 

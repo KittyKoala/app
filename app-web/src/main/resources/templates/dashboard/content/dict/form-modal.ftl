@@ -51,7 +51,7 @@
         <#if isEdit>
             <@input name="dictId" label="字典ID" value="${dict.dictId}" readonly=true/>
         </#if>
-        <@selectEnum id="dictType" name="dictType" label="字典类型" enum_key="DictType" required=true empty=false/>
+        <@selectEnum id="dictType" name="dictType" value="${dict.dictType!''}" label="字典类型" enum_key="DictType" required=true empty=false/>
         <@input id="dictCode" name="dictCode" value="${dict.dictCode!''}" label="字典代码" required=true/>
         <@input name="value" label="字典的值" value="${dict.value!''}" required=true range_length=[1, 128]/>
         <@input name="sort" label="排序" value="${dict.sort!''}" placeholder="数字小的排在最上面" number=true/>

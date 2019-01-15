@@ -45,3 +45,8 @@ $.extend($.validator.addMethod("isMenuCode", function (value) {
     return str.test(value);
 }, "纯大写,可带下划线,不超过32位"));
 
+$.extend($.validator.addMethod("isName", function (value) {
+    var str = /^[\u4e00-\u9fa5]{2,4}$/;
+    return str.test(value);
+}, "请输入2~4个汉字"));
+

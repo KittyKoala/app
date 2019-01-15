@@ -15,7 +15,12 @@ public enum DictType {
     /**
      * 证件类型
      */
-    ID_TYPE("ID_TYPE", "证件类型");
+    ID_TYPE("ID_TYPE", "证件类型"),
+
+    /**
+     * 字体
+     */
+    FONT("FONT", "字体");
 
     /**
      * 类型代码

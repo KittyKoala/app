@@ -574,10 +574,17 @@ INSERT INTO tb_role_menu SELECT
 -- ----------------------------
 --  data for tb_dict
 -- ----------------------------
+TRUNCATE tb_dict;
 INSERT INTO tb_dict
 (dict_type, dict_code, value, sort)
 VALUES
-  ('ID_TYPE', '0', '身份证', 0);
+  ('ID_TYPE', '0', '身份证', 0),
+  ('FONT', '0', '宋体', 0),
+  ('FONT', '1', '印品篆遇简', 1),
+  ('FONT', '2', '毛泽东字体', 2),
+  ('FONT', '3', '繁篆书', 3),
+  ('FONT', '4', '幼圆', 4),
+  ('FONT', '5', '华文行楷', 5);
 
 -- ----------------------------
 --  data for tb_dict
@@ -589,14 +596,11 @@ VALUES
   ('NAV_BAR', '', 'blog', '博客', 'https://blog.kangyonggan.com', 0, 1),
   ('NAV_BAR', '', 'novel', '小说', '/novel', 1, 0),
   ('NAV_BAR', '', 'album', '相册', '/album', 2, 0),
-  ('NAV_BAR', '', 'video', '视频', '/video', 3, 0),
   ('NAV_BAR', '', 'tool', '工具', '', 4, 0),
-  ('NAV_BAR', 'tool', 'idNoCheck', '身份证查询', '/tool/idNoCheck', 0, 0),
-  ('NAV_BAR', 'tool', 'idNoGen', '生成身份证', '/tool/idNoGen', 1, 0),
-  ('NAV_BAR', 'tool', 'codeFormat', '代码格式化', 'http://tool.oschina.net/codeformat', 2, 1),
-  ('NAV_BAR', 'tool', 'compressor', '代码压缩', 'http://tool.oschina.net/jscompress', 3, 1),
-  ('NAV_BAR', 'tool', 'qrCode', '二维码工具', 'http://tool.oschina.net/qr', 4, 1),
-  ('NAV_BAR', 'tool', 'other', '其他工具', 'http://tool.oschina.net', 5, 1)
+  ('NAV_BAR', 'tool', 'idNo', '身份证', '', 0, 0),
+  ('NAV_BAR', 'idNo', 'idNoCheck', '身份证查询', '/tool/idNoCheck', 0, 0),
+  ('NAV_BAR', 'idNo', 'idNoGen', '生成身份证', '/tool/idNoGen', 1, 0),
+  ('NAV_BAR', 'tool', 'seal', '电子印章', '/tool/seal', 1, 0),
   ('NAV_BAR', '', 'game', '游戏', '', 5, 0),
   ('NAV_BAR', 'game', 'guessNum', '猜数字', '/game/guessNum', 0, 0);
 
