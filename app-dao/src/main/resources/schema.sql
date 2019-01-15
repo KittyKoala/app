@@ -596,7 +596,9 @@ VALUES
   ('NAV_BAR', 'tool', 'codeFormat', '代码格式化', 'http://tool.oschina.net/codeformat', 2, 1),
   ('NAV_BAR', 'tool', 'compressor', '代码压缩', 'http://tool.oschina.net/jscompress', 3, 1),
   ('NAV_BAR', 'tool', 'qrCode', '二维码工具', 'http://tool.oschina.net/qr', 4, 1),
-  ('NAV_BAR', 'tool', 'other', '其他工具', 'http://tool.oschina.net', 5, 1);
+  ('NAV_BAR', 'tool', 'other', '其他工具', 'http://tool.oschina.net', 5, 1)
+  ('NAV_BAR', '', 'game', '游戏', '', 5, 0),
+  ('NAV_BAR', 'game', 'guessNum', '猜数字', '/game/guessNum', 0, 0);
 
 INSERT INTO tb_novel
 (source, code, name, author, cover, summary)

@@ -125,6 +125,10 @@
         position: relative;
     }
 
+    .navbar .sec-menus li:last-child {
+        border-bottom: 0;
+    }
+
     .navbar .sec-menus li a {
         display: inline-block;
         height: 36px;
