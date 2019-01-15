@@ -55,6 +55,12 @@
         <div class="bottom">
             Copyright &copy; 2015-${.now?string('yyyy')}. <a href="http://www.miitbeian.gov.cn" target="_blank"
                                                               style="color: #ddd">皖ICP备18009089号</a>.
+            <a href="https://blog.kangyonggan.com/atom.xml" target="_blank" class="rss">
+                <i class="fa fa-rss"></i>
+            </a>
+            <a href="https://github.com/kangyonggan/" target="_blank" class="rss">
+                <i class="fa fa-github"></i>
+            </a>
         </div>
     </div>
 </div>
@@ -142,6 +148,13 @@
         width: 94px;
         line-height: 40px;
         color: #ddd;
+    }
+
+    .footer .rss {
+        font-size: 16px;
+        color: #fff;
+        float: right;
+        margin-right: 20px;
     }
 
     .toTop {
