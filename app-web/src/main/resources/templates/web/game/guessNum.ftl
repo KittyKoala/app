@@ -203,7 +203,9 @@
                 alert("游戏已经结束，请重新开局");
                 return;
             }
-            $("#guess-list").empty();
+            if (times === 8) {
+                $("#guess-list").empty();
+            }
             gameOver();
         });
 
