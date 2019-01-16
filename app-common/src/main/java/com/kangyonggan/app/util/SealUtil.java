@@ -24,7 +24,7 @@ public final class SealUtil {
     /**
      * 全部字体
      */
-    private static final Map<String, Font> fontMap = new HashMap<>();
+    private static final Map<String, Font> FONT_MAP = new HashMap<>();
 
     private SealUtil() {
     }
@@ -81,14 +81,14 @@ public final class SealUtil {
     }
 
     private static Font getFont(String fontName, int fontSize) {
-        Font font = fontMap.get(fontName);
+        Font font = FONT_MAP.get(fontName);
         if (font == null) {
             loadFont(fontName, fontSize);
-            font = fontMap.get(fontName);
+            font = FONT_MAP.get(fontName);
         }
 
         if (font == null) {
-            font = new Font("宋体", Font.PLAIN, fontSize);
+            font = new Font("Default", Font.PLAIN, fontSize);
         }
 
         return font;
@@ -99,14 +99,10 @@ public final class SealUtil {
             InputStream in = SealUtil.class.getResourceAsStream("/font/" + fontName + ".ttf");
             Font dynamicFont = Font.createFont(Font.TRUETYPE_FONT, in);
             in.close();
-            fontMap.put(fontName, dynamicFont.deriveFont(fontSize * 1.0f));
+            FONT_MAP.put(fontName, dynamicFont.deriveFont(fontSize * 1.0f));
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public static void main(String[] args) throws Exception {
-        build("康永敢", "华文行楷", "/Users/kyg/Desktop/demo.png");
     }
 
 }
