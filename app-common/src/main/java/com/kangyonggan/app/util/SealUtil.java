@@ -71,7 +71,11 @@ public final class SealUtil {
         BufferedImage image = ImageIO.read(SealUtil.class.getResourceAsStream("/images/border.png"));
         Graphics2D graphics2D = image.createGraphics();
         graphics2D.setColor(new Color(230, 0, 18));
-        graphics2D.setFont(getFont(fontName, fontSize));
+        Font font = getFont(fontName, fontSize);
+        if (font == null) {
+            throw new IllegalArgumentException("字体库不存在");
+        }
+        graphics2D.setFont(font);
         graphics2D.drawString(name.substring(0, 1), x + fontSize, y);
         graphics2D.drawString(name.substring(1, 2), x + fontSize, y + fontSize);
         graphics2D.drawString(name.substring(2, 3), x, y);
@@ -87,10 +91,6 @@ public final class SealUtil {
             font = FONT_MAP.get(fontName);
         }
 
-        if (font == null) {
-            font = new Font("Default", Font.PLAIN, fontSize);
-        }
-
         return font;
     }
 
@@ -103,6 +103,10 @@ public final class SealUtil {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) throws Exception {
+        build("康永敢", "行书", "/Users/kyg/Desktop/demo.png");
     }
 
 }
