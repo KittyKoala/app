@@ -579,7 +579,7 @@ INSERT INTO tb_dict
 (dict_type, dict_code, value, sort)
 VALUES
   ('ID_TYPE', '0', '身份证', 0),
-  ('FONT', '0', 'Default', 0),
+  ('FONT', '0', '行书', 0),
   ('FONT', '1', '印品篆遇简', 1),
   ('FONT', '2', '毛泽东字体', 2),
   ('FONT', '3', '繁篆书', 3),
