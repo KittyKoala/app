@@ -601,6 +601,7 @@ VALUES
   ('NAV_BAR', 'idNo', 'idNoCheck', '身份证查询', '/tool/idNoCheck', 0, 0),
   ('NAV_BAR', 'idNo', 'idNoGen', '生成身份证', '/tool/idNoGen', 1, 0),
   ('NAV_BAR', 'tool', 'seal', '电子印章', '/tool/seal', 1, 0),
+  ('NAV_BAR', 'tool', 'gif', '生成GIF', '/tool/gif', 2, 0),
   ('NAV_BAR', '', 'game', '游戏', '', 5, 0),
   ('NAV_BAR', 'game', 'guessNum', '猜数字', '/game/guessNum', 0, 0);
 
