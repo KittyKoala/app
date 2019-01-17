@@ -1,5 +1,4 @@
 <#assign title="生成GIF"/>
-<#include "../../common/web-form.ftl"/>
 
 <@override name="style">
 <style>
@@ -7,9 +6,12 @@
         background: #fff;
         border: 1px solid #aaa;
         color: #333;
-        width: 195px;
+    }
+
+    .imgText {
+        width: 195px !important;
         position: absolute !important;
-        bottom: 0px;
+        bottom: 0;
         left: 0;
     }
 
@@ -108,6 +110,21 @@
     #result {
         margin: 20px;
     }
+
+    .num {
+        width: 60px;
+        height: 30px;
+        line-height: pxpx;
+        box-sizing: border-box;
+        outline: none;
+        font-size: 14px;
+        padding: 2px 5px;
+        margin-right: 10px;
+        margin-top: 5px;
+        background: #fff;
+        border: 1px solid #aaa;
+        color: #333;
+    }
 </style>
 </@override>
 
@@ -125,7 +142,7 @@
                     <div class="file-label" data-type="changeImg">第1帧</div>
                     <div class="text black" data-type="changeImg"></div>
                     <input type="file" data-index="0" class="hidden" data-type="frameImg"/>
-                    <input type="text" data-index="0" placeholder="给这张图配段文字吧" data-type="frameText"/>
+                    <input type="text" class="imgText" data-index="0" placeholder="给这张图配段文字吧" data-type="frameText"/>
                     <a class="font-color" data-index="0" data-type="frameColor" title="切换配字颜色"></a>
                 </div>
             </div>
@@ -134,6 +151,7 @@
             </div>
             <div class="clear"></div>
             <div>
+                GIF宽：<input type="number" class="num" id="imgWidth" value="400"/> GIF高：<input type="number" class="num" id="imgHeight" value="300"/>
                 <button class="btn" id="submit" data-loading-text="正在生成...">
                     <i class="fa fa-cloud-download"></i>
                     生成GIF
@@ -144,7 +162,7 @@
                 </button>
             </div>
 
-            <canvas class="hidden" width="400" height="300" id="canvas"></canvas>
+            <canvas class="hidden" id="canvas"></canvas>
 
             <img src="" id="result">
         </div>
@@ -260,7 +278,7 @@
                     '                    <div class="file-label" data-type="changeImg">第' + total + '帧</div>\n' +
                     '                    <div class="text black" data-type="changeImg"></div>\n' +
                     '                    <input type="file" data-index="' + (total - 1) + '" class="hidden" data-type="frameImg"/>\n' +
-                    '                    <input type="text" data-index="' + (total - 1) + '" placeholder="给这张图配段文字吧" data-type="frameText"/>\n' +
+                    '                    <input type="text" class="imgText" data-index="' + (total - 1) + '" placeholder="给这张图配段文字吧" data-type="frameText"/>\n' +
                     '                    <a class="font-color" data-index="' + (total - 1) + '" data-type="frameColor" title="切换配字颜色"></a>\n' +
                     '                </div>');
         });
@@ -273,6 +291,23 @@
          * 开始生成
          */
         $("#submit").click(function () {
+            var imgWidth = $("#imgWidth").val();
+            var imgHeight = $("#imgHeight").val();
+
+            if (imgHeight < 100 || imgWidth < 100) {
+                alert("GIF宽度/高度不得小于100");
+                return;
+            }
+
+            if (imgHeight > 1000 || imgWidth > 1000) {
+                alert("GIF宽度/高度不得大于1000");
+                return;
+            }
+
+            var $btn = $(this);
+
+            $btn.button('loading');
+
             var tempTotal = 0;
             for (var i = 0; i < data.imgList.length; i++) {
                 if (data.imgList[i]) {
@@ -281,6 +316,18 @@
                     tempData.textList[tempTotal++] = data.textList[i];
                 }
             }
+
+            if (tempTotal === 0) {
+                alert("请选择图片");
+                $btn.button('reset');
+                return;
+            }
+
+            // 设置大小
+            $("#result").css({
+                "width": imgWidth + "px",
+                "height": imgHeight + "px"
+            });
 
             gif = new GIF({
                 workers: total,
@@ -308,6 +355,8 @@
                     }
                 }
             }
+
+            $btn.button('reset');
         });
 
         /**
