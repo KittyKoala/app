@@ -159,4 +159,14 @@ public class ToolController extends BaseController {
         return response;
     }
 
+    /**
+     * 生成GIF界面
+     *
+     * @return
+     */
+    @GetMapping("gif")
+    public String gif() {
+        return PATH_ROOT + "/gif";
+    }
+
 }
