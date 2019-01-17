@@ -151,7 +151,7 @@
             </div>
             <div class="clear"></div>
             <div>
-                GIF宽：<input type="number" class="num" id="imgWidth" value="400"/> GIF高：<input type="number" class="num" id="imgHeight" value="300"/>
+                GIF宽：<input type="number" class="num" id="imgWidth" value="230"/> GIF高：<input type="number" class="num" id="imgHeight" value="160"/>
                 <button class="btn" id="submit" data-loading-text="正在生成...">
                     <i class="fa fa-cloud-download"></i>
                     生成GIF
@@ -328,6 +328,8 @@
                 "width": imgWidth + "px",
                 "height": imgHeight + "px"
             });
+            $("#canvas").attr("width", imgWidth);
+            $("#canvas").attr("height", imgHeight);
 
             gif = new GIF({
                 workers: total,
@@ -370,11 +372,14 @@
                 ctx.drawImage(imgObjList[i], 0, 0, canvas.width, canvas.height);
 
                 var title = tempData.textList[i];
+
                 if (title) {
-                    ctx.font = "22px 黑体";
+                    var imgWidth = $("#imgWidth").val();
+                    var imgHeight = $("#imgHeight").val();
+                    ctx.font = "14px 宋体";
                     ctx.fillStyle = tempData.colorList[i];
                     ctx.textAlign = "center";
-                    ctx.fillText(title, 200, 270);
+                    ctx.fillText(title, imgWidth / 2, imgHeight - 10);
                 }
 
                 ctx.restore();
