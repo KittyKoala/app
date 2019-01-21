@@ -4,14 +4,15 @@
         <#local id=func('uuid')/>
     </#if>
     <#assign _isSearchForm=true/>
-<form class="form-horizontal col-xs-12 fa-border radius-base" id="${id}" enctype="multipart/form-data">
+<form class="form-horizontal col-xs-12 fa-border radius-base" id="${id}" enctype="multipart/form-data"
+      xmlns="http://www.w3.org/1999/html">
     <div class="space-10"></div>
     <#nested />
 </form>
 </#macro>
 
 <#--普通表单-->
-<#macro form action id="" method="post" table_id="" token=false beforeSubmit="" valid_ignore="" rules="">
+<#macro form action id="" method="post" table_id="" token=false beforeSubmit="" valid_ignore="" rules="" success="">
     <#if id==''>
         <#local id=func('uuid')/>
     </#if>
@@ -25,8 +26,8 @@
 <script>
     $(function () {
         var $modal = $('.modal');
-        var $form = $modal.find("form");
-        var $btn = $modal.find("button[data-type=submit]");
+        var $form = $("#${id}");
+        var $btn = $form.find("button[data-type=submit]");
 
         $form.validate({
             <#if valid_ignore!=''>
@@ -43,10 +44,15 @@
                 </#if>
 
                 $btn.button('loading');
-                formSubmit($(form), $btn, function () {
-                    $modal.modal('hide');
+                formSubmit($(form), $btn, function (response) {
+                    if ($modal) {
+                        $modal.modal('hide');
+                    }
                     <#if table_id!=''>
+                        Message.success(response.respMsg);
                         $('#${table_id}').bootstrapTable("refresh");
+                    <#elseif success!=''>
+                        eval('${success}(response)');
                     <#else>
                         window.location.reload();
                     </#if>
@@ -395,5 +401,36 @@ ${name}
             });
         })
     </script>
+</div>
+</#macro>
+
+<#macro textarea name label id="" rows=8 value="" placeholder="" min_length=-1 max_length=-1 validator="" range_length=[] readonly=false required=false>
+    <#if id==''>
+        <#local id=func('uuid')/>
+    </#if>
+
+<div class="form-group <#if _isSearchForm??>col-lg-4 col-md-6 col-xs-12</#if>">
+    <div class="app-label nowrap <#if _isSearchForm??>col-md-5 col-xs-12<#else>col-md-3</#if>">
+        <label class="<#if required>required</#if>">${label}</label>
+    </div>
+    <div class="col-md-7 controls <#if _isSearchForm??>col-xs-12</#if>">
+    <textarea id="${id}" <#if name!=''>name="${name}"</#if> class="form-control"
+           <#if readonly>readonly</#if>
+           placeholder="${(placeholder=='')?string('请输入${label}', placeholder)}" <#if required>required</#if>
+        <#if min_length!=-1>
+           minlength="${min_length}"
+        </#if>
+        <#if max_length!=-1>
+           maxlength="${max_length}"
+        </#if>
+        <#if validator!=''>
+        ${validator}="true"
+        </#if>
+        <#if range_length?size gt 1>
+            rangelength="[${range_length[0]}, ${range_length[1]}]"
+        </#if>
+        rows=${rows}
+        >${value}</textarea>
+    </div>
 </div>
 </#macro>

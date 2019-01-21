@@ -548,6 +548,7 @@ VALUES
   ('CONTENT', '内容', '', '', 2, 'menu-icon fa fa-folder-open-o'),
   ('CONTENT_DICT', '字典管理', 'CONTENT', 'dashboard/content/dict', 0, ''),
   ('CONTENT_CATEGORY', '栏目管理', 'CONTENT', 'dashboard/content/category', 1, ''),
+  ('CONTENT_SQL', '运行脚本', 'CONTENT', 'dashboard/content/sql', 2, ''),
 
   ('SITES', '网站', '', '', 3, 'menu-icon fa fa-globe'),
   ('SITES_NOVEL', '小说管理', 'SITES', 'dashboard/sites/novel', 0, ''),
