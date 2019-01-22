@@ -27,7 +27,12 @@
     $(function () {
         var $modal = $('.modal');
         var $form = $("#${id}");
-        var $btn = $form.find("button[data-type=submit]");
+        var $btn;
+        if ($modal) {
+            $btn = $modal.find("button[data-type=submit]");
+        } else {
+            $btn = $form.find("button[data-type=submit]");
+        }
 
         $form.validate({
             <#if valid_ignore!=''>
