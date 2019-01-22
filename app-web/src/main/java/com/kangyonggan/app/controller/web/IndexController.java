@@ -24,4 +24,14 @@ public class IndexController {
         return "web/index";
     }
 
+    /**
+     * wap首页
+     *
+     * @return
+     */
+    @GetMapping("wap")
+    public String wap() {
+        return "web/wap";
+    }
+
 }

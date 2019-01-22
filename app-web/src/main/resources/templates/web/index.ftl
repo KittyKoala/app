@@ -1,5 +1,5 @@
 <@override name="main">
-    <@panel bg_img="/app/images/index.jpg" style="height:550px;">
+    <@panel style="background: #000 url('${ctx}/app/images/index.jpg');background-size: cover;">
     </@panel>
 </@override>
 

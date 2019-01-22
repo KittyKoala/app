@@ -2,7 +2,7 @@
 <#include "../../common/auth-form.ftl"/>
 
 <@override name="main">
-    <@panel bg_img="/app/images/bg.jpg">
+    <@panel style="background: #000 url('${ctx}/app/images/bg.jpg')">
         <@form action="${ctx}/forgot" class="forgot-form" success="success">
             <@input type="email" label="电子邮箱" id="email" name="email" required=true/>
             <@input label="邮箱验证码" name="code" required=true>
