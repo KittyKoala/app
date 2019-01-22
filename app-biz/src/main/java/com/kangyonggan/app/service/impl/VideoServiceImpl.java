@@ -101,7 +101,15 @@ public class VideoServiceImpl extends BaseService<Video> implements VideoService
 
         example.setOrderByClause("video_id DESC");
 
-        PageHelper.startPage(pageNum, 4);
+        PageHelper.startPage(pageNum, 6);
         return myMapper.selectByExample(example);
+    }
+
+    @Override
+    public Video findVideoById(Long id) {
+        Video video = new Video();
+        video.setVideoId(id);
+        video.setIsDeleted(YesNo.NO.getCode());
+        return myMapper.selectOne(video);
     }
 }

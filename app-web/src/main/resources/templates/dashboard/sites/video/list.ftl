@@ -16,6 +16,9 @@
         <@th field="videoId" title="视频ID" auto_hide=true/>
         <@th field="userId" title="用户ID" auto_hide=true/>
         <@th field="title" title="标题"/>
+        <@th field="cover" title="封面" sortable=true render=true>
+        <a href="${ctx}/{{value}}" target="_blank">查看</a>
+        </@th>
         <@th field="viewNum" title="查看量" auto_hide=true/>
         <@thYesNo field="isDeleted" title="逻辑删除" auto_hide=true/>
         <@thDatetime field="createdTime" title="创建时间" auto_hide=true/>

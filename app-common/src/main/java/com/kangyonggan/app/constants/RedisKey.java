@@ -15,4 +15,9 @@ public interface RedisKey {
      * filename
      */
     String KEY_FILE_NAME = "APP:FILENAME";
+
+    /**
+     * 视频阅读标识
+     */
+    String KEY_VIDEO_READ = "APP:VIDEO:";
 }

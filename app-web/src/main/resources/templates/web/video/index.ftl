@@ -2,7 +2,7 @@
 
 <@override name="style">
 <style>
-    .video-list, .video-list li {
+    .video-list, .video-list dl, .video-list dt, .video-list dd {
         margin: 0;
         padding: 0;
     }
@@ -13,30 +13,66 @@
 
     .video-list li {
         float: left;
+        width: 330px;
+        margin-top: 10px;
+        margin-right: 5px;
+        border: 1px solid #d2d2d2;
+        text-align: center;
+    }
+
+    .video-list li dl dd {
+        width: 300px;
+        height: 200px;
+        margin: 0 auto;
+        margin-top: 10px;
+        overflow: hidden;
         position: relative;
     }
 
-    .video-list li video {
-        width: 500px;
-        height: 287px;
-        margin-left: 6px;
-        margin-bottom: 10px;
+    .video-list li dl dd a {
+        display: inline-block;
+        width: 300px;
+        height: 200px;
+        background-position: center;
+        background-size: cover;
     }
 
-    .video-list li .title {
+    .video-list .size {
         position: absolute;
-        left: 10px;
-        bottom: 16px;
-        font-size: 12px;
-        color: rgba(255, 255, 255, 0.7);
-    }
-
-    .video-list li .date {
-        position: absolute;
+        bottom: 10px;
         right: 10px;
-        bottom: 16px;
-        font-size: 12px;
-        color: rgba(255, 255, 255, 0.7);
+        color: #fff;
+        font-size: 30px;
+    }
+
+    .video-list li dl dt {
+        margin-top: 3px;
+        margin-bottom: 5px;
+        color: #595959;
+        line-height: 22px;
+        text-align: left;
+        margin-left: 13px;
+    }
+
+    .video-list li dl dt span {
+        color: #999;
+        font-size: 13px;
+        margin-right: 13px;
+        float: right;
+    }
+
+    .video-list img {
+        width: 300px;
+        margin: auto;
+    }
+
+    .video-list .title {
+        float: left;
+        width: 215px;
+        height: 25px;
+        overflow: hidden;
+        text-overflow:ellipsis;
+        white-space: nowrap;
     }
 
     .empty {
@@ -55,20 +91,22 @@
         <#if page.list?size gt 0>
         <ul class="video-list border">
             <#list page.list as video>
-                <li>
-                    <video controls="controls">
-                        <source src="${ctx}/${video.url}" type="video/ogg">
-                        <source src="${ctx}/${video.url}" type="video/mp4">
-                        您的浏览器不支持播放此视频
-                    </video>
-                    <div class="title">${video.title}</div>
-                    <div class="date">${video.createdTime?date}</div>
-                    <div class="clear"></div>
+                <li title="${video.title}">
+                    <dl>
+                        <dd>
+                            <a href="${ctx}/video/${video.videoId}"
+                               style="background-image: url('${ctx}/${video.cover}')"></a>
+                            <div class="size">${video.viewNum}</div>
+                        </dd>
+                        <dt>
+                            <div class="title">${video.title}</div>
+                            <span class="pull-right">${video.createdTime?date}</span>
+                        </dt>
+                    </dl>
                 </li>
             </#list>
             <div class="clear"></div>
         </ul>
-
 
         <div style="height: 20px;"></div>
 

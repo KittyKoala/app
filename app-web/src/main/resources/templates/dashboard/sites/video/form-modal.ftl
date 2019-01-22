@@ -9,7 +9,8 @@
             <@input label="用户ID" value="${video.userId!''}" readonly=true/>
         </#if>
         <@input name="title" label="标题" value="${video.title!''}" required=true range_length=[1, 64]/>
-        <@video_file name="file" label="视频" required=true remark="视频大小不能超过100MB。"/>
+        <@file name="file" label="封面" required=true remark="请上传png、gif、jpg、jpeg格式的图片文件，文件大小不能超过2MB。建议上传一张 300*200 像素或等比例的图片。"/>
+        <@input name="content" label="视频代码" value="${video.content!''}" required=true range_length=[1, 512]/>
     </@form>
 </@override>
 

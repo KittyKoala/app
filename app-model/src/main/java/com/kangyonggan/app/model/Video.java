@@ -34,9 +34,14 @@ public class Video implements Serializable {
     private String title;
 
     /**
-     * 视频地址
+     * 视频封面
      */
-    private String url;
+    private String cover;
+
+    /**
+     * 视频代码
+     */
+    private String content;
 
     /**
      * 观看量

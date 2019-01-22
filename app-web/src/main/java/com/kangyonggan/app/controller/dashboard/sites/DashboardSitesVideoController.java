@@ -86,8 +86,13 @@ public class DashboardSitesVideoController extends BaseController {
         if (file != null && !file.isEmpty()) {
             String fileName = fileHelper.genFileName("video");
             FileUpload.upload(fileHelper.getFileUploadPath() + "video/", fileName, file);
-            video.setUrl("upload/video/" + fileName + "." + FilenameUtils.getExtension(file.getOriginalFilename()));
+            video.setCover("upload/video/" + fileName + "." + FilenameUtils.getExtension(file.getOriginalFilename()));
         }
+
+        // 允许全屏
+        video.setContent(video.getContent().replace("'allowfullscreen'", "allowfullscreen"));
+        // http转https
+        video.setContent(video.getContent().replace("http://", "https://"));
 
         video.setUserId(currentUserId());
         videoService.saveVideo(video);
@@ -125,8 +130,14 @@ public class DashboardSitesVideoController extends BaseController {
         if (file != null && !file.isEmpty()) {
             String fileName = fileHelper.genFileName("video");
             FileUpload.upload(fileHelper.getFileUploadPath() + "video/", fileName, file);
-            video.setUrl("upload/video/" + fileName + "." + FilenameUtils.getExtension(file.getOriginalFilename()));
+            video.setCover("upload/video/" + fileName + "." + FilenameUtils.getExtension(file.getOriginalFilename()));
         }
+
+        // 允许全屏
+        video.setContent(video.getContent().replace("'allowfullscreen'", "allowfullscreen"));
+        // http转https
+        video.setContent(video.getContent().replace("http://", "https://"));
+
         videoService.updateVideo(video);
         return Response.getSuccessResponse();
     }

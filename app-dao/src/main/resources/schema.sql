@@ -493,8 +493,10 @@ CREATE TABLE tb_video
   COMMENT '用户ID',
   title        VARCHAR(64)                           NOT NULL
   COMMENT '标题',
-  url          VARCHAR(256)                          NOT NULL                    DEFAULT ''
-  COMMENT '视频地址',
+  cover        VARCHAR(128)                          NOT NULL
+  COMMENT '视频封面',
+  content      VARCHAR(512)                          NOT NULL
+  COMMENT '视频代码',
   view_num     INT(11)                               NOT NULL                    DEFAULT 0
   COMMENT '观看量',
   is_deleted   TINYINT                               NOT NULL                    DEFAULT 0
@@ -597,6 +599,7 @@ VALUES
   ('NAV_BAR', '', 'blog', '博客', 'https://blog.kangyonggan.com', 0, 1),
   ('NAV_BAR', '', 'novel', '小说', '/novel', 1, 0),
   ('NAV_BAR', '', 'album', '相册', '/album', 2, 0),
+  ('NAV_BAR', '', 'video', '视频', '/video', 3, 0),
   ('NAV_BAR', '', 'tool', '工具', '', 4, 0),
   ('NAV_BAR', 'tool', 'idNo', '身份证', '', 0, 0),
   ('NAV_BAR', 'idNo', 'idNoCheck', '身份证查询', '/tool/idNoCheck', 0, 0),

@@ -63,4 +63,11 @@ public interface VideoService {
      */
     List<Video> findAllVideo(int pageNum);
 
+    /**
+     * 查找视频
+     *
+     * @param id
+     * @return
+     */
+    Video findVideoById(Long id);
 }
