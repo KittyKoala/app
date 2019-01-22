@@ -20,9 +20,9 @@
             <li data-pathname="login">
                 <a href="${ctx}/login">登录</a>
             </li>
-            <li data-pathname="register">
-                <a href="${ctx}/register">注册</a>
-            </li>
+            <#--<li data-pathname="register">-->
+                <#--<a href="${ctx}/register">注册</a>-->
+            <#--</li>-->
         </ul>
     </@app.guest>
     <@app.user>

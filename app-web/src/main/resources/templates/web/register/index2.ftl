@@ -3,7 +3,21 @@
 
 <@override name="main">
     <@panel style="background: #000 url('${ctx}/app/images/bg.jpg')">
-        <div style="text-align: right;font: 30px;color: #f5f5f5;padding-top: 100px;">暂不开放注册</div>
+        <@form action="${ctx}/register" class="register-form" success="success">
+            <@input type="email" label="电子邮箱" id="email" name="email" placeholder="可用于登录找回密码和接收通知" remote="${ctx}/api/validate/email" required=true/>
+            <@input label="邮箱验证码" name="code" required=true>
+            <button id="sendBtn" class="btn" data-loading-text="正在发送...">
+                获取
+            </button>
+            </@input>
+            <@input label="密码" id="password" name="password" type="password" validator="isPassword" required=true/>
+            <@input label="确认密码" name="rePassword" type="password" equal_to="#password" required=true/>
+
+            <@actions>
+                <@button name="注册" type="submit" icon="fa-users"/>
+                <@button name="重置" type="reset" icon="fa-undo"/>
+            </@actions>
+        </@form>
     </@panel>
 </@override>
 
