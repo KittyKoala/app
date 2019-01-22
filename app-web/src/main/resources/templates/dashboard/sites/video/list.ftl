@@ -15,7 +15,11 @@
     <@table id="table" url="${_baseUrl}/list" form_id="form" checkbox=true>
         <@th field="videoId" title="视频ID" auto_hide=true/>
         <@th field="userId" title="用户ID" auto_hide=true/>
-        <@th field="title" title="标题"/>
+        <@th field="title" title="标题" render=true>
+        <a href="${ctx}/video/{{row.videoId}}" target="_blank">
+            {{value}}
+        </a>
+        </@th>
         <@th field="cover" title="封面" sortable=true render=true>
         <a href="${ctx}/{{value}}" target="_blank">查看</a>
         </@th>
