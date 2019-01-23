@@ -18,7 +18,11 @@
         <@th field="userId" title="用户ID"/>
         <@th field="albumName" title="相册名称"/>
         <@th field="cover" title="封面" render=true auto_hide=true>
+        {{if startWith(value, "http")}}
+        <a href="{{value}}" target="_blank">查看</a>
+        {{else}}
         <a href="${ctx}/{{value}}" target="_blank">查看</a>
+        {{/if}}
         </@th>
         <@th field="password" title="密码"/>
         <@th field="size" title="大小"/>

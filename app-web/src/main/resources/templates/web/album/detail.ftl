@@ -66,10 +66,16 @@
         <#if page.list?size gt 0>
         <ul class="album-list border">
             <#list page.list as photo>
+
+                <#if photo.url?starts_with('http')>
+                    <#assign bg_img=photo.url/>
+                <#else>
+                    <#assign bg_img=ctx + photo.url/>
+                </#if>
                 <li>
                     <dl>
                         <dd>
-                            <div style="background-image: url('${ctx}/${photo.url}')">
+                            <div style="background-image: url('${bg_img}')">
                             </div>
                         </dd>
                         <dt>

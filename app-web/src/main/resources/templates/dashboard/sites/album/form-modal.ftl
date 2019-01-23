@@ -12,6 +12,7 @@
         <@input name="password" label="密码" value="${album.password!''}" required=false range_length=[6, 6]/>
         <@input name="sort" label="排序" value="${album.sort!''}" placeholder="数字小的排在最上面" number=true/>
         <@file name="file" label="封面" required=true remark="请上传png、gif、jpg、jpeg格式的图片文件，文件大小不能超过2MB。建议上传一张 300*200 像素或等比例的图片。"/>
+        <@input name="cover" label="封面地址" value="${album.cover!''}" range_length=[1, 256]/>
     </@form>
 </@override>
 

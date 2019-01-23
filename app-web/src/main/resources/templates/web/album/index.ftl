@@ -82,11 +82,16 @@
         <#if albums?size gt 0>
         <ul class="album-list border">
             <#list albums as album>
+                <#if album.cover?starts_with('http')>
+                    <#assign bg_img=album.cover/>
+                <#else>
+                    <#assign bg_img=ctx + album.cover/>
+                </#if>
                 <li>
                     <dl>
                         <dd>
                             <a href="${ctx}/album/${album.albumId}" data-pwd="${(album.password!='')?c}"
-                               style="background-image: url('${ctx}/${album.cover}')"></a>
+                               style="background-image: url('${bg_img}"></a>
                             <div class="size">${album.size}</div>
                         </dd>
                         <dt>

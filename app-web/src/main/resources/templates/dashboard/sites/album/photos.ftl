@@ -16,7 +16,11 @@
         <@th field="photoId" title="照片ID" auto_hide=true/>
         <@th field="description" title="描述"/>
         <@th field="url" title="照片" render=true auto_hide=true>
+        {{if startWith(value, "http")}}
+        <a href="{{value}}" target="_blank">查看</a>
+        {{else}}
         <a href="${ctx}/{{value}}" target="_blank">查看</a>
+        {{/if}}
         </@th>
         <@th field="sort" title="排序" auto_hide=true/>
         <@thYesNo field="isDeleted" title="逻辑删除" auto_hide=true/>

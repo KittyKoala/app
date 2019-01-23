@@ -70,6 +70,13 @@ $(function () {
     });
 
     /**
+     * 是否以某字符串开头
+     */
+    template.helper('startWith', function (data, str) {
+        return data.indexOf(str) === 0;
+    });
+
+    /**
      * art长度限定
      */
     template.helper('limit', function (str, len) {
