@@ -70,7 +70,7 @@
                 <#if photo.url?starts_with('http')>
                     <#assign bg_img=photo.url/>
                 <#else>
-                    <#assign bg_img=ctx + photo.url/>
+                    <#assign bg_img=ctx + "/" + photo.url/>
                 </#if>
                 <li>
                     <dl>

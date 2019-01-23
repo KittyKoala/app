@@ -85,7 +85,7 @@
                 <#if album.cover?starts_with('http')>
                     <#assign bg_img=album.cover/>
                 <#else>
-                    <#assign bg_img=ctx + album.cover/>
+                    <#assign bg_img=ctx + "/" + album.cover/>
                 </#if>
                 <li>
                     <dl>

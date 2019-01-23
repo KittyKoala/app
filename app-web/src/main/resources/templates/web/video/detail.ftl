@@ -1,5 +1,11 @@
 <#assign title="${video.title}"/>
 
+<#if video.cover?starts_with('http')>
+    <#assign bg_img=video.cover/>
+<#else>
+    <#assign bg_img="https://kangyonggan.com/" + video.cover/>
+</#if>
+
 <@override name="style">
 <style>
     .video {
@@ -50,7 +56,7 @@
         "bdUrl": "https://kangyonggan.com/video/${video.videoId}",
         "bdMini": "2",
         "bdMiniList": false,
-        "bdPic": "https://kangyonggan.com/${video.cover}",
+        "bdPic": "${bg_img}",
         "bdStyle": "0",
         "bdSize": "16"
     }, "slide": {"type": "slide", "bdImg": "5", "bdPos": "right", "bdTop": "200"}

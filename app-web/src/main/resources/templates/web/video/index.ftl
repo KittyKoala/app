@@ -94,7 +94,7 @@
                 <#if video.cover?starts_with('http')>
                     <#assign bg_img=video.cover/>
                 <#else>
-                    <#assign bg_img=ctx + video.cover/>
+                    <#assign bg_img=ctx + "/" + video.cover/>
                 </#if>
                 <li title="${video.title}">
                     <dl>
