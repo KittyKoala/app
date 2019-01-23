@@ -42,6 +42,20 @@
 </@override>
 
 <@override name="script">
+<script>window._bd_share_config = {
+    "common": {
+        "bdSnsKey": {},
+        "bdText": "${video.title}",
+        "bdDesc": "不用怀疑，我就是你要找的人！点开看看吧...",
+        "bdUrl": "https://kangyonggan.com/video/${video.videoId}",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": "https://kangyonggan.com/${video.cover}",
+        "bdStyle": "0",
+        "bdSize": "16"
+    }, "slide": {"type": "slide", "bdImg": "5", "bdPos": "right", "bdTop": "200"}
+};
+with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
 </@override>
 
 <@extends name="../layout.ftl"/>
