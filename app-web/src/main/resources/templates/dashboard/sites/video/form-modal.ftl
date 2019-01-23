@@ -10,6 +10,7 @@
         </#if>
         <@input name="title" label="标题" value="${video.title!''}" required=true range_length=[1, 64]/>
         <@file name="file" label="封面" required=true remark="请上传png、gif、jpg、jpeg格式的图片文件，文件大小不能超过2MB。建议上传一张 300*200 像素或等比例的图片。"/>
+        <@input name="cover" label="封面地址" value="${video.cover!''}" range_length=[1, 256]/>
         <@input name="content" label="视频代码" value="${(video.content!'')?html}" required=true range_length=[1, 512]/>
     </@form>
 </@override>

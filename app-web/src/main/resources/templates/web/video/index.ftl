@@ -91,11 +91,16 @@
         <#if page.list?size gt 0>
         <ul class="video-list border">
             <#list page.list as video>
+                <#if video.cover?starts_with('http')>
+                    <#assign bg_img=video.cover/>
+                <#else>
+                    <#assign bg_img=ctx + video.cover/>
+                </#if>
                 <li title="${video.title}">
                     <dl>
                         <dd>
                             <a href="${ctx}/video/${video.videoId}"
-                               style="background-image: url('${ctx}/${video.cover}')"></a>
+                               style="background-image: url('${bg_img}')"></a>
                             <div class="size">${video.viewNum}</div>
                         </dd>
                         <dt>

@@ -21,7 +21,11 @@
         </a>
         </@th>
         <@th field="cover" title="封面" sortable=true render=true>
+        {{if startWith(value, "http")}}
+        <a href="{{value}}" target="_blank">查看</a>
+        {{else}}
         <a href="${ctx}/{{value}}" target="_blank">查看</a>
+        {{/if}}
         </@th>
         <@th field="viewNum" title="查看量" auto_hide=true/>
         <@thYesNo field="isDeleted" title="逻辑删除" auto_hide=true/>
