@@ -174,6 +174,6 @@ public class DashboardSitesVideoController extends BaseController {
         }
         String fileName = fileHelper.genFileName("video");
         FileUpload.upload(fileHelper.getFileUploadPath() + "video/", fileName, file);
-        video.setCover("upload/video/" + fileName + FilenameUtils.getExtension(file.getOriginalFilename()));
+        video.setCover("upload/video/" + fileName + "." + FilenameUtils.getExtension(file.getOriginalFilename()));
     }
 }
