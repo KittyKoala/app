@@ -11,7 +11,10 @@ import java.io.FileOutputStream;
  * @author kangyonggan
  * @date 6/23/17
  */
-public class Images {
+public final class Images {
+
+    private Images() {
+    }
 
     /**
      * 生成缩略图。
