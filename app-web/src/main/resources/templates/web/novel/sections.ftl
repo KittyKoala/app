@@ -145,13 +145,32 @@
 
         <div class="section-list border">
             <div class="header">
+                《${novel.name}》最新章节
+                <#if !novelQueue?? || novelQueue.status=='Y'>
+                    <a class="pull-right pull-btn" href="${ctx}/novel/${novel.novelId}/pull" data-loading-text="更新中">
+                        更新
+                        <i class="fa fa-refresh"></i>
+                    </a>
+                </#if>
+            </div>
+            <ul>
+                <#if sections?size gt 0>
+                    <#list sections?reverse as section>
+                        <#if section_index lt 9>
+                            <li>
+                                <a href="${ctx}/novel/${novel.novelId}/${section.sectionId}">${section.title}</a>
+                            </li>
+                        <#else>
+                            <#break />
+                        </#if>
+                    </#list>
+                <#else>
+                    <div class="empty-sections">没有最新章节</div>
+                </#if>
+                <@clear/>
+            </ul>
+            <div class="header">
                 《${novel.name}》章节列表
-                    <#if !novelQueue?? || novelQueue.status=='Y'>
-                        <a class="pull-right pull-btn" href="${ctx}/novel/${novel.novelId}/pull" data-loading-text="更新中">
-                            更新
-                            <i class="fa fa-refresh"></i>
-                        </a>
-                    </#if>
             </div>
             <ul>
                 <#if sections?size gt 0>
