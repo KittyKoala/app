@@ -92,8 +92,8 @@ public class ApiTerminalController extends BaseController {
             AlbumPhoto albumPhoto = new AlbumPhoto();
             log.info(sourcePath.substring(sourcePath.indexOf("upload/") + 7));
             log.info(thumbPath.substring(thumbPath.indexOf("upload/") + 7));
-            albumPhoto.setUrl(sourcePath.substring(sourcePath.indexOf("upload/") + 7));
-            albumPhoto.setThumb(thumbPath.substring(thumbPath.indexOf("upload/") + 7));
+            albumPhoto.setUrl("upload/" + sourcePath.substring(sourcePath.indexOf("upload/") + 7));
+            albumPhoto.setThumb("upload/" + thumbPath.substring(thumbPath.indexOf("upload/") + 7));
             albumPhotoService.updateAlbumPhotoByUrl(albumPhoto);
         }
         return Response.getSuccessResponse();
