@@ -22,6 +22,11 @@
         <a href="${ctx}/{{value}}" target="_blank">查看</a>
         {{/if}}
         </@th>
+        <@th field="thumb" title="缩略图" render=true auto_hide=true>
+        {{if value!=''}}
+        <a href="${ctx}/{{value}}" target="_blank">查看</a>
+        {{/if}}
+        </@th>
         <@th field="sort" title="排序" auto_hide=true/>
         <@thYesNo field="isDeleted" title="逻辑删除" auto_hide=true/>
         <@thDatetime field="createdTime" title="创建时间" auto_hide=true/>

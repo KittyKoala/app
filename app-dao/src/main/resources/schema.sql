@@ -464,6 +464,8 @@ CREATE TABLE tb_album_photo
   COMMENT '描述',
   url          VARCHAR(256)                          NOT NULL                    DEFAULT ''
   COMMENT '图片地址',
+  thumb        VARCHAR(256)                          NOT NULL                    DEFAULT ''
+  COMMENT '缩略图地址',
   sort         INT(11)                               NOT NULL                    DEFAULT 0
   COMMENT '排序(从0开始)',
   is_deleted   TINYINT                               NOT NULL                    DEFAULT 0

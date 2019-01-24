@@ -53,6 +53,7 @@
         <zxing.version>3.3.0</zxing.version>
         <poi.version>4.0.0</poi.version>
         <drewnoakes.version>2.8.1</drewnoakes.version>
+        <thumbnailator.version>0.4.8</thumbnailator.version>
     </properties>
 
     <build>
@@ -178,6 +179,11 @@
                 <groupId>com.drewnoakes</groupId>
                 <artifactId>metadata-extractor</artifactId>
                 <version>${drewnoakes.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.coobird</groupId>
+                <artifactId>thumbnailator</artifactId>
+                <version>${thumbnailator.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

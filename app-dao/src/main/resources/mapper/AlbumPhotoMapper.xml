@@ -9,6 +9,7 @@
         <result column="album_id" property="albumId" jdbcType="BIGINT"/>
         <result column="description" property="description" jdbcType="VARCHAR"/>
         <result column="url" property="url" jdbcType="VARCHAR"/>
+        <result column="thumb" property="thumb" jdbcType="VARCHAR"/>
         <result column="sort" property="sort" jdbcType="INTEGER"/>
         <result column="is_deleted" property="isDeleted" jdbcType="TINYINT"/>
         <result column="created_time" property="createdTime" jdbcType="TIMESTAMP"/>

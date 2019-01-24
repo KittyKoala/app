@@ -9,6 +9,7 @@ import com.kangyonggan.app.service.AlbumPhotoService;
 import com.kangyonggan.app.service.AlbumService;
 import com.kangyonggan.app.util.FileHelper;
 import com.kangyonggan.app.util.FileUpload;
+import com.kangyonggan.app.util.Images;
 import com.kangyonggan.common.Page;
 import com.kangyonggan.common.Params;
 import com.kangyonggan.common.Response;
@@ -218,19 +219,15 @@ public class DashboardSitesAlbumController extends BaseController {
      * @param albumPhoto
      * @param file
      * @return
-     * @throws FileUploadException
+     * @throws Exception
      */
     @PostMapping("{albumId:[\\d]+}/save")
     @ResponseBody
     @PermissionMenu("SITES_ALBUM")
     @Token(key = "createAlbumPhoto", type = Token.Type.CHECK)
     public Response savePhoto(@PathVariable("albumId") Long albumId, AlbumPhoto albumPhoto,
-                              @RequestParam(value = "file", required = false) MultipartFile file) throws FileUploadException {
-        if (file != null && !file.isEmpty()) {
-            String photo = fileHelper.genFileName("photo");
-            FileUpload.upload(fileHelper.getFileUploadPath() + "photo/", photo, file);
-            albumPhoto.setUrl("upload/photo/" + photo + "." + FilenameUtils.getExtension(file.getOriginalFilename()));
-        }
+                              @RequestParam(value = "file", required = false) MultipartFile file) throws Exception {
+        upload(albumPhoto, file);
 
         albumPhoto.setAlbumId(albumId);
         albumPhotoService.saveAlbumPhoto(albumPhoto);
@@ -261,18 +258,14 @@ public class DashboardSitesAlbumController extends BaseController {
      * @param albumPhoto
      * @param file
      * @return
-     * @throws FileUploadException
+     * @throws Exception
      */
     @PostMapping("{albumId:[\\d]+}/update")
     @ResponseBody
     @PermissionMenu("SITES_ALBUM")
     @Token(key = "editAlbumPhoto", type = Token.Type.CHECK)
-    public Response updatePhoto(AlbumPhoto albumPhoto, @RequestParam(value = "file", required = false) MultipartFile file) throws FileUploadException {
-        if (file != null && !file.isEmpty()) {
-            String photo = fileHelper.genFileName("photo");
-            FileUpload.upload(fileHelper.getFileUploadPath() + "photo/", photo, file);
-            albumPhoto.setUrl("upload/photo/" + photo + "." + FilenameUtils.getExtension(file.getOriginalFilename()));
-        }
+    public Response updatePhoto(AlbumPhoto albumPhoto, @RequestParam(value = "file", required = false) MultipartFile file) throws Exception {
+        upload(albumPhoto, file);
         albumPhotoService.updateAlbumPhoto(albumPhoto);
         return Response.getSuccessResponse();
     }
@@ -307,5 +300,27 @@ public class DashboardSitesAlbumController extends BaseController {
         // 更新照片个数
         albumService.updateSize(albumId);
         return Response.getSuccessResponse();
+    }
+
+    /**
+     * 文件上传
+     *
+     * @param albumPhoto
+     * @param file
+     * @throws Exception
+     */
+    private void upload(AlbumPhoto albumPhoto, MultipartFile file) throws Exception {
+        if (file == null || file.isEmpty()) {
+            return;
+        }
+        String photo = fileHelper.genFileName("photo");
+        FileUpload.upload(fileHelper.getFileUploadPath() + "photo/", photo, file);
+        String fileName = photo + "." + FilenameUtils.getExtension(file.getOriginalFilename());
+        String thumbName = photo + "_THUMB." + FilenameUtils.getExtension(file.getOriginalFilename());
+        albumPhoto.setUrl("upload/photo/" + fileName);
+
+        Images.thumb(fileHelper.getFileUploadPath() + "photo/" + fileName,
+                fileHelper.getFileUploadPath() + "photo/thumb/" + thumbName, 195, 133);
+        albumPhoto.setThumb("upload/photo/thumb/" + thumbName);
     }
 }

@@ -2,7 +2,6 @@
 <#assign pwd = RequestParameters.pwd!'' />
 
 <@override name="style">
-<link rel="stylesheet" href="${ctx}/libs/zoomify/dist/zoomify.min.css">
 <style>
     .album-list, .album-list dl, .album-list dt, .album-list dd {
         margin: 0;
@@ -23,17 +22,13 @@
     }
 
     .album-list li dl dd {
-        height: 133px;
-        margin: 0 auto;
-        overflow: hidden;
-        position: relative;
-    }
-
-    .album-list li dl dd div {
         width: 195px;
         height: 133px;
-        background-position: center;
-        background-size: cover;
+    }
+
+    .album-list li dl dd img {
+        width: 195px;
+        height: 133px;
     }
 
     .album-list li dl dt {
@@ -42,11 +37,6 @@
         line-height: 22px;
         color: #999;
         font-size: 13px;
-    }
-
-    .album-list img {
-        width: 300px;
-        margin: auto;
     }
 
     .empty {
@@ -68,15 +58,16 @@
             <#list page.list as photo>
 
                 <#if photo.url?starts_with('http')>
-                    <#assign bg_img=photo.url/>
+                    <#assign imgUrl=photo.url/>
+                    <#assign hasOrigin=false/>
                 <#else>
-                    <#assign bg_img=ctx + "/" + photo.url/>
+                    <#assign imgUrl=ctx + "/" + photo.thumb/>
+                    <#assign hasOrigin=true/>
                 </#if>
                 <li>
                     <dl>
                         <dd>
-                            <div style="background-image: url('${bg_img}')">
-                            </div>
+                            <img src="${imgUrl}" <#if hasOrigin>data-origin="${ctx}/${photo.url}"</#if>/>
                         </dd>
                         <dt>
                         ${photo.createdTime?date}
@@ -143,9 +134,11 @@
 </@override>
 
 <@override name="script">
-<script src="${ctx}/libs/zoomify/dist/zoomify.min.js"></script>
+<script src="${ctx}/libs/zoomer/zoomer.min.js"></script>
 <script>
-    $('.album-list li dl dd').zoomify();
+    $(function () {
+        $(".album-list").zoomer();
+    })
 </script>
 </@override>
 

@@ -41,6 +41,11 @@ public class AlbumPhoto implements Serializable {
     private String url;
 
     /**
+     * 缩略图地址
+     */
+    private String thumb;
+
+    /**
      * 排序(从0开始)
      */
     private Integer sort;
