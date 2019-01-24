@@ -7,9 +7,9 @@ import com.kangyonggan.app.model.Video;
 import com.kangyonggan.app.service.VideoService;
 import com.kangyonggan.app.util.FileHelper;
 import com.kangyonggan.app.util.FileUpload;
+import com.kangyonggan.app.util.Images;
 import com.kangyonggan.common.Page;
 import com.kangyonggan.common.Response;
-import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -76,18 +76,14 @@ public class DashboardSitesVideoController extends BaseController {
      * @param video
      * @param file
      * @return
-     * @throws FileUploadException
+     * @throws Exception
      */
     @PostMapping("save")
     @ResponseBody
     @PermissionMenu("SITES_VIDEO")
     @Token(key = "createVideo", type = Token.Type.CHECK)
-    public Response save(Video video, @RequestParam(value = "file", required = false) MultipartFile file) throws FileUploadException {
-        if (file != null && !file.isEmpty()) {
-            String fileName = fileHelper.genFileName("video");
-            FileUpload.upload(fileHelper.getFileUploadPath() + "video/", fileName, file);
-            video.setCover("upload/video/" + fileName + "." + FilenameUtils.getExtension(file.getOriginalFilename()));
-        }
+    public Response save(Video video, @RequestParam(value = "file", required = false) MultipartFile file) throws Exception {
+        upload(video, file);
 
         // 允许全屏
         video.setContent(video.getContent().replace("'allowfullscreen'", "allowfullscreen"));
@@ -120,18 +116,14 @@ public class DashboardSitesVideoController extends BaseController {
      * @param video
      * @param file
      * @return
-     * @throws FileUploadException
+     * @throws Exception
      */
     @PostMapping("update")
     @ResponseBody
     @PermissionMenu("SITES_VIDEO")
     @Token(key = "editVideo", type = Token.Type.CHECK)
-    public Response update(Video video, @RequestParam(value = "file", required = false) MultipartFile file) throws FileUploadException {
-        if (file != null && !file.isEmpty()) {
-            String fileName = fileHelper.genFileName("video");
-            FileUpload.upload(fileHelper.getFileUploadPath() + "video/", fileName, file);
-            video.setCover("upload/video/" + fileName + "." + FilenameUtils.getExtension(file.getOriginalFilename()));
-        }
+    public Response update(Video video, @RequestParam(value = "file", required = false) MultipartFile file) throws Exception {
+        upload(video, file);
 
         // 允许全屏
         video.setContent(video.getContent().replace("'allowfullscreen'", "allowfullscreen"));
@@ -170,4 +162,21 @@ public class DashboardSitesVideoController extends BaseController {
         return Response.getSuccessResponse();
     }
 
+    /**
+     * 文件上传
+     *
+     * @param video
+     * @param file
+     * @throws Exception
+     */
+    private void upload(Video video, MultipartFile file) throws Exception {
+        if (file == null || file.isEmpty()) {
+            return;
+        }
+        String fileName = fileHelper.genFileName("video");
+        FileUpload.upload(fileHelper.getFileUploadPath() + "video/", fileName, file);
+        String filePath = fileName + "." + FilenameUtils.getExtension(file.getOriginalFilename());
+        Images.thumb(fileHelper.getFileUploadPath() + "video/" + filePath, fileHelper.getFileUploadPath() + "video/" + fileName + ".png", 195, 133);
+        video.setCover("upload/video/" + filePath);
+    }
 }
