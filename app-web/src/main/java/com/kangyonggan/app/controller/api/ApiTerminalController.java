@@ -77,6 +77,9 @@ public class ApiTerminalController extends BaseController {
         File dir = new File("/home/hxzq/data/app/upload/photo/");
         File []files = dir.listFiles();
         for (File file : files) {
+            if (file.isDirectory()) {
+                continue;
+            }
             String sourcePath = file.getAbsolutePath();
             String thumbPath = sourcePath.substring(0, sourcePath.lastIndexOf(".")) + "_THUMB" + sourcePath.substring(sourcePath.lastIndexOf("."));
             Images.thumb(sourcePath, thumbPath, 195, 133);
