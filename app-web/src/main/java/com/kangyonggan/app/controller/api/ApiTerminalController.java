@@ -85,7 +85,7 @@ public class ApiTerminalController extends BaseController {
             }
             String sourcePath = file.getAbsolutePath();
             log.info("source:{}", sourcePath);
-            String thumbPath = sourcePath.substring(0, sourcePath.lastIndexOf(".")) + "_THUMB" + sourcePath.substring(sourcePath.lastIndexOf("."));
+            String thumbPath = sourcePath.substring(0, sourcePath.lastIndexOf("photo/")) + "photo/thumb/" + sourcePath.substring(sourcePath.indexOf("photo/") + 6, sourcePath.lastIndexOf(".")) + "_THUMB" + sourcePath.substring(sourcePath.lastIndexOf("."));
             log.info("thumbPath:{}", thumbPath);
             Images.thumb(sourcePath, thumbPath, 195, 133);
 
