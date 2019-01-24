@@ -63,4 +63,11 @@ public interface AlbumPhotoService {
      * @return
      */
     List<AlbumPhoto> findAlbumPhotos(Long albumId, int pageNum);
+
+    /**
+     * 更新照片
+     *
+     * @param albumPhoto
+     */
+    void updateAlbumPhotoByUrl(AlbumPhoto albumPhoto);
 }

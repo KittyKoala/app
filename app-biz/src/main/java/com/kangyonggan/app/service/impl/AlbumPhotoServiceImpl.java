@@ -113,4 +113,12 @@ public class AlbumPhotoServiceImpl extends BaseService<AlbumPhoto> implements Al
         PageHelper.startPage(pageNum, 20);
         return myMapper.selectByExample(example);
     }
+
+    @Override
+    public void updateAlbumPhotoByUrl(AlbumPhoto albumPhoto) {
+        Example example = new Example(AlbumPhoto.class);
+        example.createCriteria().andEqualTo("url", albumPhoto.getUrl());
+
+        myMapper.updateByExampleSelective(albumPhoto, example);
+    }
 }

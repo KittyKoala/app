@@ -1,9 +1,12 @@
 package com.kangyonggan.app.controller.api;
 
 import com.kangyonggan.app.controller.BaseController;
+import com.kangyonggan.app.model.AlbumPhoto;
 import com.kangyonggan.app.model.Novel;
+import com.kangyonggan.app.service.AlbumPhotoService;
 import com.kangyonggan.app.service.NovelService;
 import com.kangyonggan.app.util.Collections3;
+import com.kangyonggan.app.util.Images;
 import com.kangyonggan.common.Response;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.File;
 import java.util.List;
 
 /**
@@ -28,6 +32,9 @@ public class ApiTerminalController extends BaseController {
 
     @Autowired
     private NovelService novelService;
+
+    @Autowired
+    private AlbumPhotoService albumPhotoService;
 
     /**
      * 更新小说
@@ -56,6 +63,29 @@ public class ApiTerminalController extends BaseController {
 
         novelService.pullNovels(novelIds);
 
+        return Response.getSuccessResponse();
+    }
+
+    /**
+     * 临时修复数据
+     *
+     * @return
+     * @throws Exception
+     */
+    @GetMapping("thumb")
+    public Response genThumb() throws Exception {
+        File dir = new File("/home/hxzq/data/app/upload/photo/");
+        File []files = dir.listFiles();
+        for (File file : files) {
+            String sourcePath = file.getAbsolutePath();
+            String thumbPath = sourcePath.substring(0, sourcePath.lastIndexOf(".")) + "_THUMB" + sourcePath.substring(sourcePath.lastIndexOf("."));
+            Images.thumb(sourcePath, thumbPath, 195, 133);
+
+            AlbumPhoto albumPhoto = new AlbumPhoto();
+            albumPhoto.setUrl(sourcePath.substring(sourcePath.indexOf("upload/") + 7));
+            albumPhoto.setThumb(thumbPath.substring(thumbPath.indexOf("upload/") + 7));
+            albumPhotoService.updateAlbumPhotoByUrl(albumPhoto);
+        }
         return Response.getSuccessResponse();
     }
 
