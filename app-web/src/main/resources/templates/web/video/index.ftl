@@ -33,6 +33,8 @@
         display: inline-block;
         width: 300px;
         height: 200px;
+        background-position: center;
+        background-size: cover;
     }
 
     .video-list .size {
@@ -90,16 +92,15 @@
         <ul class="video-list border">
             <#list page.list as video>
                 <#if video.cover?starts_with('http')>
-                    <#assign imrSrc=video.cover/>
+                    <#assign bg_img=video.cover/>
                 <#else>
-                    <#assign imrSrc=ctx + "/" + video.cover/>
+                    <#assign bg_img=ctx + "/" + video.cover/>
                 </#if>
                 <li title="${video.title}">
                     <dl>
                         <dd>
-                            <a href="${ctx}/video/${video.videoId}">
-                                <img src="${imrSrc}"/>
-                            </a>
+                            <a href="${ctx}/video/${video.videoId}"
+                               style="background-image: url('${bg_img}')"></a>
                             <div class="size">${video.viewNum}</div>
                         </dd>
                         <dt>

@@ -7,7 +7,6 @@ import com.kangyonggan.app.model.Video;
 import com.kangyonggan.app.service.VideoService;
 import com.kangyonggan.app.util.FileHelper;
 import com.kangyonggan.app.util.FileUpload;
-import com.kangyonggan.app.util.Images;
 import com.kangyonggan.common.Page;
 import com.kangyonggan.common.Response;
 import org.apache.commons.io.FilenameUtils;
@@ -175,8 +174,6 @@ public class DashboardSitesVideoController extends BaseController {
         }
         String fileName = fileHelper.genFileName("video");
         FileUpload.upload(fileHelper.getFileUploadPath() + "video/", fileName, file);
-        String ext = FilenameUtils.getExtension(file.getOriginalFilename());
-        Images.thumb(fileHelper.getFileUploadPath() + "video/" + fileName + "." + ext, fileHelper.getFileUploadPath() + "video/" + fileName + ".png", 300, 205);
-        video.setCover("upload/video/" + fileName + ".png");
+        video.setCover("upload/video/" + fileName + FilenameUtils.getExtension(file.getOriginalFilename()));
     }
 }
