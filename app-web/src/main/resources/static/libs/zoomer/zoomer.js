@@ -27,7 +27,6 @@
         for (var i = 0; i < $allImgs.length; i++) {
             $($allImgs[i]).data("index", i);
         }
-        $allImgs = $target.find("img");
 
         // 绑定点击事件
         $allImgs.click(function () {
