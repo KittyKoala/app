@@ -23,6 +23,12 @@
         // 修改光标
         $allImgs.css("cursor", "zoom-in");
 
+        // 给每个img一个下标
+        for (var i = 0; i < $allImgs.length; i++) {
+            $($allImgs[i]).data("index", i);
+        }
+        $allImgs = $target.find("img");
+
         // 绑定点击事件
         $allImgs.click(function () {
             showModal($(this));
@@ -39,8 +45,11 @@
             if (!src) {
                 src = $img.attr('src');
             }
+            var index = $img.data("index");
 
             $overlay = $('<div>' +
+                '<a href="javascript:" class="zoomer-prev-img" data-index="' + index + '" style="display: none; position: absolute;z-index: 1;"></a>' +
+                '<a href="javascript:" class="zoomer-next-img" data-index="' + index + '" style="display: none; position: absolute;z-index: 1;"></a>' +
                 '<div style="text-align: center;color: #ddd;position: absolute;left: 0;right: 0;top: 40%;">加载中...</div>' +
                 '<img src="' + src + '" style="max-width: 100%;max-height: 100%;display: none"/></div>').css({
                 position: "fixed",
@@ -58,8 +67,53 @@
 
             // 图片加载完成事件
             $overlay.find("img").load(function () {
+                // 图片距离顶部的距离
+                var top = ($(window).height() - $(this).height()) / 2;
+                // 图片距离左边的距离
+                var left = ($(window).width() - $(this).width()) / 2;
+
+                // 上一张
+                $(this).parents("div").find(".zoomer-prev-img").css({
+                    "display": "inline-block",
+                    "top": top + "px",
+                    "left": left + "px",
+                    "bottom": top + "px",
+                    "width": $(this).width() / 3 + "px"
+                }).hover(function () {
+                    $(this).css({
+                        background: "-webkit-linear-gradient(left, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0))",
+                        background: "-o-linear-gradient(right, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0))",
+                        background: "-moz-linear-gradient(right, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0))",
+                        background: "linear-gradient(to right, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0))"
+                    })
+                }, function () {
+                    $(this).css({
+                        "background": "rgba(0, 0, 0, 0.0)"
+                    })
+                });
+
+                // 下一张
+                $(this).parents("div").find(".zoomer-next-img").css({
+                    "display": "inline-block",
+                    "top": top + "px",
+                    "right": left + "px",
+                    "bottom": top + "px",
+                    "width": $(this).width() / 3 + "px"
+                }).hover(function () {
+                    $(this).css({
+                        background: "-webkit-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3))",
+                        background: "-o-linear-gradient(right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3))",
+                        background: "-moz-linear-gradient(right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3))",
+                        background: "linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3))"
+                    })
+                }, function () {
+                    $(this).css({
+                        "background": "rgba(0, 0, 0, 0.0)"
+                    })
+                });
+
                 $(this).parents("div").find("div").css({"display": "none"});
-                $(this).css({"display": "inline-block"});
+                $(this).css({"display": "inline-block", "marginTop": top + "px"});
             });
 
             // 图片加载失败事件
@@ -73,6 +127,28 @@
             // 给模态框绑定点击事件
             $overlay.click(function () {
                 $overlay.remove();
+            });
+
+            // 上一张事件
+            $overlay.find(".zoomer-prev-img").click(function () {
+                var index = $(this).data("index");
+                if (index === 0) {
+                    $overlay.remove();
+                    return;
+                }
+                showModal($($allImgs[index - 1]));
+                return false;
+            });
+
+            // 下一张事件
+            $overlay.find(".zoomer-next-img").click(function () {
+                var index = $(this).data("index");
+                if (index === $allImgs.length - 1) {
+                    $overlay.remove();
+                    return;
+                }
+                showModal($($allImgs[index + 1]));
+                return false;
             });
         }
     }
