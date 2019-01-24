@@ -8,6 +8,7 @@ import com.kangyonggan.app.service.NovelService;
 import com.kangyonggan.app.util.Collections3;
 import com.kangyonggan.app.util.Images;
 import com.kangyonggan.common.Response;
+import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,6 +26,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("api/terminal")
+@Log4j2
 public class ApiTerminalController extends BaseController {
 
     @Value("${app.terminal.whiteList}")
@@ -76,15 +78,20 @@ public class ApiTerminalController extends BaseController {
     public Response genThumb() throws Exception {
         File dir = new File("/home/hxzq/data/app/upload/photo/");
         File []files = dir.listFiles();
+        log.info("size:{}", files.length);
         for (File file : files) {
             if (file.isDirectory()) {
                 continue;
             }
             String sourcePath = file.getAbsolutePath();
+            log.info("source:{}", sourcePath);
             String thumbPath = sourcePath.substring(0, sourcePath.lastIndexOf(".")) + "_THUMB" + sourcePath.substring(sourcePath.lastIndexOf("."));
+            log.info("thumbPath:{}", thumbPath);
             Images.thumb(sourcePath, thumbPath, 195, 133);
 
             AlbumPhoto albumPhoto = new AlbumPhoto();
+            log.info(sourcePath.substring(sourcePath.indexOf("upload/") + 7));
+            log.info(thumbPath.substring(thumbPath.indexOf("upload/") + 7));
             albumPhoto.setUrl(sourcePath.substring(sourcePath.indexOf("upload/") + 7));
             albumPhoto.setThumb(thumbPath.substring(thumbPath.indexOf("upload/") + 7));
             albumPhotoService.updateAlbumPhotoByUrl(albumPhoto);
