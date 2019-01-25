@@ -47,8 +47,10 @@
             var index = $img.data("index");
 
             $overlay = $('<div>' +
-                '<a href="javascript:" class="zoomer-prev-img" data-index="' + index + '" style="display: none; position: absolute;z-index: 1;"></a>' +
-                '<a href="javascript:" class="zoomer-next-img" data-index="' + index + '" style="display: none; position: absolute;z-index: 1;"></a>' +
+                '<a href="javascript:" class="zoomer-prev-img" data-index="' + index + '" style="display: none; position: absolute;z-index: 1;text-decoration: none">' +
+                '<i class="fa fa-angle-left" style="color: #fff;display: none"></i></a>' +
+                '<a href="javascript:" class="zoomer-next-img" data-index="' + index + '" style="display: none; position: absolute;z-index: 1;text-decoration: none">' +
+                '<i class="fa fa-angle-right" style="color: #fff;display: none"></i></a>' +
                 '<div style="text-align: center;color: #ddd;position: absolute;left: 0;right: 0;top: 40%;">加载中...</div>' +
                 '<img src="' + src + '" style="max-width: 100%;max-height: 100%;display: none"/></div>').css({
                 position: "fixed",
@@ -85,10 +87,20 @@
                         background: "-moz-linear-gradient(right, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0))",
                         background: "linear-gradient(to right, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0))"
                     })
+                    $(this).find("i").css({
+                        "display": "block"
+                    })
                 }, function () {
                     $(this).css({
                         "background": "rgba(0, 0, 0, 0.0)"
                     })
+                    $(this).find("i").css({
+                        "display": "none"
+                    })
+                });
+                var height = $(this).parents("div").find(".zoomer-prev-img").height();
+                $(this).parents("div").find(".zoomer-prev-img i").css({
+                    "marginTop": height / 2 - 20
                 });
 
                 // 下一张
@@ -105,10 +117,21 @@
                         background: "-moz-linear-gradient(right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3))",
                         background: "linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3))"
                     })
+                    $(this).find("i").css({
+                        "display": "block"
+                    })
                 }, function () {
                     $(this).css({
                         "background": "rgba(0, 0, 0, 0.0)"
                     })
+                    $(this).find("i").css({
+                        "display": "none"
+                    })
+                });
+
+                height = $(this).parents("div").find(".zoomer-next-img").height();
+                $(this).parents("div").find(".zoomer-next-img i").css({
+                    "marginTop": height / 2 - 20
                 });
 
                 $(this).parents("div").find("div").css({"display": "none"});
