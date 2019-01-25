@@ -22,9 +22,11 @@
             if (audio.paused) {
                 audio.play();
                 $("#audioBtn").css({"color": "${color!'#ff5151'}"});
+                $("#audioBtn i").addClass("animated");
             } else {
                 audio.pause();
                 $("#audioBtn").css({"color": "${color!'#ccc'}"});
+                $("#audioBtn i").removeClass("animated");
             }
         });
     })
