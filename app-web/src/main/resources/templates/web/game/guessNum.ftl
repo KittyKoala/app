@@ -94,6 +94,7 @@
         </div>
     </div>
 
+        <#include "../audio.ftl"/>
     </@panel>
 </@override>
 

@@ -16,6 +16,7 @@
     <meta name="description" content="不用怀疑，我就是你要找的人！点开看看吧..."/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
     <link rel="stylesheet" href="${ctx}/ace/dist/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="${ctx}/ace/dist/css/font-awesome-animation.min.css"/>
 
     <link rel="stylesheet" href="${ctx}/libs/jquery/jquery.growl.css"/>
 

@@ -130,6 +130,7 @@
         <#else>
         <div class="empty">没有照片</div>
         </#if>
+        <#include "../audio.ftl"/>
     </@panel>
 </@override>
 

@@ -45,6 +45,7 @@
         </div>
 
         <#include "toolbar.ftl"/>
+        <#include "../audio.ftl"/>
     </@panel>
 </@override>
 
