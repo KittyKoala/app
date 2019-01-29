@@ -84,8 +84,22 @@
 
     .section-list ul li {
         float: left;
-        width: 337px;
+        width: 33%;
         border-bottom: 1px dashed #d5d5d5;
+    }
+
+    /*中屏*/
+    @media (max-width: 992px) {
+        .section-list ul li {
+            width: 50%;
+        }
+    }
+
+    /*小屏*/
+    @media (max-width: 768px) {
+        .section-list ul li {
+            width: 100%;
+        }
     }
 
     .section-list ul li a {
