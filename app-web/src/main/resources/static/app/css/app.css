@@ -19,6 +19,24 @@ body {
 .empty, .footer {
     height: 260px;
 }
+
+.main {
+    padding: 0 50px;
+}
+
+/*中屏*/
+@media (max-width: 992px) {
+    .main {
+        padding: 0 20px;
+    }
+}
+
+/*小屏*/
+@media (max-width: 768px) {
+    .main {
+        padding: 0 8px;
+    }
+}
 /*布局*/
 
 /*通用*/

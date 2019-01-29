@@ -29,7 +29,7 @@
 <body>
 <div class="container">
 <#include "navbar.ftl"/>
-    <@block name="main"/>
+<@block name="main"/>
     <div class="empty"></div>
 </div>
 
