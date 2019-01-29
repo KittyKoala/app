@@ -1,7 +1,7 @@
 <audio id="bg-audio" src="${ctx}/app/audio/bg.mp3" loop="loop"></audio>
 
 <a id="audioBtn" href="javascript:">
-    <i class="fa fa-music faa-bounce animated"></i>
+    <i class="fa fa-music faa-bounce"></i>
 </a>
 
 <style>
@@ -10,7 +10,7 @@
         right: 30px;
         top: 72px;
         font-size: 25px;
-        color: ${color!'#ff5151'};
+        color: ${color!'#ccc'};
     }
 </style>
 
