@@ -66,6 +66,10 @@
             <a href="https://github.com/kangyonggan/" target="_blank" class="rss">
                 <i class="fa fa-github"></i>
             </a>
+            <a href="javascript:" id="weixin" class="rss">
+                <i class="fa fa-weixin"></i>
+                <img src="${ctx}/app/images/weixin.png" class="hidden"/>
+            </a>
         </div>
     </div>
 </div>
@@ -178,6 +182,18 @@
         background: #000;
         color: #fff;
     }
+
+    #weixin {
+        position: relative;
+    }
+
+    #weixin img {
+        position: absolute;
+        bottom: 16px;
+        right: 16px;
+        width: 260px;
+        height: 340px;
+    }
 </style>
 
 <script>
@@ -195,6 +211,13 @@
         $("#back-top").click(function () {
             scrollTo(0, 0);
             navbar('show');
+        });
+
+        // 显示微信公共号的二维码
+        $("#weixin").hover(function () {
+            $(this).find("img").removeClass("hidden");
+        }, function () {
+            $(this).find("img").addClass("hidden");
         })
     })
 </script>
