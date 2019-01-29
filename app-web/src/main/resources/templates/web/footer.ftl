@@ -41,6 +41,9 @@
                     <a href="https://ckfksc.com" target="_blank">疯狂赛车</a>
                 </li>
                 <li>
+                    <a href="http://ckssss.com" target="_blank">生生世世</a>
+                </li>
+                <li>
                     <a href="https://houbb.github.io/" target="_blank">侯宾宾博客</a>
                 </li>
                 <li>
