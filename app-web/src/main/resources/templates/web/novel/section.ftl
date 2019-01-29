@@ -16,7 +16,7 @@
         color: #333;
         display: inline-block;
         text-decoration: none;
-        width: 333px;
+        width: 32%
     }
 
     .content {
@@ -27,6 +27,7 @@
 </@override>
 
 <@override name="main">
+<div class="main">
     <@panel>
         <@breadcrumbs>
             <@breadcrumb name="小说" href="${ctx}/novel"/>
@@ -35,18 +36,19 @@
         </@breadcrumbs>
 
         <div class="title">
-            ${section.title}
+        ${section.title}
         </div>
 
         <#include "toolbar.ftl"/>
 
         <div class="border content">
-            ${section.content}
+        ${section.content}
         </div>
 
         <#include "toolbar.ftl"/>
         <#include "../audio.ftl"/>
     </@panel>
+</div>
 </@override>
 
 <@override name="script">

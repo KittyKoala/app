@@ -4,4 +4,10 @@
     </@panel>
 </@override>
 
+<@override name="script">
+    <script>
+        $("body").css({"background": "#000"});
+    </script>
+</@override>
+
 <@extends name="layout.ftl"/>

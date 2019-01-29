@@ -14,7 +14,7 @@
 
     .novel-list li {
         float: left;
-        width: 330px;
+        width: 32%;
         margin-top: 10px;
         margin-bottom: 10px;
         margin-right: 7px;
@@ -65,47 +65,62 @@
         text-align: center;
         line-height: 80px;
     }
+
+    @media (max-width: 1200px) {
+        .novel-list li {
+            width: 48%;
+        }
+    }
+
+    /*小屏*/
+    @media (max-width: 768px) {
+        .novel-list li {
+            width: 100%;
+        }
+    }
 </style>
 </@override>
 
 <@override name="main">
+<div class="main">
     <@panel>
         <@breadcrumbs>
             <@breadcrumb name=title/>
         </@breadcrumbs>
 
         <#if novels?size gt 0>
-        <ul class="novel-list border">
-            <#list novels as novel>
-                <li>
-                    <dl>
-                        <dd>
-                            <a href="${ctx}/novel/${novel.novelId}">
-                                <#if novel.cover!=''>
-                                    <img src="${ctx}/${novel.cover}"/>
-                                <#else>
-                                    <img src="${ctx}/app/images/nocover.jpg"/>
-                                </#if>
-                            </a>
-                        </dd>
-                        <dt>
-                            <div>
-                                <a href="${ctx}/novel/${novel.novelId}">${novel.name}</a>
-                                <span class="author">${novel.author}</span>
-                            </div>
-                            <div class="summary">
-                            ${novel.summary}
-                            </div>
-                        </dt>
-                    </dl>
-                </li>
-            </#list>
-            <div class="clear"></div>
-        </ul>
+            <ul class="novel-list border">
+                <#list novels as novel>
+                    <li>
+                        <dl>
+                            <dd>
+                                <a href="${ctx}/novel/${novel.novelId}">
+                                    <#if novel.cover!=''>
+                                        <img src="${ctx}/${novel.cover}"/>
+                                    <#else>
+                                        <img src="${ctx}/app/images/nocover.jpg"/>
+                                    </#if>
+                                </a>
+                            </dd>
+                            <dt>
+                                <div>
+                                    <a href="${ctx}/novel/${novel.novelId}">${novel.name}</a>
+                                    <span class="author">${novel.author}</span>
+                                </div>
+                                <div class="summary">
+                                ${novel.summary}
+                                </div>
+                            </dt>
+                        </dl>
+                    </li>
+                </#list>
+                <div class="clear"></div>
+            </ul>
         <#else>
-        <div class="empty">暂时没有小说</div>
+            <div class="empty">暂时没有小说</div>
         </#if>
     </@panel>
+</div>
 </@override>
 
 <@extends name="../layout.ftl"/>

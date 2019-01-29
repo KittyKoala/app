@@ -212,7 +212,7 @@
         left: 0;
         right: 0;
         top: 45px;
-        background: rgba(0, 0, 0, 0.8);
+        background: rgba(0, 0, 0, 0.93);
     }
 
     .navbar #sm-menus li a {
@@ -266,7 +266,12 @@
         if (type === 'show') {
             $navbar.find(".inner").show();
             $navbar.css("overflow", "visible");
-            $navbar.animate({height: 60});
+            var width = $(window).width();
+            if (width <= 768) {
+                $navbar.animate({height: 45});
+            } else {
+                $navbar.animate({height: 60});
+            }
         } else if (type === 'hide') {
             $navbar.find(".inner").hide();
             $navbar.animate({height: 0});
@@ -316,6 +321,16 @@
                 }
             }
         };
+
+        $(window).resize(function() {
+            var $navbar = $(".navbar");
+            var width = $(window).width();
+            if (width <= 768) {
+                $navbar.css({height: "45px"});
+            } else {
+                $navbar.css({height: "60px"});
+            }
+        });
 
         //给页面绑定滑轮滚动事件
         if (document.addEventListener) {

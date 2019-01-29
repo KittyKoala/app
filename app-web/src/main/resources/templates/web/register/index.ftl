@@ -62,6 +62,8 @@
 
             return false;
         });
+
+        $("body").css({"background": "#000"});
     })
 </script>
 </@override>

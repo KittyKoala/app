@@ -47,6 +47,7 @@
 </@override>
 
 <@override name="main">
+<div class="main">
     <@panel>
         <@breadcrumbs>
             <@breadcrumb name="相册" href="${ctx}/album"/>
@@ -132,6 +133,7 @@
         </#if>
         <#include "../audio.ftl"/>
     </@panel>
+</div>
 </@override>
 
 <@override name="script">

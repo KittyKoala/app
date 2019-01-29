@@ -83,6 +83,7 @@
 </@override>
 
 <@override name="main">
+<div class="main">
     <@panel>
         <@breadcrumbs>
             <@breadcrumb name=title/>
@@ -162,11 +163,11 @@
                 </#if>
             </ul>
             </#if>
-
         <#else>
         <div class="empty">没有视频</div>
         </#if>
     </@panel>
+</div>
 </@override>
 
 <@extends name="../layout.ftl"/>

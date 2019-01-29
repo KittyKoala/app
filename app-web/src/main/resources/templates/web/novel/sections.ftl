@@ -11,14 +11,9 @@
         width: 130px;
     }
 
-    .right {
-        margin-left: 24px;
-        float: left;
-        width: 858px;
-    }
-
     .name {
         font-size: 22px;
+        margin-left: 150px;
     }
 
     .name span {
@@ -29,10 +24,11 @@
     .info {
         margin-top: 5px;
         font-size: 14px;
+        margin-left: 150px;
     }
 
-    .info span {
-        display: inline-block;
+    .info div {
+        float: left;
         width: 40%;
         margin-top: 2px;
     }
@@ -54,9 +50,12 @@
     }
 
     .summary {
+        width: 70%;
+        float: left;
+        margin-left: 20px;
         margin-top: 5px;
         border-top: 1px solid #D5D5D5;
-        height: 65px;
+        min-height: 65px;
         overflow: hidden;
         font-size: 13px;
         line-height: 21px;
@@ -101,10 +100,27 @@
         text-align: center;
         margin-top: 20px;
     }
+
+    /*中屏*/
+    @media (max-width: 992px) {
+    }
+
+    /*小屏*/
+    @media (max-width: 768px) {
+        .info div {
+            width: 100%;
+        }
+
+        .summary {
+            width: 100%;
+            margin-left: 0;
+        }
+    }
 </style>
 </@override>
 
 <@override name="main">
+<div class="main">
     <@panel>
         <@breadcrumbs>
             <@breadcrumb name="小说" href="${ctx}/novel"/>
@@ -113,32 +129,30 @@
 
         <div class="novel-info border">
             <div class="left">
-            <#if novel.cover!=''>
-                <img src="${ctx}/${novel.cover}"/>
-            <#else>
-                <img src="${ctx}/app/images/nocover.jpg"/>
-            </#if>
+                <#if novel.cover!=''>
+                    <img src="${ctx}/${novel.cover}"/>
+                <#else>
+                    <img src="${ctx}/app/images/nocover.jpg"/>
+                </#if>
             </div>
-            <div class="right">
-                <div class="name">
-                    ${novel.name}
-                    <#if novelQueue??>
-                        <span>（${enum('name', 'NovelQueueStatus', novelQueue.status)}）</span>
-                    </#if>
-                </div>
+            <div class="name">
+            ${novel.name}
+                <#if novelQueue??>
+                    <span>（${enum('name', 'NovelQueueStatus', novelQueue.status)}）</span>
+                </#if>
+            </div>
 
-                <div class="info">
-                    <span>作者：${novel.author}</span>
-                    <span>最新章节：<#if lastSection??><a
-                            href="${ctx}/novel/${novel.novelId}/${lastSection.sectionId}">${lastSection.title}</a><#else>
-                        无</#if></span>
-                    <span>来源：${enum('name', 'NovelSource', novel.source)}</span>
-                    <span>最后更新：<#if novelQueue??>${novelQueue.createdTime?datetime}<#else>无</#if></span>
-                </div>
+            <div class="info">
+                <div>作者：${novel.author}</div>
+                <div>最新章节：<#if lastSection??><a
+                        href="${ctx}/novel/${novel.novelId}/${lastSection.sectionId}">${lastSection.title}</a><#else>
+                    无</#if></div>
+                <div>来源：${enum('name', 'NovelSource', novel.source)}</div>
+                <div>最后更新：<#if novelQueue??>${novelQueue.createdTime?datetime}<#else>无</#if></div>
+            </div>
 
-                <div class="summary">
-                    ${novel.summary}
-                </div>
+            <div class="summary">
+            ${novel.summary}
             </div>
             <@clear/>
         </div>
@@ -175,9 +189,9 @@
             <ul>
                 <#if sections?size gt 0>
                     <#list sections as section>
-                   <li>
-                       <a href="${ctx}/novel/${novel.novelId}/${section.sectionId}">${section.title}</a>
-                   </li>
+                        <li>
+                            <a href="${ctx}/novel/${novel.novelId}/${section.sectionId}">${section.title}</a>
+                        </li>
                     </#list>
                 <#else>
                     <div class="empty-sections">没有相关章节</div>
@@ -186,6 +200,7 @@
             </ul>
         </div>
     </@panel>
+</div>
 </@override>
 
 <@override name="script">

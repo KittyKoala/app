@@ -74,42 +74,44 @@
 </@override>
 
 <@override name="main">
+<div class="main">
     <@panel>
         <@breadcrumbs>
             <@breadcrumb name=title/>
         </@breadcrumbs>
 
         <#if albums?size gt 0>
-        <ul class="album-list border">
-            <#list albums as album>
-                <#if album.cover?starts_with('http')>
-                    <#assign bg_img=album.cover/>
-                <#else>
-                    <#assign bg_img=ctx + "/" + album.cover/>
-                </#if>
-                <li>
-                    <dl>
-                        <dd>
-                            <a href="${ctx}/album/${album.albumId}" data-pwd="${(album.password!='')?c}"
-                               style="background-image: url('${bg_img}"></a>
-                            <div class="size">${album.size}</div>
-                        </dd>
-                        <dt>
-                        ${album.albumName}
-                            <#if album.password!=''>
-                                <i class="fa fa-lock"></i>
-                            </#if>
-                            <span class="pull-right">${album.createdTime?date}</span>
-                        </dt>
-                    </dl>
-                </li>
-            </#list>
-            <div class="clear"></div>
-        </ul>
+            <ul class="album-list border">
+                <#list albums as album>
+                    <#if album.cover?starts_with('http')>
+                        <#assign bg_img=album.cover/>
+                    <#else>
+                        <#assign bg_img=ctx + "/" + album.cover/>
+                    </#if>
+                    <li>
+                        <dl>
+                            <dd>
+                                <a href="${ctx}/album/${album.albumId}" data-pwd="${(album.password!='')?c}"
+                                   style="background-image: url('${bg_img}"></a>
+                                <div class="size">${album.size}</div>
+                            </dd>
+                            <dt>
+                            ${album.albumName}
+                                <#if album.password!=''>
+                                    <i class="fa fa-lock"></i>
+                                </#if>
+                                <span class="pull-right">${album.createdTime?date}</span>
+                            </dt>
+                        </dl>
+                    </li>
+                </#list>
+                <div class="clear"></div>
+            </ul>
         <#else>
-        <div class="empty">没有相册</div>
+            <div class="empty">没有相册</div>
         </#if>
     </@panel>
+</div>
 </@override>
 
 <@override name="script">

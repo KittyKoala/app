@@ -41,6 +41,8 @@
         $("#captcha").attr('src', '${ctx}/captcha?r=' + Math.random());
         $("#captcha").val("");
     }
+
+    $("body").css({"background": "#000"});
 </script>
 </@override>
 

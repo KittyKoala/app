@@ -10,8 +10,6 @@
 <script>
     // 动态高度设定
     $(".panel").css({"minHeight": $(window).height() - 320});
-
-    $("body").css({"background": "#000"});
 </script>
 </#macro>
 

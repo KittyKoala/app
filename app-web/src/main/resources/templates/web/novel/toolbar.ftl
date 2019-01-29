@@ -14,18 +14,18 @@
 </a>
 
 <#if nextSection??>
-    <a href="${ctx}/novel/${novel.novelId}/${nextSection.sectionId}" class="text-right">
+    <a href="${ctx}/novel/${novel.novelId}/${nextSection.sectionId}" class="text-right pull-right">
         下一章
         <i class="fa fa-arrow-right"></i>
     </a>
 <#else>
     <#if !novelQueue?? || novelQueue.status=='Y'>
-        <a class="text-right pull-btn" href="${ctx}/novel/${novel.novelId}/pull" data-loading-text="更新中">
+        <a class="text-right pull-btn pull-right" href="${ctx}/novel/${novel.novelId}/pull" data-loading-text="更新中">
             更新
             <i class="fa fa-refresh"></i>
         </a>
     <#else>
-        <a href="javascript:" class="text-right">${enum('name', 'NovelQueueStatus', novelQueue.status)}</a>
+        <a href="javascript:" class="text-right pull-right">${enum('name', 'NovelQueueStatus', novelQueue.status)}</a>
     </#if>
 </#if>
 </div>

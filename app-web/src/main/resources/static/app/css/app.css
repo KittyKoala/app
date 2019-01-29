@@ -96,6 +96,9 @@ body {
     .show-sm {
         display: block;
     }
+    .hidden-sm {
+        display: none;
+    }
 }
 /*通用*/
 
@@ -208,6 +211,7 @@ body {
     float: right;
     color: #f5f5f5;
     margin-top: 20px;
+    margin-right: 130px;
 }
 
 .forgot {
@@ -228,6 +232,7 @@ body {
     float: right;
     color: #d5d5d5;
     margin-top: 20px;
+    margin-right: 130px;
 }
 
 #sendBtn {
@@ -251,6 +256,7 @@ body {
     float: right;
     color: #d5d5d5;
     margin-top: 20px;
+    margin-right: 130px;
 }
 
 .forgot-form .sending {
