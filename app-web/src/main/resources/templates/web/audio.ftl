@@ -1,4 +1,4 @@
-<audio id="bg-audio" src="${ctx}/app/audio/bg.mp3" autoplay="autoplay"></audio>
+<audio id="bg-audio" src="${ctx}/app/audio/bg.mp3" autoplay="autoplay" loop="loop"></audio>
 
 <a id="audioBtn" href="javascript:">
     <i class="fa fa-music faa-bounce animated"></i>
