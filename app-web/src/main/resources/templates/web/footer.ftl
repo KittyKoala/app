@@ -91,7 +91,7 @@
     }
 
     .footer .left {
-        width: 34%;
+        width: 31%;
         float: left;
         margin-top: 20px;
     }
@@ -198,7 +198,7 @@
             display: none;
         }
         .footer .left {
-            width: 55%;
+            width: 50%;
         }
         .footer .right {
             width: 40%;
@@ -219,7 +219,7 @@
         }
 
         .footer .right {
-            width: 100%;
+            width: 90%;
             height: 160px;
         }
     }
