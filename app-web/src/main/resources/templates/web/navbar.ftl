@@ -1,10 +1,10 @@
-<div class="navbar">
+<div class="navbar navbar-height">
     <div class="inner">
         <a href="${ctx}/" class="logo">
         ${appName}
         </a>
 
-        <ul class="navbar-menus">
+        <ul class="navbar-menus hidden-sm">
             <li data-pathname="">
                 <a href="${ctx}/">首页</a>
             </li>
@@ -15,18 +15,42 @@
         </@categories>
         </ul>
 
+
+        <div class="show-sm">
+            <a href="javascript:" class="pull-right" id="drop-menu">
+                <i class="fa fa-align-justify"></i>
+            </a>
+            <ul class="hidden" id="sm-menus">
+                <li data-pathname="">
+                    <a href="${ctx}/">首页</a>
+                </li>
+            <@categoriesDrop>
+                <#list _categories as category>
+                    <#assign href=ctx + category.url/>
+                    <#if category.url?starts_with('/')>
+                        <#assign href=ctx + category.url/>
+                    <#else>
+                        <#assign href=category.url/>
+                    </#if>
+                    <li>
+                        <a href="${href}" <#if category.isBlank==1>target="_blank"</#if>>
+                        ${category.categoryName}
+                        </a>
+                    </li>
+                </#list>
+            </@categoriesDrop>
+            </ul>
+        </div>
+
     <@app.guest>
-        <ul class="navbar-menus pull-right">
+        <ul class="navbar-menus pull-right hidden-sm">
             <li data-pathname="login">
                 <a href="${ctx}/login">登录</a>
             </li>
-            <#--<li data-pathname="register">-->
-                <#--<a href="${ctx}/register">注册</a>-->
-            <#--</li>-->
         </ul>
     </@app.guest>
     <@app.user>
-        <ul class="navbar-menus pull-right">
+        <ul class="navbar-menus pull-right hidden-sm">
             <li data-pathname="user">
                 <a href="javascript:">
                     <@app.user property='name' default='大佬'/><i class="fa fa-small fa-chevron-down"></i>
@@ -46,7 +70,7 @@
     </@app.user>
     </div>
 </div>
-<div style="height: 60px;"></div>
+<div class="navbar-height"></div>
 
 <style>
     .navbar {
@@ -56,10 +80,14 @@
         top: 0;
         z-index: 2;
         color: #fff;
-        height: 60px;
         background: rgba(0, 0, 0, 0.88);
         font-size: 1rem;
         font-weight: 400;
+        padding: 0 50px;
+    }
+
+    .navbar-height {
+        height: 60px;
     }
 
     .navbar a.logo {
@@ -175,6 +203,55 @@
         float: right;
         margin-top: 15px;
     }
+
+    .navbar #sm-menus {
+        list-style: none;
+        margin-top: 0;
+        padding-left: 0;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 45px;
+        background: rgba(0, 0, 0, 0.8);
+    }
+
+    .navbar #sm-menus li a {
+        display: block;
+        text-align: left;
+        text-indent: 5px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /*中屏*/
+    @media (max-width: 992px) {
+        .navbar {
+            padding: 0 20px;
+        }
+    }
+
+    /*小屏*/
+    @media (max-width: 768px) {
+        .navbar {
+            padding: 0 8px;
+        }
+
+        .navbar-height {
+            height: 45px;
+        }
+
+        .navbar a {
+            height: 45px;
+            line-height: 45px;
+        }
+
+        #drop-menu {
+            display: block;
+            width: 45px;
+            height: 45px;
+            line-height: 45px;
+        }
+
+    }
 </style>
 
 <script>
@@ -287,5 +364,11 @@
         }
         $(".navbar-menus > li").removeClass("active");
         $(".navbar-menus > li[data-pathname=" + pathname + "]").addClass("active");
+
+        $("#drop-menu").toggle(function () {
+            $("#sm-menus").removeClass("hidden");
+        }, function () {
+            $("#sm-menus").addClass("hidden");
+        });
     })
 </script>

@@ -20,6 +20,14 @@ public interface CategoryService {
     List<Category> findTreeCategoriesByType(String type);
 
     /**
+     * 根据类型查找子栏目
+     *
+     * @param type
+     * @return
+     */
+    List<Category> findCategoriesByType(String type);
+
+    /**
      * 搜索栏目
      *
      * @param params

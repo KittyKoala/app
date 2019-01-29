@@ -39,6 +39,16 @@ public class CategoryServiceImpl extends BaseService<Category> implements Catego
     }
 
     @Override
+    @Cache("category:drop:type:${type}")
+    public List<Category> findCategoriesByType(String type) {
+        Example example = new Example(Category.class);
+        example.createCriteria().andEqualTo("categoryType", type).andEqualTo("isDeleted", YesNo.NO.getCode())
+                .andNotEqualTo("url", StringUtils.EMPTY);
+        example.setOrderByClause("category_id asc");
+        return myMapper.selectByExample(example);
+    }
+
+    @Override
     public List<Category> searchCategories(Params params) {
         Example example = new Example(Category.class);
         Query query = params.getQuery();

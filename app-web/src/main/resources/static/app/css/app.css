@@ -22,12 +22,6 @@ body {
 /*布局*/
 
 /*通用*/
-.inner {
-    width: 1024px;
-    margin: 0 auto;
-    padding: 0 10px;
-}
-
 .border {
     border: 1px solid #D5D5D5;
     border-radius: 5px;
@@ -70,6 +64,20 @@ body {
 
 .text-right {
     text-align: right !important;
+}
+
+.show-sm {
+    display: none;
+}
+
+/*小屏*/
+@media (max-width: 768px) {
+    .hidden-sm {
+        display: none;
+    }
+    .show-sm {
+        display: block;
+    }
 }
 /*通用*/
 

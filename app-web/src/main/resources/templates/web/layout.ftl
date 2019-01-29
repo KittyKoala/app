@@ -23,27 +23,6 @@
     <link rel="stylesheet" href="${ctx}/app/css/app.css"/>
     <script src="${ctx}/libs/jquery/jquery-1.8.3.min.js"></script>
     <script>var ctx = '${ctx}';</script>
-    <script>
-        function IsPC() {
-            var userAgentInfo = navigator.userAgent;
-            var Agents = ["Android", "iPhone",
-                "SymbianOS", "Windows Phone",
-                "iPad", "iPod"];
-            var flag = true;
-            for (var v = 0; v < Agents.length; v++) {
-                if (userAgentInfo.indexOf(Agents[v]) > 0) {
-                    flag = false;
-                    break;
-                }
-            }
-            return flag;
-        }
-
-        var flag = IsPC(); //true为PC端，false为手机端
-        if (!flag) {
-            window.location.href = "${ctx}/wap"
-        }
-    </script>
 <@block name="style"/>
 </head>
 

@@ -29,6 +29,9 @@ public class FreemarkerConfigure {
     private CategoryDirective categoryDirective;
 
     @Autowired
+    private CategoryDropDirective categoryDropDirective;
+
+    @Autowired
     private DictTag dictTag;
 
     @Autowired
@@ -51,6 +54,7 @@ public class FreemarkerConfigure {
         configuration.setSharedVariable("app", new AppTags());
         configuration.setSharedVariable("menus", menuDirective);
         configuration.setSharedVariable("categories", categoryDirective);
+        configuration.setSharedVariable("categoriesDrop", categoryDropDirective);
     }
 
 }
