@@ -186,7 +186,7 @@
     #weixin img {
         position: absolute;
         left: 0;
-        bottom: 300px;
+        bottom: 100px;
         right: 0;
         width: 260px;
         height: 340px;
