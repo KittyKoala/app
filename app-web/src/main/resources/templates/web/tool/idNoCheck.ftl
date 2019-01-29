@@ -52,64 +52,85 @@
         text-align: center;
         width: 100px;
     }
+
+    /*小屏*/
+    @media (max-width: 768px) {
+        .tool-form {
+            width: 100%;
+        }
+
+        .tool-form .btn {
+            display: block;
+        }
+
+        .tool-form input[type=text] {
+            width: 220px !important;
+        }
+
+        .result {
+            width: 100%;
+        }
+    }
 </style>
 </@override>
 
 <@override name="main">
+<div class="main">
     <@panel>
         <@breadcrumbs>
             <@breadcrumb name=title/>
         </@breadcrumbs>
 
-    <div class="border">
-        <@form action="${ctx}/tool/idNoCheck" beforeSubmit="beforeSubmit" class="tool-form" success="success">
-            身份证号码:
-            <input type="text" id="data" name="idNo" placeholder="请输入要查询的身份证号码" required/>
-            <button class="btn" data-type="submit" data-loading-text="正在查询...">
-                <i class="fa fa-search"></i>
-                查询
-            </button>
-            <div class="tips">支持15位或18位身份证号码查询。</div>
-        </@form>
+        <div class="border">
+            <@form action="${ctx}/tool/idNoCheck" beforeSubmit="beforeSubmit" class="tool-form" success="success">
+                身份证号码:
+                <input type="text" id="data" name="idNo" placeholder="请输入要查询的身份证号码" required/>
+                <button class="btn" data-type="submit" data-loading-text="正在查询...">
+                    <i class="fa fa-search"></i>
+                    查询
+                </button>
+                <div class="tips hidden-sm">支持15位或18位身份证号码查询。</div>
+            </@form>
 
-        <div class="result">
-            <table>
-                <tbody>
-                <tr>
-                    <td class="first">查询号码</td>
-                    <td id="idNo"></td>
-                </tr>
-                <tr>
-                    <td class="first">查询结果</td>
-                    <td id="isIdNo"></td>
-                </tr>
-                <tr>
-                    <td class="first">原户籍地</td>
-                    <td id="address"></td>
-                </tr>
-                <tr>
-                    <td class="first">出生年月</td>
-                    <td id="birthday"></td>
-                </tr>
-                <tr>
-                    <td class="first">性　　别</td>
-                    <td id="gender"></td>
-                </tr>
-                <tr>
-                    <td class="first">生　　肖</td>
-                    <td id="shengXiao"></td>
-                </tr>
-                <tr>
-                    <td class="first">星　　座</td>
-                    <td id="xingZuo"></td>
-                </tr>
-                </tbody>
-            </table>
+            <div class="result">
+                <table>
+                    <tbody>
+                    <tr>
+                        <td class="first">查询号码</td>
+                        <td id="idNo"></td>
+                    </tr>
+                    <tr>
+                        <td class="first">查询结果</td>
+                        <td id="isIdNo"></td>
+                    </tr>
+                    <tr>
+                        <td class="first">原户籍地</td>
+                        <td id="address"></td>
+                    </tr>
+                    <tr>
+                        <td class="first">出生年月</td>
+                        <td id="birthday"></td>
+                    </tr>
+                    <tr>
+                        <td class="first">性　　别</td>
+                        <td id="gender"></td>
+                    </tr>
+                    <tr>
+                        <td class="first">生　　肖</td>
+                        <td id="shengXiao"></td>
+                    </tr>
+                    <tr>
+                        <td class="first">星　　座</td>
+                        <td id="xingZuo"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="height: 20px;clear: both"></div>
         </div>
-
-        <div style="height: 20px;clear: both"></div>
-    </div>
     </@panel>
+</div>
 </@override>
 
 <@override name="script">
@@ -125,6 +146,7 @@
         $("#shengXiao").html("");
         $("#xingZuo").html("");
     }
+
     /**
      * 查询成功的回调
      */

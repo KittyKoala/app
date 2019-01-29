@@ -129,45 +129,52 @@
 </@override>
 
 <@override name="main">
+<div class="main">
     <@panel>
         <@breadcrumbs>
             <@breadcrumb name=title/>
         </@breadcrumbs>
 
-    <div class="border">
-        <div class="form">
-            <div id="frame-list">
-                <div class="frame">
-                    <img class="hidden" data-type="changeImg"/>
-                    <div class="file-label" data-type="changeImg">第1帧</div>
-                    <div class="text black" data-type="changeImg"></div>
-                    <input type="file" data-index="0" class="hidden" data-type="frameImg"/>
-                    <input type="text" class="imgText" data-index="0" placeholder="给这张图配段文字吧" data-type="frameText"/>
-                    <a class="font-color" data-index="0" data-type="frameColor" title="切换配字颜色"></a>
+        <div class="border">
+            <div class="form">
+                <div id="frame-list">
+                    <div class="frame">
+                        <img class="hidden" data-type="changeImg"/>
+                        <div class="file-label" data-type="changeImg">第1帧</div>
+                        <div class="text black" data-type="changeImg"></div>
+                        <input type="file" data-index="0" class="hidden" data-type="frameImg"/>
+                        <input type="text" class="imgText" data-index="0" placeholder="给这张图配段文字吧"
+                               data-type="frameText"/>
+                        <a class="font-color" data-index="0" data-type="frameColor" title="切换配字颜色"></a>
+                    </div>
                 </div>
-            </div>
-            <div class="more">
-                <i class="fa fa-plus"></i>
-            </div>
-            <div class="clear"></div>
-            <div>
-                GIF宽：<input type="number" class="num" id="imgWidth" value="230"/> GIF高：<input type="number" class="num" id="imgHeight" value="160"/>
-                <button class="btn" id="submit" data-loading-text="正在生成...">
-                    <i class="fa fa-cloud-download"></i>
-                    生成GIF
-                </button>
-                <button class="btn" id="reset">
-                    <i class="fa fa-undo"></i>
-                    重置
-                </button>
-            </div>
+                <div class="more">
+                    <i class="fa fa-plus"></i>
+                </div>
+                <div class="clear"></div>
+                <div>
+                    GIF宽：<input type="number" class="num" id="imgWidth" value="230"/> GIF高：<input type="number"
+                                                                                                  class="num"
+                                                                                                  id="imgHeight"
+                                                                                                  value="160"/>
+                    <div style="height: 10px;"></div>
+                    <button class="btn" id="submit" data-loading-text="正在生成...">
+                        <i class="fa fa-cloud-download"></i>
+                        生成GIF
+                    </button>
+                    <button class="btn" id="reset">
+                        <i class="fa fa-undo"></i>
+                        重置
+                    </button>
+                </div>
 
-            <canvas class="hidden" id="canvas"></canvas>
+                <canvas class="hidden" id="canvas"></canvas>
 
-            <img src="" id="result">
+                <img src="" id="result">
+            </div>
         </div>
-    </div>
     </@panel>
+</div>
 </@override>
 
 <@override name="script">

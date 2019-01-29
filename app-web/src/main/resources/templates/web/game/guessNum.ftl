@@ -13,7 +13,7 @@
     }
 
     .game input[type=number] {
-        width: 260px;
+        width: 220px;
         height: 34px;
         line-height: 34px;
         box-sizing: border-box;
@@ -23,6 +23,14 @@
         background: #fff;
         border: 1px solid #aaa;
         color: #333;
+    }
+
+    /*小屏*/
+    @media (max-width: 768px) {
+        .game input[type=number] {
+            width: 80%;
+            margin-top: 10px;
+        }
     }
 
     .result {
@@ -52,50 +60,52 @@
 </@override>
 
 <@override name="main">
+<div class="main">
     <@panel>
         <@breadcrumbs>
             <@breadcrumb name=title/>
         </@breadcrumbs>
 
-    <div class="border">
-        <div class="game">
-            <input type="number" id="num" placeholder="请输入4位不重复的数字"/>
+        <div class="border">
+            <div class="game">
+                <input type="number" id="num" placeholder="请输入4位不重复的数字"/>
 
-            <button id="guess" class="btn">
-                猜一次(8)
-            </button>
-            <button id="giveUp" class="btn">
-                放弃本局
-            </button>
-            <button id="reset" class="btn" data-loading-text="正在生成...">
-                重新开局
-            </button>
+                <button id="guess" class="btn">
+                    猜一次(8)
+                </button>
+                <button id="giveUp" class="btn">
+                    放弃本局
+                </button>
+                <button id="reset" class="btn" data-loading-text="正在生成...">
+                    重新开局
+                </button>
+            </div>
+
+            <table class="result">
+                <thead>
+                <tr>
+                    <th>猜测次数</th>
+                    <th>猜测数字</th>
+                    <th>点评</th>
+                </tr>
+                </thead>
+                <tbody id="guess-list">
+                </tbody>
+            </table>
+
+            <div class="intro">
+                <h3>游戏规则 | Introduce</h3>
+                <ol>
+                    <li>开局后，系统会随机生成不重复的4个数字（0~9），玩家可以猜8次，若数字和位置都相同则为A，若数字相同但位置不同则为B，每次猜过之后系统都会给出几个A和几个B。</li>
+                    <li>例：正确答案是2534，玩家猜2305，系统则会给出1A2B。表示有1个数字和位置都正确，有2个数字正确但位置不正确。</li>
+                    <li>本游戏可锻炼大脑的推理逻辑，适当游戏益闹，过度游戏伤身。</li>
+                </ol>
+            </div>
         </div>
-
-        <table class="result">
-            <thead>
-            <tr>
-                <th>猜测次数</th>
-                <th>猜测数字</th>
-                <th>点评</th>
-            </tr>
-            </thead>
-            <tbody id="guess-list">
-            </tbody>
-        </table>
-
-        <div class="intro">
-            <h3>游戏规则 | Introduce</h3>
-            <ol>
-                <li>开局后，系统会随机生成不重复的4个数字（0~9），玩家可以猜8次，若数字和位置都相同则为A，若数字相同但位置不同则为B，每次猜过之后系统都会给出几个A和几个B。</li>
-                <li>例：正确答案是2534，玩家猜2305，系统则会给出1A2B。表示有1个数字和位置都正确，有2个数字正确但位置不正确。</li>
-                <li>本游戏可锻炼大脑的推理逻辑，适当游戏益闹，过度游戏伤身。</li>
-            </ol>
-        </div>
-    </div>
 
         <#include "../audio.ftl"/>
     </@panel>
+</div>
 </@override>
 
 <@override name="script">

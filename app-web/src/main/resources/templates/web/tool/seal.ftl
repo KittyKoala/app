@@ -58,26 +58,28 @@
 </@override>
 
 <@override name="main">
+<div class="main">
     <@panel>
         <@breadcrumbs>
             <@breadcrumb name=title/>
         </@breadcrumbs>
 
-    <div class="border">
-        <@form action="${ctx}/tool/seal" beforeSubmit="beforeSubmit" rules="rules" class="tool-form" success="success">
-            姓名（2~4个汉字）
-            <input type="text" name="name" placeholder="请输入您的姓名"/>
-            <button class="btn" data-type='submit' data-loading-text="正在生成...">
-                生成印章
-            </button>
-        </@form>
+        <div class="border">
+            <@form action="${ctx}/tool/seal" beforeSubmit="beforeSubmit" rules="rules" class="tool-form" success="success">
+                姓名（2~4个汉字）
+                <input type="text" name="name" placeholder="请输入您的姓名"/>
+                <button class="btn" data-type='submit' style="margin-top: 10px;" data-loading-text="正在生成...">
+                    生成印章
+                </button>
+            </@form>
 
-        <div class="result">
+            <div class="result">
+            </div>
+
+            <div class="clear"></div>
         </div>
-
-        <div class="clear"></div>
-    </div>
     </@panel>
+</div>
 </@override>
 
 <@override name="script">
