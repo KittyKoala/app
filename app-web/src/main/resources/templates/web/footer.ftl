@@ -69,6 +69,10 @@
             <i class="fa fa-weixin"></i>
             <img src="${ctx}/app/images/weixin.png" class="hidden"/>
         </a>
+        <a href="javascript:" id="alipay" class="rss">
+            <i class="fa fa-heart"></i>
+            <img src="${ctx}/app/images/alipay.png" class="hidden"/>
+        </a>
     </div>
 </div>
 
@@ -191,6 +195,18 @@
         width: 260px;
         height: 340px;
         margin: 0 auto;
+        z-index: 1;
+    }
+
+    #alipay img {
+        position: absolute;
+        left: 0;
+        bottom: 100px;
+        right: 0;
+        width: 300px;
+        height: 300px;
+        margin: 0 auto;
+        z-index: 2;
     }
 
     @media (max-width: 1200px) {
@@ -247,6 +263,13 @@
             $(this).find("img").removeClass("hidden");
         }, function () {
             $(this).find("img").addClass("hidden");
-        })
+        });
+
+        // 显示微信公共号的二维码
+        $("#alipay").toggle(function () {
+            $(this).find("img").removeClass("hidden");
+        }, function () {
+            $(this).find("img").addClass("hidden");
+        });
     })
 </script>
