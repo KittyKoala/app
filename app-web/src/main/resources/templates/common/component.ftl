@@ -1,6 +1,6 @@
 <#--面板-->
-<#macro panel style="">
-<div class="panel" style="${style}">
+<#macro panel style="" class="">
+<div class="panel ${class}" style="${style}">
     <div class="inner">
         <#nested />
     </div>
