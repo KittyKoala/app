@@ -1,12 +1,14 @@
 package com.kangyonggan.app.service.impl;
 
 import com.github.ofofs.jca.annotation.Log;
+import com.kangyonggan.app.constants.EmailType;
 import com.kangyonggan.app.constants.YesNo;
 import com.kangyonggan.app.exception.BizException;
 import com.kangyonggan.app.model.Email;
 import com.kangyonggan.app.service.EmailService;
 import com.kangyonggan.common.BaseService;
 import lombok.extern.log4j.Log4j2;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -85,6 +87,27 @@ public class EmailServiceImpl extends BaseService<Email> implements EmailService
         email.setContent("【" + appName + "】您本次的验证码为" + code + "，有效期" + expireTime + "分钟，此邮件仅用作注册、找回密码和邮件换绑使用！");
         email.setSubject("【" + appName + "】您的验证码为：" + code);
 
+        send(email);
+    }
+
+    @Override
+    public void sendEmail(String toEmail, String content, String ipAddress) {
+        Email email = new Email();
+
+        email.setType(EmailType.NOTICE.getType());
+        email.setCode(StringUtils.EMPTY);
+        email.setToEmail(toEmail);
+        email.setFromEmail(fromEmail);
+        email.setIpAddress(ipAddress);
+        email.setContent("【" + appName + "】" + content);
+
+        int min = content.length() > 10 ? 10 : content.length();
+        email.setSubject("【" + appName + "】：" + content.substring(0, min - 1));
+
+        send(email);
+    }
+
+    private void send(Email email) {
         try {
             sendSSL(email);
 

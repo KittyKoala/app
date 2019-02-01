@@ -37,6 +37,12 @@ public class Note implements Serializable {
     private String content;
 
     /**
+     * 是否回复
+     */
+    @Column(name = "is_reply")
+    private Byte isReply;
+
+    /**
      * 逻辑删除
      */
     @Column(name = "is_deleted")

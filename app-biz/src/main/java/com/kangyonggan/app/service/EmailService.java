@@ -32,4 +32,13 @@ public interface EmailService {
      * @param ipAddress
      */
     void sendEmailCode(String toEmail, String type, String code, String ipAddress);
+
+    /**
+     * 发送邮件
+     *
+     * @param toEmail
+     * @param content
+     * @param ipAddress
+     */
+    void sendEmail(String toEmail, String content, String ipAddress);
 }

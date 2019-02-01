@@ -75,11 +75,11 @@
 
         <div class="border">
             <@form action="${ctx}/note" class="note-form" success="success">
-                <@input type="email" label="电子邮箱" name="email" required=true/>
+                <@input type="email" label="电子邮箱" name="email" required=true range_length=[1, 64]/>
 
                 <@captcha label="验证码" id="captcha" name="captcha"/>
 
-                <@textarea label="留言内容" name="content" required=true/>
+                <@textarea label="留言内容" name="content" required=true range_length=[1, 512]/>
 
                 <@actions>
                     <@button name="提交" type="submit" icon="fa-check"/>

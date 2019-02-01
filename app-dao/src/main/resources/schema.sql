@@ -528,6 +528,8 @@ CREATE TABLE tb_note
     COMMENT 'IP地址',
   content      VARCHAR(512)                          NOT NULL DEFAULT ''
     COMMENT '内容',
+  is_reply     TINYINT                               NOT NULL DEFAULT 0
+    COMMENT '是否回复',
   is_deleted   TINYINT                               NOT NULL DEFAULT 0
     COMMENT '逻辑删除',
   created_time TIMESTAMP                             NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -581,7 +583,8 @@ VALUES ('DASHBOARD', '工作台', '', 'dashboard', 0, 'menu-icon fa fa-dashboard
        ('SITES_NOVEL_QUEUE', '小说队列', 'SITES', 'dashboard/sites/novelQueue', 1, ''),
        ('SITES_RECORD', '宝宝点滴', 'SITES', 'dashboard/sites/record', 2, ''),
        ('SITES_ALBUM', '相册管理', 'SITES', 'dashboard/sites/album', 3, ''),
-       ('SITES_VIDEO', '视频管理', 'SITES', 'dashboard/sites/video', 4, '');
+       ('SITES_VIDEO', '视频管理', 'SITES', 'dashboard/sites/video', 4, ''),
+       ('SITES_NOTE', '留言管理', 'SITES', 'dashboard/sites/note', 5, '');
 
 -- ----------------------------
 --  data for tb_user_role

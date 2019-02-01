@@ -9,6 +9,7 @@
         <result column="email" property="email" jdbcType="VARCHAR"/>
         <result column="ip_address" property="ipAddress" jdbcType="VARCHAR"/>
         <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="is_reply" property="isReply" jdbcType="TINYINT"/>
         <result column="is_deleted" property="isDeleted" jdbcType="TINYINT"/>
         <result column="created_time" property="createdTime" jdbcType="TIMESTAMP"/>
         <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP"/>
