@@ -599,16 +599,17 @@ INSERT INTO tb_category
 (category_type, parent_code, category_code, category_name, url, sort, is_blank)
 VALUES
   ('NAV_BAR', '', 'blog', '博客', 'https://blog.kangyonggan.com', 0, 1),
-  ('NAV_BAR', '', 'novel', '小说', '/novel', 1, 0),
-  ('NAV_BAR', '', 'album', '相册', '/album', 2, 0),
-  ('NAV_BAR', '', 'video', '视频', '/video', 3, 0),
-  ('NAV_BAR', '', 'tool', '工具', '', 4, 0),
+  ('NAV_BAR', '', 'enjoy', '娱乐', '', 1, 0),
+  ('NAV_BAR', 'enjoy', 'novel', '小说', '/novel', 1, 0),
+  ('NAV_BAR', 'enjoy', 'album', '相册', '/album', 2, 0),
+  ('NAV_BAR', 'enjoy', 'video', '视频', '/video', 3, 0),
+  ('NAV_BAR', '', 'tool', '工具', '', 2, 0),
   ('NAV_BAR', 'tool', 'idNo', '身份证', '', 0, 0),
   ('NAV_BAR', 'idNo', 'idNoCheck', '身份证查询', '/tool/idNoCheck', 0, 0),
   ('NAV_BAR', 'idNo', 'idNoGen', '生成身份证', '/tool/idNoGen', 1, 0),
   ('NAV_BAR', 'tool', 'seal', '电子印章', '/tool/seal', 1, 0),
   ('NAV_BAR', 'tool', 'gif', '生成GIF', '/tool/gif', 2, 0),
-  ('NAV_BAR', '', 'game', '游戏', '', 5, 0),
+  ('NAV_BAR', '', 'game', '游戏', '', 3, 0),
   ('NAV_BAR', 'game', 'guessNum', '猜数字', '/game/guessNum', 0, 0);
 
 INSERT INTO tb_novel
