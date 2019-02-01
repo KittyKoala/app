@@ -81,7 +81,7 @@ public class DashboardSitesNoteController extends BaseController {
     @Token(key = "replyNote", type = Token.Type.CHECK)
     public Response replyNote(@PathVariable("id") Long id, @RequestParam("content") String content) {
         Note note = noteService.getNote(id);
-        emailService.sendEmail(note.getEmail(), content, getIpAddress());
+        emailService.sendEmail(note.getEmail(), "您给东方骄子的留言：" + note.getContent() + "\n\n站长回复：\n" + content, getIpAddress());
         note.setIsReply(YesNo.YES.getCode());
         noteService.updateNote(note);
         return Response.getSuccessResponse();
