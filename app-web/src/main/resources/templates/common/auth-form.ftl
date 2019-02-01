@@ -1,12 +1,15 @@
 <#--表单-->
-<#macro form action="" id="" action="" method="post" class="" beforeSubmit="" valid_ignore="" rules="" success="" error="">
+<#macro form action="" id="" action="" method="post" class="" beforeSubmit="" valid_ignore="" rules="" success="" error="" token=false>
     <#if id==''>
         <#local id=func('uuid')/>
     </#if>
 <form <#if action!=''>action="${action}"</#if>
       id="${id}"
       method="${method}"
-      class="form ${class}">
+      class="form ${class}" xmlns="http://www.w3.org/1999/html">
+    <#if token>
+        <input type="hidden" name="_token" value="${_token!''}"/>
+    </#if>
     <#nested />
 </form>
 
@@ -78,6 +81,35 @@ required=false min_length=-1 max_length=-1 validator="" remote="" equal_to="" ra
     />
     <#nested />
 </div>
+</#macro>
+
+<#--文本域-->
+<#macro textarea label name="" id="" placeholder=""
+required=false min_length=-1 max_length=-1 range_length=[]>
+    <div class="form-group">
+        <div class="label">
+            <label <#if required>class="required"</#if>>${label}</label>
+        </div>
+        <textarea
+               <#if id!=''>id="${id}"</#if>
+            <#if name!=''>name="${name}"</#if>
+            <#if placeholder!=''>
+                placeholder="${placeholder}"
+            <#else>
+                placeholder="请输入${label}"
+            </#if>
+            <#if required>required</#if>
+            <#if min_length!=-1>
+                minlength="${min_length}"
+            </#if>
+            <#if max_length!=-1>
+               maxlength="${max_length}"
+        </#if>
+        <#if range_length?size gt 1>
+            rangelength="[${range_length[0]}, ${range_length[1]}]"
+        </#if>
+        ></textarea>
+    </div>
 </#macro>
 
 <#macro captcha label name="" id="" required=true>
