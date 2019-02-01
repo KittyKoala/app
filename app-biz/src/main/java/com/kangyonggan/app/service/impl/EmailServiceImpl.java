@@ -99,7 +99,7 @@ public class EmailServiceImpl extends BaseService<Email> implements EmailService
         email.setToEmail(toEmail);
         email.setFromEmail(fromEmail);
         email.setIpAddress(ipAddress);
-        email.setContent("【" + appName + "】" + content);
+        email.setContent(content);
 
         int min = content.length() > 10 ? 10 : content.length();
         email.setSubject("【" + appName + "】：" + content.substring(0, min - 1));
