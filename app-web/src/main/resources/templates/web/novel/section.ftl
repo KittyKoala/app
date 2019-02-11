@@ -83,7 +83,7 @@
     "common": {
         "bdSnsKey": {},
         "bdText": "${section.title}",
-        "bdDesc": "${section.content}",
+        "bdDesc": "${section.content?substring(0, 30)}",
         "bdUrl": "https://kangyonggan.com/novel/${novel.novelId}/${section.sectionId}",
         "bdMini": "2",
         "bdMiniList": false,
@@ -93,7 +93,6 @@
     }, "slide": {"type": "slide", "bdImg": "5", "bdPos": "right", "bdTop": "200"}
 };
 with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = '${ctx}/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
-</@override>
 </@override>
 
 <@extends name="../layout.ftl"/>
