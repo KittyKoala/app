@@ -31,7 +31,7 @@
             window.location.href = redirectUrl;
             return;
         }
-        window.location.href = "${ctx}/";
+        window.location.href = "${ctx}/dashboard";
     }
 
     /**
