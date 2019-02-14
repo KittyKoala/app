@@ -77,6 +77,22 @@
         });
     })
 </script>
+
+
+<script>window._bd_share_config = {
+    "common": {
+        "bdSnsKey": {},
+        "bdText": "${section.title}",
+        "bdDesc": "${section.content?substring(0, 30)}",
+        "bdUrl": "https://kangyonggan.com/novel/${novel.novelId}/${section.sectionId}",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": "${(novel.cover!='')?string('https://kangyonggan.com/${novel.cover}', 'https://kangyonggan.com/app/images/nocover.jpg')}",
+        "bdStyle": "0",
+        "bdSize": "16"
+    }, "slide": {"type": "slide", "bdImg": "5", "bdPos": "right", "bdTop": "200"}
+};
+with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = '${ctx}/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
 </@override>
 
 <@extends name="../layout.ftl"/>
