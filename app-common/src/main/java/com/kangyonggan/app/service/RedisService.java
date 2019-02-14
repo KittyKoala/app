@@ -1,5 +1,6 @@
 package com.kangyonggan.app.service;
 
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 public class RedisService {
 
     @Autowired
+    @Getter
     private RedisTemplate<String, Object> redisTemplate;
 
     /**
@@ -147,6 +149,15 @@ public class RedisService {
      */
     public long leftPush(String key, Object value) {
         return redisTemplate.opsForList().leftPush(key, value);
+    }
+
+    /**
+     * @param key
+     * @param values
+     * @return
+     */
+    public long leftPushAll(String key, Object... values) {
+        return redisTemplate.opsForList().leftPushAll(key, values);
     }
 
     /**
